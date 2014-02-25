@@ -1,0 +1,1354 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns="urn:mpeg:DASH:schema:MPD:2011"
+     xsi:schemaLocation="urn:mpeg:DASH:schema:MPD:2011"
+     profiles="urn:mpeg:dash:profile:isoff-main:2011"
+     type="static"
+     mediaPresentationDuration="PT0H9M56.46S"
+     minBufferTime="PT10.0S">   
+     <BaseURL>http://www-itec.uni-klu.ac.at/ftp/datasets/mmsys12/BigBuckBunny/bunny_10s/</BaseURL>
+     <Period start="PT0S">
+          <AdaptationSet bitstreamSwitching="true">
+<Representation id="0" codecs="avc1" mimeType="video/mp4" width="320" height="240" startWithSAP="1" bandwidth="45373">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" range="0-864" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="865-57231" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="57232-114771" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="114772-171506" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="171507-231519" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="231520-288631" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="288632-344586" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="344587-401567" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="401568-457994" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="457995-516941" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="516942-572669" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="572670-627993" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="627994-686918" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="686919-743790" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="743791-800797" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="800798-854478" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="854479-907910" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="907911-965248" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="965249-1022482" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1022483-1081314" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1081315-1136650" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1136651-1195287" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1195288-1255778" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1255779-1311206" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1311207-1364933" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1364934-1422820" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1422821-1478438" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1478439-1535416" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1535417-1594676" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1594677-1650371" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1650372-1706651" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1706652-1757250" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1757251-1814432" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1814433-1871009" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1871010-1930446" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1930447-1987183" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="1987184-2044626" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2044627-2103436" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2103437-2160371" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2160372-2214420" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2214421-2274211" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2274212-2324844" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2324845-2377480" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2377481-2435277" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2435278-2492753" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2492754-2545765" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2545766-2601113" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2601114-2653395" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2653396-2706375" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2706376-2763126" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2763127-2816042" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2816043-2877201" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2877202-2938168" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2938169-2996485" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="2996486-3055040" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="3055041-3112939" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="3112940-3173909" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="3173910-3234680" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="3234681-3295248" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="3295249-3344627" />
+    <SegmentURL media="bunny_10s_50kbit/bunny_50kbit_dashNonSeg.mp4" mediaRange="3344628-3383017" />
+   </SegmentList>
+</Representation>
+<Representation id="1" codecs="avc1" mimeType="video/mp4" width="320" height="240" startWithSAP="1" bandwidth="88482">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" range="0-866" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="867-112515" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="112516-229893" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="229894-338473" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="338474-459977" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="459978-574125" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="574126-682888" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="682889-795169" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="795170-903948" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="903949-1012737" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="1012738-1111268" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="1111269-1217502" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="1217503-1332890" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="1332891-1445956" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="1445957-1559171" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="1559172-1669086" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="1669087-1772846" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="1772847-1886487" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="1886488-1997727" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="1997728-2116291" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="2116292-2223334" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="2223335-2333880" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="2333881-2454936" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="2454937-2553714" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="2553715-2662157" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="2662158-2776864" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="2776865-2885682" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="2885683-2999865" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="2999866-3115770" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="3115771-3222797" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="3222798-3328486" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="3328487-3425336" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="3425337-3538042" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="3538043-3652293" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="3652294-3767054" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="3767055-3880656" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="3880657-3994390" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="3994391-4109797" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="4109798-4212213" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="4212214-4300481" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="4300482-4416146" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="4416147-4518291" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="4518292-4625363" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="4625364-4741741" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="4741742-4857034" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="4857035-4965786" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="4965787-5078810" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="5078811-5184880" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="5184881-5287209" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="5287210-5377695" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="5377696-5483079" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="5483080-5603752" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="5603753-5725896" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="5725897-5844783" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="5844784-5959993" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="5959994-6076691" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="6076692-6195051" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="6195052-6316560" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="6316561-6430861" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="6430862-6519305" />
+    <SegmentURL media="bunny_10s_100kbit/bunny_100kbit_dashNonSeg.mp4" mediaRange="6519306-6597049" />
+   </SegmentList>
+</Representation>
+<Representation id="2" codecs="avc1" mimeType="video/mp4" width="320" height="240" startWithSAP="1" bandwidth="127412">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" range="0-866" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="867-167703" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="167704-332605" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="332606-487519" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="487520-671237" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="671238-846112" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="846113-992205" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="992206-1148077" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="1148078-1303059" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="1303060-1441054" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="1441055-1562598" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="1562599-1716981" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="1716982-1888851" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="1888852-2061229" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="2061230-2234943" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="2234944-2388175" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="2388176-2539065" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="2539066-2703092" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="2703093-2849768" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="2849769-3026635" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="3026636-3174649" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="3174650-3330170" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="3330171-3511506" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="3511507-3649735" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="3649736-3798369" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="3798370-3967107" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="3967108-4126115" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="4126116-4291405" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="4291406-4466151" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="4466152-4608133" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="4608134-4763374" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="4763375-4912193" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="4912194-5081339" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="5081340-5250586" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="5250587-5414563" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="5414564-5580847" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="5580848-5751247" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="5751248-5924264" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="5924265-6064212" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="6064213-6172205" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="6172206-6328138" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="6328139-6477083" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="6477084-6637750" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="6637751-6813080" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="6813081-6985553" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="6985554-7142327" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="7142328-7298538" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="7298539-7456180" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="7456181-7603927" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="7603928-7720327" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="7720328-7856131" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="7856132-8037255" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="8037256-8220269" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="8220270-8399921" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="8399922-8576949" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="8576950-8760991" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="8760992-8945830" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="8945831-9123432" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="9123433-9276053" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="9276054-9388511" />
+    <SegmentURL media="bunny_10s_150kbit/bunny_150kbit_dashNonSeg.mp4" mediaRange="9388512-9499567" />
+   </SegmentList>
+</Representation>
+<Representation id="3" codecs="avc1" mimeType="video/mp4" width="480" height="360" startWithSAP="1" bandwidth="176780">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" range="0-867" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="868-224109" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="224110-460390" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="460391-674916" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="674917-915705" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="915706-1153017" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="1153018-1370210" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="1370211-1587125" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="1587126-1801568" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="1801569-2011654" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="2011655-2204749" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="2204750-2420802" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="2420803-2650788" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="2650789-2881803" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="2881804-3116101" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="3116102-3333184" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="3333185-3553459" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="3553460-3778959" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="3778960-3993073" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="3993074-4228821" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="4228822-4439205" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="4439206-4658519" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="4658520-4897443" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="4897444-5094362" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="5094363-5312633" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="5312634-5544451" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="5544452-5761919" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="5761920-5990901" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="5990902-6226538" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="6226539-6444482" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="6444483-6662624" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="6662625-6857933" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="6857934-7091221" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="7091222-7324427" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="7324428-7548835" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="7548836-7771691" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="7771692-8004770" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="8004771-8232017" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="8232018-8432472" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="8432473-8609209" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="8609210-8817254" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="8817255-9014300" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="9014301-9230353" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="9230354-9458731" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="9458732-9691068" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="9691069-9914191" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="9914192-10136595" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="10136596-10339685" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="10339686-10549177" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="10549178-10741652" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="10741653-10953033" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="10953034-11196464" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="11196465-11437325" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="11437326-11675010" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="11675011-11911757" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="11911758-12144197" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="12144198-12384205" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="12384206-12626302" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="12626303-12853871" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="12853872-13027022" />
+    <SegmentURL media="bunny_10s_200kbit/bunny_200kbit_dashNonSeg.mp4" mediaRange="13027023-13180323" />
+   </SegmentList>
+</Representation>
+<Representation id="4" codecs="avc1" mimeType="video/mp4" width="480" height="360" startWithSAP="1" bandwidth="216536">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" range="0-867" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="868-281554" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="281555-570459" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="570460-835436" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="835437-1138796" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="1138797-1434336" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="1434337-1695789" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="1695790-1960526" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="1960527-2222190" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="2222191-2460595" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="2460596-2672746" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="2672747-2935596" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="2935597-3223470" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="3223471-3515335" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="3515336-3813354" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="3813355-4078273" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="4078274-4337315" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="4337316-4612350" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="4612351-4860793" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="4860794-5154279" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="5154280-5404424" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="5404425-5670593" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="5670594-5969402" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="5969403-6203961" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="6203962-6465698" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="6465699-6752195" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="6752196-7020373" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="7020374-7303428" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="7303429-7596307" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="7596308-7848447" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="7848448-8111770" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="8111771-8359410" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="8359411-8652629" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="8652630-8938468" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="8938469-9209768" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="9209769-9485925" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="9485926-9778241" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="9778242-10063688" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="10063689-10309031" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="10309032-10500528" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="10500529-10754318" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="10754319-10998505" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="10998506-11268999" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="11269000-11557012" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="11557013-11847211" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="11847212-12119709" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="12119710-12385998" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="12385999-12639047" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="12639048-12892960" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="12892961-13113006" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="13113007-13371483" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="13371484-13673760" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="13673761-13974683" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="13974684-14270619" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="14270620-14571828" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="14571829-14871628" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="14871629-15172262" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="15172263-15474501" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="15474502-15752499" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="15752500-15951624" />
+    <SegmentURL media="bunny_10s_250kbit/bunny_250kbit_dashNonSeg.mp4" mediaRange="15951625-16144442" />
+   </SegmentList>
+</Representation>
+<Representation id="5" codecs="avc1" mimeType="video/mp4" width="480" height="360" startWithSAP="1" bandwidth="252988">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" range="0-867" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="868-340065" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="340066-672286" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="672287-978263" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="978264-1341152" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="1341153-1696470" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="1696471-1994492" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="1994493-2302721" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="2302722-2605946" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="2605947-2867330" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="2867331-3089458" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="3089459-3389487" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="3389488-3732003" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="3732004-4075144" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="4075145-4434429" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="4434430-4747040" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="4747041-5040355" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="5040356-5363065" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="5363066-5643647" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="5643648-5992453" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="5992454-6277236" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="6277237-6581740" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="6581741-6943187" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="6943188-7214331" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="7214332-7497269" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="7497270-7842696" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="7842697-8155984" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="8155985-8484796" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="8484797-8831551" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="8831552-9118510" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="9118511-9421035" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="9421036-9723098" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="9723099-10075726" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="10075727-10415543" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="10415544-10732638" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="10732639-11067399" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="11067400-11418137" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="11418138-11761860" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="11761861-12041883" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="12041884-12245898" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="12245899-12534615" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="12534616-12820617" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="12820618-13160187" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="13160188-13508106" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="13508107-13855544" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="13855545-14164254" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="14164255-14472677" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="14472678-14776133" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="14776134-15072389" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="15072390-15311824" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="15311825-15605695" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="15605696-15968497" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="15968498-16329139" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="16329140-16683061" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="16683062-17041910" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="17041911-17407436" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="17407437-17767743" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="17767744-18130729" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="18130730-18446574" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="18446575-18650208" />
+    <SegmentURL media="bunny_10s_300kbit/bunny_300kbit_dashNonSeg.mp4" mediaRange="18650209-18862176" />
+   </SegmentList>
+</Representation>
+<Representation id="6" codecs="avc1" mimeType="video/mp4" width="480" height="360" startWithSAP="1" bandwidth="317328">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" range="0-867" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="868-447094" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="447095-862255" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="862256-1251854" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="1251855-1738335" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="1738336-2206368" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="2206369-2575818" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="2575819-2968805" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="2968806-3356531" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="3356532-3668845" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="3668846-3901903" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="3901904-4241406" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="4241407-4678266" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="4678267-5101894" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="5101895-5570396" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="5570397-5966150" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="5966151-6339772" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="6339773-6731168" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="6731169-7061855" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="7061856-7518261" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="7518262-7865871" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="7865872-8230543" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="8230544-8693732" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="8693733-9023853" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="9023854-9338505" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="9338506-9784941" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="9784942-10176386" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="10176387-10569045" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="10569046-11028374" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="11028375-11359426" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="11359427-11734822" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="11734823-12148032" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="12148033-12609944" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="12609945-13048514" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="13048515-13452563" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="13452564-13897680" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="13897681-14356447" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="14356448-14811063" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="14811064-15154486" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="15154487-15384754" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="15384755-15711864" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="15711865-16043980" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="16043981-16497317" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="16497318-16957186" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="16957187-17412569" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="17412570-17786069" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="17786070-18164601" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="18164602-18561242" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="18561243-18921960" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="18921961-19181796" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="19181797-19507674" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="19507675-19994382" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="19994383-20473454" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="20473455-20948872" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="20948873-21430254" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="21430255-21918375" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="21918376-22405454" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="22405455-22881047" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="22881048-23238485" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="23238486-23443892" />
+    <SegmentURL media="bunny_10s_400kbit/bunny_400kbit_dashNonSeg.mp4" mediaRange="23443893-23659212" />
+   </SegmentList>
+</Representation>
+<Representation id="7" codecs="avc1" mimeType="video/mp4" width="480" height="360" startWithSAP="1" bandwidth="368912">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" range="0-867" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="868-551116" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="551117-1037089" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="1037090-1505907" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="1505908-2114636" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="2114637-2688793" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="2688794-3123754" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="3123755-3573077" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="3573078-4046302" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="4046303-4388343" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="4388344-4626618" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="4626619-4980561" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="4980562-5470773" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="5470774-5936415" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="5936416-6438031" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="6438032-6869450" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="6869451-7290171" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="7290172-7726268" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="7726269-8085612" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="8085613-8653810" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="8653811-9061090" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="9061091-9459759" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="9459760-10000770" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="10000771-10377100" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="10377101-10702170" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="10702171-11245264" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="11245265-11700889" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="11700890-12128600" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="12128601-12688168" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="12688169-13040257" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="13040258-13470453" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="13470454-13973280" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="13973281-14538073" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="14538074-15068200" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="15068201-15521004" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="15521005-16073324" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="16073325-16642709" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="16642710-17194926" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="17194927-17569634" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="17569635-17824469" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="17824470-18181404" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="18181405-18538783" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="18538784-19058680" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="19058681-19614436" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="19614437-20167310" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="20167311-20591022" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="20591023-21014148" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="21014149-21513351" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="21513352-21918987" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="21918988-22193055" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="22193056-22541737" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="22541738-23131305" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="23131306-23738456" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="23738457-24338866" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="24338867-24942433" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="24942434-25551583" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="25551584-26160235" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="26160236-26715744" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="26715745-27081169" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="27081170-27288923" />
+    <SegmentURL media="bunny_10s_500kbit/bunny_500kbit_dashNonSeg.mp4" mediaRange="27288924-27505183" />
+   </SegmentList>
+</Representation>
+<Representation id="8" codecs="avc1" mimeType="video/mp4" width="853" height="480" startWithSAP="1" bandwidth="503270">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" range="0-871" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="872-657905" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="657906-1324738" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="1324739-1936900" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="1936901-2657349" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="2657350-3371251" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="3371252-3967261" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="3967262-4578608" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="4578609-5184225" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="5184226-5688057" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="5688058-6112486" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="6112487-6691475" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="6691476-7355214" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="7355215-8034612" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="8034613-8758580" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="8758581-9398272" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="9398273-10001027" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="10001028-10641094" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="10641095-11168847" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="11168848-11854122" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="11854123-12416616" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="12416617-13009432" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="13009433-13710421" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="13710422-14243460" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="14243461-14799820" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="14799821-15486964" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="15486965-16096526" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="16096527-16731816" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="16731817-17432285" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="17432286-18032248" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="18032249-18653445" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="18653446-19283001" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="19283002-19976045" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="19976046-20646064" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="20646065-21260385" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="21260386-21933224" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="21933225-22648023" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="22648024-23333092" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="23333093-23909620" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="23909621-24325614" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="24325615-24886858" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="24886859-25452610" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="25452611-26138671" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="26138672-26828985" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="26828986-27525762" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="27525763-28124941" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="28124942-28708605" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="28708606-29328639" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="29328640-29926402" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="29926403-30395251" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="30395252-31024367" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="31024368-31744649" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="31744650-32456585" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="32456586-33167502" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="33167503-33868227" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="33868228-34603530" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="34603531-35340191" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="35340192-36073507" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="36073508-36717917" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="36717918-37116903" />
+    <SegmentURL media="bunny_10s_600kbit/bunny_600kbit_dashNonSeg.mp4" mediaRange="37116904-37522529" />
+   </SegmentList>
+</Representation>
+<Representation id="9" codecs="avc1" mimeType="video/mp4" width="853" height="480" startWithSAP="1" bandwidth="568500">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" range="0-871" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="872-770825" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="770826-1518260" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="1518261-2211833" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="2211834-3045647" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="3045648-3875393" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="3875394-4537656" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="4537657-5233013" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="5233014-5924155" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="5924156-6463569" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="6463570-6895219" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="6895220-7509226" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="7509227-8266446" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="8266447-9032190" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="9032191-9880095" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="9880096-10616078" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="10616079-11287360" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="11287361-11994756" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="11994757-12576419" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="12576420-13374216" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="13374217-13995884" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="13995885-14645074" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="14645075-15443194" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="15443195-16044002" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="16044003-16623556" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="16623557-17415292" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="17415293-18106801" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="18106802-18812508" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="18812509-19629923" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="19629924-20291216" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="20291217-20987089" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="20987090-21727396" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="21727397-22529800" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="22529801-23293028" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="23293029-23990800" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="23990801-24778682" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="24778683-25603164" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="25603165-26406786" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="26406787-27047600" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="27047601-27490887" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="27490888-28084215" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="28084216-28693227" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="28693228-29501921" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="29501922-30308583" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="30308584-31114441" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="31114442-31773002" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="31773003-32423234" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="32423235-33148661" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="33148662-33813075" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="33813076-34310896" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="34310897-35004623" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="35004624-35849337" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="35849338-36681532" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="36681533-37511668" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="37511669-38327348" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="38327349-39185747" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="39185748-40045433" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="40045434-40897325" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="40897326-41574927" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="41574928-41977676" />
+    <SegmentURL media="bunny_10s_700kbit/bunny_700kbit_dashNonSeg.mp4" mediaRange="41977677-42385884" />
+   </SegmentList>
+</Representation>
+<Representation id="10" codecs="avc1" mimeType="video/mp4" width="1280" height="720" startWithSAP="1" bandwidth="771359">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" range="0-867" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="868-981737" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="981738-1994167" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="1994168-2931721" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="2931722-3994418" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="3994419-5057084" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="5057085-6001979" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="6001980-6960857" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="6960858-7931268" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="7931269-8735977" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="8735978-9477543" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="9477544-10399912" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="10399913-11393546" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="11393547-12411338" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="12411339-13502759" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="13502760-14496725" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="14496726-15459647" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="15459648-16436424" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="16436425-17263130" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="17263131-18275302" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="18275303-19141009" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="19141010-20066816" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="20066817-21102516" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="21102517-21942501" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="21942502-22863698" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="22863699-23894596" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="23894597-24831254" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="24831255-25796968" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="25796969-26846777" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="26846778-27838459" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="27838460-28774989" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="28774990-29719066" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="29719067-30734298" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="30734299-31737319" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="31737320-32659519" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="32659520-33672282" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="33672283-34723584" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="34723585-35767436" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="35767437-36682323" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="36682324-37400808" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="37400809-38269791" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="38269792-39132842" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="39132843-40160697" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="40160698-41173847" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="41173848-42210584" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="42210585-43107650" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="43107651-44005332" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="44005333-44920095" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="44920096-45891683" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="45891684-46688732" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="46688733-47640889" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="47640890-48714883" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="48714884-49771140" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="49771141-50823318" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="50823319-51868918" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="51868919-52963367" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="52963368-54054506" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="54054507-55156967" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="55156968-56177467" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="56177468-56841965" />
+    <SegmentURL media="bunny_10s_900kbit/bunny_900kbit_dashNonSeg.mp4" mediaRange="56841966-57510539" />
+   </SegmentList>
+</Representation>
+<Representation id="11" codecs="avc1" mimeType="video/mp4" width="1280" height="720" startWithSAP="1" bandwidth="987061">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" range="0-869" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="870-1335411" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="1335412-2635084" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="2635085-3830348" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="3830349-5246566" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="5246567-6662956" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="6662957-7835171" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="7835172-9065929" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="9065930-10279504" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="10279505-11211701" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="11211702-12001887" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="12001888-13108200" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="13108201-14403826" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="14403827-15749850" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="15749851-17216217" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="17216218-18509177" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="18509178-19695335" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="19695336-20941876" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="20941877-21953653" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="21953654-23307384" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="23307385-24377724" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="24377725-25498285" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="25498286-26858647" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="26858648-27913295" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="27913296-28949932" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="28949933-30294628" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="30294629-31490554" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="31490555-32715183" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="32715184-34102148" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="34102149-35310751" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="35310752-36555122" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="36555123-37837711" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="37837712-39196897" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="39196898-40484731" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="40484732-41672858" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="41672859-43031194" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="43031195-44445311" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="44445312-45834756" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="45834757-47015007" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="47015008-47823872" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="47823873-48878561" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="48878562-49970798" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="49970799-51353640" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="51353641-52731473" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="52731474-54100711" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="54100712-55200735" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="55200736-56312124" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="56312125-57556980" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="57556981-58741579" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="58741580-59667926" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="59667927-60910508" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="60910509-62342882" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="62342883-63758667" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="63758668-65165365" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="65165366-66549486" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="66549487-68004029" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="68004030-69460808" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="69460809-70923634" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="70923635-72190916" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="72190917-72862172" />
+    <SegmentURL media="bunny_10s_1200kbit/bunny_1200kbit_dashNonSeg.mp4" mediaRange="72862173-73592708" />
+   </SegmentList>
+</Representation>
+<Representation id="12" codecs="avc1" mimeType="video/mp4" width="1280" height="720" startWithSAP="1" bandwidth="1174238">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" range="0-869" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="870-1664071" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="1664072-3208140" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="3208141-4649379" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="4649380-6430650" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="6430651-8198915" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="8198916-9590707" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="9590708-11041329" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="11041330-12509645" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="12509646-13570215" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="13570216-14393526" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="14393527-15591449" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="15591450-17141781" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="17141782-18704782" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="18704783-20482136" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="20482137-22043648" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="22043649-23432843" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="23432844-24863234" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="24863235-26021242" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="26021243-27698952" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="27698953-28955286" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="28955287-30221273" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="30221274-31827258" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="31827259-33068346" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="33068347-34190592" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="34190593-35844224" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="35844225-37298507" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="37298508-38731807" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="38731808-40451230" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="40451231-41848525" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="41848526-43300232" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="43300233-44902114" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="44902115-46586585" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="46586586-48176626" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="48176627-49572103" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="49572104-51270536" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="51270537-53034376" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="53034377-54774777" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="54774778-56159636" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="56159637-57030893" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="57030894-58208617" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="58208618-59404941" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="59404942-61027536" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="61027537-62735877" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="62735878-64434925" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="64434926-65692185" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="65692186-66944968" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="66944969-68500220" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="68500221-69832465" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="69832466-70831325" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="70831326-72235047" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="72235048-74038344" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="74038345-75791305" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="75791306-77551483" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="77551484-79280472" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="79280473-81093813" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="81093814-82916305" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="82916306-84749410" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="84749411-86135816" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="86135817-86810538" />
+    <SegmentURL media="bunny_10s_1500kbit/bunny_1500kbit_dashNonSeg.mp4" mediaRange="86810539-87548130" />
+   </SegmentList>
+</Representation>
+<Representation id="13" codecs="avc1" mimeType="video/mp4" width="1280" height="720" startWithSAP="1" bandwidth="1431232">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" range="0-869" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="870-2199735" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="2199736-4102690" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="4102691-5957734" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="5957735-8350642" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="8350643-10593209" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="10593210-12369202" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="12369203-14063812" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="14063813-15940484" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="15940485-17101052" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="17101053-17978211" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="17978212-19212970" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="19212971-21057783" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="21057784-22825835" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="22825836-24717389" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="24717390-26469551" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="26469552-27981707" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="27981708-29597172" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="29597173-30879531" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="30879532-33110496" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="33110497-34655881" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="34655882-36073904" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="36073905-38044231" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="38044232-39542312" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="39542313-40709102" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="40709103-42871136" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="42871137-44631292" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="44631293-46264345" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="46264346-48516925" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="48516926-50120732" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="50120733-51799985" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="51799986-53805515" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="53805516-56076243" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="56076244-58151577" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="58151578-59737661" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="59737662-61989203" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="61989204-64351599" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="64351600-66666309" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="66666310-68297400" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="68297401-69239826" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="69239827-70573454" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="70573455-71850526" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="71850527-73703608" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="73703609-75899269" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="75899270-78051397" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="78051398-79517890" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="79517891-80917783" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="80917784-82987290" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="82987291-84446573" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="84446574-85513366" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="85513367-87048162" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="87048163-89307251" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="89307252-91753780" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="91753781-94152294" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="94152295-96504798" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="96504799-98917513" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="98917514-101376555" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="101376556-103866217" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="103866218-105290121" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="105290122-105969547" />
+    <SegmentURL media="bunny_10s_2000kbit/bunny_2000kbit_dashNonSeg.mp4" mediaRange="105969548-106708872" />
+   </SegmentList>
+</Representation>
+<Representation id="14" codecs="avc1" mimeType="video/mp4" width="1920" height="1080" startWithSAP="1" bandwidth="2070985">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" range="0-870" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="871-2839066" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="2839067-5570231" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="5570232-8036187" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="8036188-11043344" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="11043345-14067336" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="14067337-16543533" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="16543534-19261288" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="19261289-21899186" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="21899187-23776341" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="23776342-25291824" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="25291825-27546118" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="27546119-30318235" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="30318236-33115362" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="33115363-36208001" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="36208002-38932495" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="38932496-41337534" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="41337535-43982648" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="43982649-46131623" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="46131624-49020246" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="49020247-51280250" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="51280251-53601730" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="53601731-56448661" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="56448662-58635787" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="58635788-60796093" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="60796094-63636354" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="63636355-66186782" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="66186783-68678666" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="68678667-71632753" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="71632754-74215606" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="74215607-76818786" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="76818787-79463631" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="79463632-82384705" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="82384706-85094551" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="85094552-87570427" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="87570428-90459641" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="90459642-93461543" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="93461544-96413924" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="96413925-99019900" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="99019901-100666512" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="100666513-102834406" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="102834407-105038962" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="105038963-107841429" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="107841430-110744304" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="110744305-113605511" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="113605512-115741034" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="115741035-118004891" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="118004892-120674211" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="120674212-123085847" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="123085848-124999548" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="124999549-127639507" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="127639508-130747033" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="130747034-133849163" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="133849164-136874646" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="136874647-139805857" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="139805858-142880088" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="142880089-145974181" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="145974182-149134163" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="149134164-151664949" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="151664950-152996965" />
+    <SegmentURL media="bunny_10s_2500kbit/bunny_2500kbit_dashNonSeg.mp4" mediaRange="152996966-154407142" />
+   </SegmentList>
+</Representation>
+<Representation id="15" codecs="avc1" mimeType="video/mp4" width="1920" height="1080" startWithSAP="1" bandwidth="2384387">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" range="0-870" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="871-3484296" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="3484297-6635466" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="6635467-9529368" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="9529369-13165581" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="13165582-16772847" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="16772848-19610360" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="19610361-22674745" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="22674746-25752124" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="25752125-27790003" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="27790004-29367367" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="29367368-31706467" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="31706468-34882581" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="34882582-38065973" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="38065974-41660402" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="41660403-44823501" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="44823502-47499927" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="47499928-50451785" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="50451786-52825569" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="52825570-56281941" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="56281942-58873378" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="58873379-61402212" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="61402213-64671039" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="64671040-67195281" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="67195282-69469545" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="69469546-72835225" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="72835226-75799761" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="75799762-78690350" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="78690351-82199656" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="82199657-85126761" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="85126762-88038439" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="88038440-91219175" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="91219176-94724569" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="94724570-97952416" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="97952417-100725326" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="100725327-104201042" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="104201043-107790880" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="107790881-111338487" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="111338488-114380178" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="114380179-116161258" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="116161259-118551465" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="118551466-120900753" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="120900754-124025601" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="124025602-127477138" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="127477139-130865333" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="130865334-133247528" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="133247529-135765004" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="135765005-138951324" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="138951325-141597536" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="141597537-143619115" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="143619116-146574039" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="146574040-150306569" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="150306570-154038199" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="154038200-157649514" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="157649515-161181579" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="161181580-164871227" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="164871228-168588233" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="168588234-172389346" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="172389347-174993437" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="174993438-176342191" />
+    <SegmentURL media="bunny_10s_3000kbit/bunny_3000kbit_dashNonSeg.mp4" mediaRange="176342192-177773571" />
+   </SegmentList>
+</Representation>
+<Representation id="16" codecs="avc1" mimeType="video/mp4" width="1920" height="1080" startWithSAP="1" bandwidth="2884382">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" range="0-870" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="871-4612761" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="4612762-8553921" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="8553922-12328069" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="12328070-17232462" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="17232463-21760371" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="21760372-25394386" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="25394387-28865050" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="28865051-32767340" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="32767341-35014405" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="35014406-36687864" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="36687865-39174938" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="39174939-42865355" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="42865356-46429872" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="46429873-50221367" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="50221368-53736158" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="53736159-56649156" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="56649157-59942335" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="59942336-62527086" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="62527087-66861364" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="66861365-70020900" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="70020901-72814394" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="72814395-76663736" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="76663737-79656181" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="79656182-82022272" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="82022273-86372720" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="86372721-89937990" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="89937991-93306051" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="93306052-97878962" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="97878963-101332242" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="101332243-104569050" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="104569051-108645997" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="108645998-113240274" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="113240275-117415739" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="117415740-120536928" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="120536929-125137274" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="125137275-129919385" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="129919386-134647087" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="134647088-138211061" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="138211062-140083247" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="140083248-142689543" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="142689544-145191702" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="145191703-148677342" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="148677343-153054172" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="153054173-157278314" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="157278315-160060064" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="160060065-162793890" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="162793891-167024417" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="167024418-169917034" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="169917035-172054872" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="172054873-175280856" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="175280857-180156366" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="180156367-185138309" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="185138310-189985229" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="189985230-194689276" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="194689277-199605316" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="199605317-204581192" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="204581193-209623791" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="209623792-212279753" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="212279754-213628383" />
+    <SegmentURL media="bunny_10s_4000kbit/bunny_4000kbit_dashNonSeg.mp4" mediaRange="213628384-215051840" />
+   </SegmentList>
+</Representation>
+<Representation id="17" codecs="avc1" mimeType="video/mp4" width="1920" height="1080" startWithSAP="1" bandwidth="3245900">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" range="0-870" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="871-5556872" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="5556873-10078882" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="10078883-14708643" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="14708644-20451069" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="20451070-25276439" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="25276440-29594773" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="29594774-33103240" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="33103241-37729759" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="37729760-40053074" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="40053075-41852260" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="41852261-44356212" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="44356213-48352502" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="48352503-52087481" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="52087482-55933959" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="55933960-59549938" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="59549939-62575764" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="62575765-66119786" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="66119787-68754548" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="68754549-73564626" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="73564627-77143779" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="77143780-80082454" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="80082455-84440297" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="84440298-87738203" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="87738204-90138816" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="90138817-95079124" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="95079125-98918350" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="98918351-102515260" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="102515261-107835146" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="107835147-111617160" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="111617161-115079788" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="115079789-119828787" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="119828788-125134882" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="125134883-129939189" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="129939190-133156684" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="133156685-138757328" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="138757329-144647451" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="144647452-150559326" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="150559327-154419939" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="154419940-156376806" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="156376807-159183750" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="159183751-161743803" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="161743804-165292477" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="165292478-170496055" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="170496056-175361450" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="175361451-178487725" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="178487726-181296785" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="181296786-186606729" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="186606730-189618596" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="189618597-191819844" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="191819845-195270697" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="195270698-200616610" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="200616611-206679221" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="206679222-212621196" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="212621197-218485582" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="218485583-224635557" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="224635558-230874876" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="230874877-236570130" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="236570131-239241035" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="239241036-240583396" />
+    <SegmentURL media="bunny_10s_5000kbit/bunny_5000kbit_dashNonSeg.mp4" mediaRange="240583397-242005584" />
+   </SegmentList>
+</Representation>
+<Representation id="18" codecs="avc1" mimeType="video/mp4" width="1920" height="1080" startWithSAP="1" bandwidth="3493765">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" range="0-870" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="871-6262885" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="6262886-11383113" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="11383114-16882567" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="16882568-23199863" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="23199864-28273012" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="28273013-32757345" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="32757346-36284814" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="36284815-41512612" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="41512613-43886918" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="43886919-45673528" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="45673529-48210675" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="48210676-52492148" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="52492149-56324116" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="56324117-60184607" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="60184608-63856185" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="63856186-66927044" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="66927045-70550265" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="70550266-73293225" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="73293226-78205158" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="78205159-82021108" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="82021109-85027266" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="85027267-89514400" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="89514401-93097090" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="93097091-95500661" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="95500662-100913079" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="100913080-104897592" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="104897593-108634884" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="108634885-114532939" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="114532940-118429857" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="118429858-121984322" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="121984323-127251798" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="127251799-132787082" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="132787083-137924765" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="137924766-141253094" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="141253095-147758506" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="147758507-154763124" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="154763125-161623259" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="161623260-165610105" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="165610106-167607133" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="167607134-170502955" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="170502956-173093499" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="173093500-176668275" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="176668276-182604848" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="182604849-188012589" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="188012590-191402625" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="191402626-194242712" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="194242713-200532048" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="200532049-203593042" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="203593043-205819628" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="205819629-209479872" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="209479873-215063987" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="215063988-221442043" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="221442044-227965940" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="227965941-234807457" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="234807458-241334549" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="241334550-248843313" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="248843314-254980253" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="254980254-257721277" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="257721278-259062417" />
+    <SegmentURL media="bunny_10s_6000kbit/bunny_6000kbit_dashNonSeg.mp4" mediaRange="259062418-260485770" />
+   </SegmentList>
+</Representation>
+<Representation id="19" codecs="avc1" mimeType="video/mp4" width="1920" height="1080" startWithSAP="1" bandwidth="3792491">
+<SegmentBase>
+    <Initialization sourceURL="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" range="0-870" />
+</SegmentBase>
+<SegmentList duration="10">
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="871-6888335" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="6888336-12889377" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="12889378-20152013" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="20152014-27481230" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="27481231-33035968" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="33035969-37608822" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="37608823-41145550" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="41145551-47570005" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="47570006-50043979" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="50043980-52007896" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="52007897-54560996" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="54560997-59120149" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="59120150-63011032" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="63011033-66867831" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="66867832-70550570" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="70550571-73634367" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="73634368-77316415" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="77316416-80094751" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="80094752-85091510" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="85091511-89117837" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="89117838-92178609" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="92178610-96795657" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="96795658-100805663" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="100805664-103196512" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="103196513-109091170" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="109091171-113204641" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="113204642-117043373" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="117043374-123364130" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="123364131-127345321" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="127345322-131052616" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="131052617-137481979" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="137481980-143140795" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="143140796-148584224" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="148584225-152023137" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="152023138-159508627" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="159508628-168062355" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="168062356-176548848" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="176548849-180843585" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="180843586-182839204" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="182839205-185844347" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="185844348-188463496" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="188463497-192058601" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="192058602-199345652" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="199345653-205669748" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="205669749-209403759" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="209403760-212270914" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="212270915-219868579" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="219868580-222937773" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="222937774-225185279" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="225185280-228993104" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="228993105-234778281" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="234778282-241155255" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="241155256-248024622" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="248024623-255138118" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="255138119-261742479" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="261742480-270774534" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="270774535-277207199" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="277207200-279982211" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="279982212-281330525" />
+    <SegmentURL media="bunny_10s_8000kbit/bunny_8000kbit_dashNonSeg.mp4" mediaRange="281330526-282757919" />
+   </SegmentList>
+</Representation>
+          </AdaptationSet>
+    </Period>
+</MPD>

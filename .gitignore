@@ -1,3 +1,7 @@
+*.ps
+out/
+tmp/
+
 *.py[cod]
 
 # C extensions

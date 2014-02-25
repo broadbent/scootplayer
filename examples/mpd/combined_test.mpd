@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MPD xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xmlns="urn:mpeg:DASH:schema:MPD:2011"
+     xsi:schemaLocation="urn:mpeg:DASH:schema:MPD:2011"
+     profiles="urn:mpeg:dash:profile:isoff-main:2011"
+     type="static"
+     mediaPresentationDuration="PT0H9M56.46S"
+     minBufferTime="PT2.0S">   
+     <BaseURL>http://www-itec.uni-klu.ac.at/ftp/datasets/mmsys12/BigBuckBunny/</BaseURL>
+     <Period start="PT0S">
+          <AdaptationSet bitstreamSwitching="true">
+<Representation id="7" codecs="avc1" mimeType="video/mp4" width="480" height="360" startWithSAP="1" bandwidth="378355">
+<SegmentBase>
+    <Initialization sourceURL="bunny_2s/bunny_2s_500kbit/bunny_500kbit_dash.mp4" />
+</SegmentBase>
+<SegmentList duration="4">
+    <SegmentURL media="bunny_2s/bunny_2s_500kbit/bunny_2s1.m4s"/>
+    <SegmentURL media="bunny_2s/bunny_2s_500kbit/bunny_2s2.m4s"/>
+    <SegmentURL media="bunny_4s/bunny_4s_500kbit/bunny_4s2.m4s"/>
+	<SegmentURL media="bunny_4s/bunny_4s_500kbit/bunny_4s3.m4s"/>
+	<SegmentURL media="bunny_4s/bunny_4s_500kbit/bunny_4s4.m4s"/>
+	<SegmentURL media="bunny_4s/bunny_4s_500kbit/bunny_4s5.m4s"/>
+	<SegmentURL media="bunny_4s/bunny_4s_500kbit/bunny_4s6.m4s"/>
+	<SegmentURL media="bunny_4s/bunny_4s_500kbit/bunny_4s7.m4s"/>
+   </SegmentList>
+</Representation>
