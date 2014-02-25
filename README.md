@@ -37,7 +37,7 @@ Example MPDs are found in the `examples/mpd` folder. These MPDs are not my own, 
 
 ## License ##
 
-This sofware is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0). MPDs are taken from [ITEC](http://www-itec.uni-klu.ac.at/).
+This sofware is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).
 
 ## Author ##
 
