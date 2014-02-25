@@ -31,7 +31,7 @@ Contains a periodic log which updates every second. Each entry details the state
 
 Contains an event driven log for precisely timing playback start and end times, in addition to other useful information.
 
-## Exampls MPDs ##
+## Example MPDs ##
 
 Example MPDs are found in the `examples/mpd` folder. These MPDs are not my own, nor do I host the content. These are taken from the [DASH dataset](http://www-itec.uni-klu.ac.at/ftp/datasets/mmsys12/BigBuckBunny/) over at [ITEC](http://www-itec.uni-klu.ac.at/).
 
