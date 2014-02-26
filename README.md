@@ -8,6 +8,10 @@ Provides rich logging information, which can be found in the output folder.
 
 Intended for academic and experimental use only.
 
+## scootplayer Requirements ##
+
+`scootplayer` uses the excellent [`requests`](https://github.com/kennethreitz/requests) package to support connection pooling and persistency.
+
 ## Running scootplayer ##
 
 `scootplayer` can be run using:

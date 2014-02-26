@@ -6,10 +6,10 @@ import xml.etree.ElementTree as ET
 import time
 import threading
 import Queue
-import urllib2
 import optparse
 import os
 import shutil
+import requests
 
 class Player():
 
@@ -20,8 +20,10 @@ class Player():
 	reporter = None	
 	options = None
 	directory = None
+	session = None
 
 	def __init__(self, options):
+		self.session = requests.Session()
 		self.start_time = time.time()
 		self.options = options
 		time_now = str(int(time.time()))
@@ -57,14 +59,17 @@ class Player():
 			playback_marker += duration
 
 	def make_request(self, item):
-		request = urllib2.Request(item[1])
+		url = item[1]
+		headers = {}
 		if item[3] != 0:
-			request.headers['Range'] = 'bytes=%s-%s' % (item[2], item[3])
-		response = urllib2.urlopen(request)
+			byte_range = 'bytes=%s-%s' % (item[2], item[3])
+			headers['Range'] = byte_range
+		response = self.session.get(url, headers=headers)
+		#response.connection.close()
 		return response
 
 	def write_to_file(self, item, response):
-		content = response.read()
+		content = response.content
 		file_name = item[1].split('/')[-1]
 		full_path = self.directory + '/downloads/' + file_name
 		file_start = int(item[2])
@@ -225,7 +230,7 @@ class Player():
 				self.player.write_to_file(item, response)
 				self.player.update_bandwidth(duration, length)
 				total_duration += duration
-				total_length += float(response.headers.get('Content-Length'))
+				total_length += length
 			self.player.update_bandwidth(total_duration, total_length)
 			self.player.reporter.event('stop ', 'downloading initializations')
 
