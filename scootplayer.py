@@ -373,13 +373,13 @@ if __name__ == '__main__':
 	parser.add_option("-m", "--manifest", dest="manifest",
 	    help="location of manifest to load")
 	parser.add_option("-o", "--output", dest="output", 
-	    help="location to store downloaded files and reports")
+	    help="location to store downloaded files and reports [default: %default]")
 	parser.add_option("--no-keep-alive", dest="keep_alive", action="store_false",
 	    help="prevent HTTP connection pooling and persistency")
 	parser.add_option("--max-playback-queue", dest="max_playback_queue",
-	    help="set maximum size of playback queue in seconds")
+	    help="set maximum size of playback queue in seconds [default: %default seconds]")
 	parser.add_option("--max-download-queue", dest="max_download_queue",
-	    help="set maximum size of download queue in seconds")
+	    help="set maximum size of download queue in seconds [default: %default seconds]")
 	(options, args) = parser.parse_args()
 	if options.manifest != None:
 		player = Player(options)
