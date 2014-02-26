@@ -65,7 +65,8 @@ class Player():
 			byte_range = 'bytes=%s-%s' % (item[2], item[3])
 			headers['Range'] = byte_range
 		response = self.session.get(url, headers=headers)
-		#response.connection.close()
+		if not self.options.keep_alive:
+			response.connection.close()
 		return response
 
 	def write_to_file(self, item, response):
@@ -366,10 +367,13 @@ class Player():
 
 if __name__ == '__main__':
 	parser = optparse.OptionParser()
+	parser.set_defaults(output='out/', keep_alive=True)
 	parser.add_option("-m", "--manifest", dest="manifest",
 	    help="location of manifest to load")
-	parser.add_option("-o", "--output", dest="output", default="out/",
+	parser.add_option("-o", "--output", dest="output", 
 	    help="location to store downloaded files and reports")
+	parser.add_option("--no-keep-alive", dest="keep_alive", action="store_false",
+	    help="")
 	(options, args) = parser.parse_args()
 	if options.manifest != None:
 		player = Player(options)
