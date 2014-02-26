@@ -32,8 +32,8 @@ class Player():
 		self.reporter = self.Reporter(self)
 		self.bandwidth = self.Bandwidth()
 		self.representations = self.Representations(self, self.options.manifest)
-		self.playback_queue = self.PlaybackQueue(self, self.representations.min_buffer)
-		self.download_queue = self.DownloadQueue(self)
+		self.download_queue = self.DownloadQueue(self, int(self.options.max_download_queue))
+		self.playback_queue = self.PlaybackQueue(self, int(self.representations.min_buffer), int(self.options.max_playback_queue))
 		self.start_playback()
 
 	def create_directory(self, path):
@@ -262,14 +262,15 @@ class Player():
 	class DownloadQueue():
 
 		queue = Queue.Queue()
-		time_buffer_max = 30
+		time_buffer_max = 0
 		time_buffer = 0
 		player = None
 		bandwidth = 0
 		_id = 0
 
-		def __init__(self, player):
+		def __init__(self, player, max_buffer):
 			self.player = player
+			self.time_buffer_max = max_buffer
 			threading.Thread(target=self.downloader, args=()).start()
 
 		def stop(self):
@@ -306,15 +307,16 @@ class Player():
 		bandwidth = 0
 		_id = 0
 		time_buffer_min = 0
-		time_buffer_max = 60
+		time_buffer_max = 0
 		time_buffer = 0
 		time_position = 0
 		start = False
 		player = None
 
-		def __init__(self, player, min_buffer):
+		def __init__(self, player, min_buffer, max_buffer):
 			self.player = player
 			self.time_buffer_min = min_buffer
+			self.time_buffer_max = max_buffer
 
 		def stop(self):
 			self.player.reporter.event('final', 'playback queue')
@@ -367,13 +369,17 @@ class Player():
 
 if __name__ == '__main__':
 	parser = optparse.OptionParser()
-	parser.set_defaults(output='out/', keep_alive=True)
+	parser.set_defaults(output='out/', keep_alive=True, max_playback_queue=60, max_download_queue=30)
 	parser.add_option("-m", "--manifest", dest="manifest",
 	    help="location of manifest to load")
 	parser.add_option("-o", "--output", dest="output", 
 	    help="location to store downloaded files and reports")
 	parser.add_option("--no-keep-alive", dest="keep_alive", action="store_false",
-	    help="")
+	    help="prevent HTTP connection pooling and persistency")
+	parser.add_option("--max-playback-queue", dest="max_playback_queue",
+	    help="set maximum size of playback queue in seconds")
+	parser.add_option("--max-download-queue", dest="max_download_queue",
+	    help="set maximum size of download queue in seconds")
 	(options, args) = parser.parse_args()
 	if options.manifest != None:
 		player = Player(options)
