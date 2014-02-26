@@ -10,7 +10,10 @@ Intended for academic and experimental use only.
 
 ## Requirements ##
 
-`scootplayer` uses the excellent [`requests`](https://github.com/kennethreitz/requests) package to support connection pooling and persistency.
+`scootplayer` uses the excellent [`requests`](https://github.com/kennethreitz/requests) package to support connection pooling and persistency. Install with `pip`:
+```bash
+$ pip install requests
+```
 
 ## Run ##
 
