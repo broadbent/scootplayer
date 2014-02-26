@@ -8,11 +8,11 @@ Provides rich logging information, which can be found in the output folder.
 
 Intended for academic and experimental use only.
 
-## scootplayer Requirements ##
+## Requirements ##
 
 `scootplayer` uses the excellent [`requests`](https://github.com/kennethreitz/requests) package to support connection pooling and persistency.
 
-## Running scootplayer ##
+## Run ##
 
 `scootplayer` can be run using:
 ```bash
@@ -23,7 +23,7 @@ For more information on command-line flags, use:
 $ python scootplayer.py -h
 ```
 
-## scootplayer Output ##
+## Output ##
 
 `scootplayer` outputs files by default to the `out/` directory. When `scootplayer` is started, a new folder is created within `out/` with the current timestamp. This folder then contains two Comma-Separated Value (CSV) files which store the logs themselves. An additional `downloads/` folder is created within this. This contains the actual downloaded files which can be used for comparison, hashing, etc.
 
