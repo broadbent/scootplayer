@@ -1,6 +1,7 @@
 *.ps
 out/
 tmp/
+*.mpd
 
 *.py[cod]
 
