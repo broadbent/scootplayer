@@ -1,4 +1,3 @@
-* Look at [gauged](https://github.com/chriso/gauged/tree/master)
 * Move to multiple representation objects
 	* Contains URLs in a (dict or list) with all associated metadata
 * SourceURL -> item method

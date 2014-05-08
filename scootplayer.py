@@ -14,6 +14,7 @@ import requests
 import re
 import signal
 import random
+from gauged import Gauged
 
 class Player(object):
     """Object representing scootplayer as a whole."""
@@ -137,9 +138,13 @@ class Player(object):
         report_file = None
         event_file = None
         report = False
+        gauged = None
 
         def __init__(self, player):
             """Initialise files to save reports to."""
+            if OPTIONS.gauged:
+                self.gauged = Gauged('mysql://root@localhost/gauged')
+                self.gauged.sync()
             self.player = player
             file_name = self.player.directory + '/report.csv'
             self.report_file = open(file_name, 'w')
@@ -173,38 +178,47 @@ class Player(object):
 
         def reporter(self):
             """Periodic reporting of various stats (every second) to file."""
+            if OPTIONS.gauged:
+                try:
+                    mean = self.gauged.aggregate('bandwidth', Gauged.MEAN)
+                    count = self.gauged.aggregate('downloads', Gauged.SUM)
+                    print '[gauged]', mean, count
+                except:
+                    print '[gauged] exception!'
             if self.report:
-                thread = threading.Timer(interval=float(OPTIONS.reporting_period),
+                thread = threading.Timer(
+                    interval=float(OPTIONS.reporting_period),
                     function=self.reporter, args=())
                 thread.daemon = True
                 thread.start()
             time_elapsed = self.time_elapsed()
-            try:
-                self.report_file.flush()
-            except ValueError:
-                pass
-            try:
-                output = (str(time_elapsed) + ","
-                 + str(self.player.download_queue.time_buffer) + ","
-                 + str(self.player.download_queue.bandwidth) + ","
-                 + str(self.player.download_queue.id_) + ","
-                 + str(self.player.playback_queue.time_buffer) + ","
-                 + str(self.player.playback_queue.time_position) + ","
-                 + str(self.player.playback_queue.bandwidth) + ","
-                 + str(self.player.playback_queue.id_)  + ","
-                 + str(self.player.bandwidth) + "\n")
-            except AttributeError:
-                output = str(time_elapsed) + str(', 0, 0, 0, 0, 0, 0, 0\n')
-            try:
-                self.report_file.write(output)
-            except ValueError:
-                pass
-            if OPTIONS.debug:
-                print ("[report] " + output),
-            try:
-                self.report_file.flush()
-            except ValueError:
-                pass
+            if OPTIONS.csv:
+                try:
+                    self.report_file.flush()
+                except ValueError:
+                    pass
+                try:
+                    output = (str(time_elapsed) + ","
+                     + str(self.player.download_queue.time_buffer) + ","
+                     + str(self.player.download_queue.bandwidth) + ","
+                     + str(self.player.download_queue.id_) + ","
+                     + str(self.player.playback_queue.time_buffer) + ","
+                     + str(self.player.playback_queue.time_position) + ","
+                     + str(self.player.playback_queue.bandwidth) + ","
+                     + str(self.player.playback_queue.id_)  + ","
+                     + str(self.player.bandwidth) + "\n")
+                except AttributeError:
+                    output = str(time_elapsed) + str(', 0, 0, 0, 0, 0, 0, 0\n')
+                try:
+                    self.report_file.write(output)
+                except ValueError:
+                    pass
+                if OPTIONS.debug:
+                    print ("[report] " + output),
+                try:
+                    self.report_file.flush()
+                except ValueError:
+                    pass
 
         def event(self, action, description):
             """Create a thread to handle event."""
@@ -216,21 +230,38 @@ class Player(object):
         def event_thread(self, action, description):
             """Event reporting to file."""
             time_elapsed = self.time_elapsed()
+            if OPTIONS.csv:
+                try:
+                    self.event_file.flush()
+                except ValueError:
+                    pass
+                output = (str(time_elapsed) +  "," + str(action) + ","
+                    + str(description) + "\n")
+                try:
+                    self.event_file.write(output)
+                except ValueError:
+                    pass
+                if OPTIONS.debug:
+                    print ("[event] " + output),
+                try:
+                    self.event_file.flush()
+                except ValueError:
+                    pass
+
+        def gauged_event(self, **gauged_data):
+            """ Create a thread to handle event."""
+            if OPTIONS.gauged:
+                thread = threading.Thread(target=self.gauged_event_thread,
+                    kwargs=gauged_data)
+                thread.daemon = True
+                thread.start()
+
+        def gauged_event_thread(self, **gauged_data):
+            """Event reporting to gauged."""
             try:
-                self.event_file.flush()
-            except ValueError:
-                pass
-            output = (str(time_elapsed) +  "," + str(action) + ","
-                + str(description) + "\n")
-            try:
-                self.event_file.write(output)
-            except ValueError:
-                pass
-            if OPTIONS.debug:
-                print ("[event] " + output),
-            try:
-                self.event_file.flush()
-            except ValueError:
+                with self.gauged.writer as writer:
+                    writer.add(gauged_data)
+            except:
                 pass
 
     class Representations(object):
@@ -477,6 +508,9 @@ class Player(object):
                 self.player.update_bandwidth(duration, length)
                 self.player.playback_queue.add(item)
                 self.queue.task_done()
+                gauged_data = {'downloads':1, 'bandwidth':self.bandwidth,
+                    'id_':self.id_, 'length':length}
+                self.player.reporter.gauged_event(**gauged_data)
                 self.time_buffer = self.time_buffer - int(item[0])
 
         def __len__(self):
@@ -593,7 +627,8 @@ def remove_directory(path):
 if __name__ == '__main__':
     PARSER = optparse.OptionParser()
     PARSER.set_defaults(output='out/', keep_alive=True,
-        max_playback_queue=60, max_download_queue=30)
+        max_playback_queue=60, max_download_queue=30, csv=True, gauged=False,
+        reporting_period=1)
     PARSER.add_option("-m", "--manifest", dest="manifest",
         help="location of manifest to load")
     PARSER.add_option("-o", "--output", dest="output",
@@ -610,8 +645,14 @@ if __name__ == '__main__':
         [default: %default seconds]""")
     PARSER.add_option("-d", "--debug", dest="debug", action="store_true",
         help="print all output to console")
-    PARSER.add_option("-r", "--reporting", dest="reporting_period",
+    PARSER.add_option("-r", "--reporting-period", dest="reporting_period",
         help="set reporting period in seconds")
+    PARSER.add_option("--no-csv", dest="csv",
+        action="store_false",
+        help="stop CSV writing")
+    PARSER.add_option("-g", "--gauged", dest="gauged",
+        action="store_true",
+        help="experimental gauged support")
     (OPTIONS, ARGS) = PARSER.parse_args()
     if OPTIONS.manifest != None:
         try:
