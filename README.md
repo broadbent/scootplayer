@@ -21,7 +21,7 @@ $ pip install -r requirements.txt
 
 `scootplayer` can be run using:
 ```bash
-$ python scootplayer.py -m PATH_TO_MANIFEST
+$ python scootplayer.py -m PATH_TO_MANIFEST_OR_URL
 ```
 For more information on command-line flags, use:
 ```bash
@@ -46,7 +46,7 @@ Example MPDs are found in the `examples/mpd` folder. These MPDs are not my own, 
 
 ## Experimental Features ##
 
-A draft Gnuplot script is included in `examples/gnuplot`. This creates an EPS visualising the bits per second observed by the download and playback queues.
+A draft Gnuplot script is included in `examples/gnuplot` folder. This creates a postscript file visualising the bits per second observed by the download and playback queues.
 
 Support for [gauged](https://github.com/chriso/gauged/tree/master) available. Requires a local MySQL database named `gauged`. Use `-g` flag to enable.
 
