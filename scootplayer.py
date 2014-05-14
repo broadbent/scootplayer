@@ -28,21 +28,51 @@ class Player(object):
 
     def __init__(self):
         """Initialise the player and start playback."""
-        self.start_time = time.time()
         self._setup_signal_handling()
+        if OPTIONS.playlist:
+            playlist = self.parse_playlist(OPTIONS.playlist)
+            for manifest in playlist:
+                self.play(manifest)
+        else:
+            self.play(OPTIONS.manifest)
+
+    def play(self, manifest):
+        self.representations = None
+        self.bandwidth = None
+        self.playback_queue = None
+        self.download_queue = None
+        self.reporter = None
+        self.session = None
+        self.start_time = time.time()
         self.session = requests.Session()
         time_now = str(int(time.time()))
         self.directory = OPTIONS.output + time_now
         create_directory(self.directory + '/downloads')
         self.reporter = self.Reporter(self)
         self.bandwidth = self.Bandwidth()
-        self.representations = self.Representations(self, OPTIONS.manifest)
+        self.representations = self.Representations(self, manifest)
         self.download_queue = self.DownloadQueue(self,
             int(OPTIONS.max_download_queue))
         self.playback_queue = self.PlaybackQueue(self,
             int(self.representations.min_buffer),
             int(OPTIONS.max_playback_queue))
         self.start_playback()
+
+    def parse_playlist(self, path):
+        playlist = self.load_playlist(path)
+        playlist = re.split(r'(\n)', playlist)
+        return self._clean_playlist(playlist)
+
+    def _clean_playlist(self, playlist):
+        clean = []
+        for item in playlist:
+            if len(item) > 2:
+                clean.append(item)
+        return clean
+
+    def load_playlist(self, path):
+        _file = open(path, 'r')
+        return _file.read()
 
     def _setup_signal_handling(self):
         """Setup interrupt signal handling."""
@@ -628,7 +658,7 @@ if __name__ == '__main__':
     PARSER = optparse.OptionParser()
     PARSER.set_defaults(output='out/', keep_alive=True,
         max_playback_queue=60, max_download_queue=30, csv=True, gauged=False,
-        reporting_period=1)
+        reporting_period=1, playlist=None, manifest=None)
     PARSER.add_option("-m", "--manifest", dest="manifest",
         help="location of manifest to load")
     PARSER.add_option("-o", "--output", dest="output",
@@ -653,8 +683,11 @@ if __name__ == '__main__':
     PARSER.add_option("-g", "--gauged", dest="gauged",
         action="store_true",
         help="experimental gauged support")
+    PARSER.add_option("-p", "--playlist", dest="playlist",
+        help="playlist of MPDs to play in succession")
     (OPTIONS, ARGS) = PARSER.parse_args()
-    if OPTIONS.manifest != None:
+    if (OPTIONS.manifest != None or OPTIONS.playlist != None) and not (
+        OPTIONS.manifest and OPTIONS.playlist):
         try:
             PLAYER = Player()
         except SystemExit:
