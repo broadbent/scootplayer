@@ -99,7 +99,7 @@ class Player(object):
                     representation[1][playback_marker/duration])
             except IndexError:
                 self.reporter.event('stop', 'adding representations')
-                #return
+                return
             playback_marker += duration
 
     def make_request(self, item):
