@@ -99,7 +99,7 @@ class Player(object):
                     representation[1][playback_marker/duration])
             except IndexError:
                 self.reporter.event('stop', 'adding representations')
-                return
+                #return
             playback_marker += duration
 
     def make_request(self, item):
@@ -439,6 +439,7 @@ class Player(object):
                 response = self.player.make_request(item)
                 duration = time.time() - start
                 length = float(response.headers.get('Content-Length'))
+                length = length * 8 #convert octets to bits
                 self.player.write_to_file(item, response)
                 self.player.update_bandwidth(duration, length)
                 total_duration += duration
