@@ -36,6 +36,12 @@ $ python scootplayer.py -h
 
 Contains a periodic log which updates every second. Each entry details the state of the download and playback queues. Also reports the current estimated bandwidth.
 
+Format is as follows:
+
+Timestamp, DQ Buffer Size (playback seconds), DQ Representation Bandwidth (bps), DQ Representation ID, PQ Buffer Size (playback seconds), PQ Representation Bandwidth (bos), PQ Representation ID, Current Observed Bandwidth (bps)
+
+(DQ: Download Queue, PQ: Playback Queue)
+
 ### event.csv ###
 
 Contains an event driven log for precisely timing playback start and end times, in addition to other useful information.
