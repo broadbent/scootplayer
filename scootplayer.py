@@ -57,6 +57,7 @@ class Player(object):
             int(self.representations.min_buffer),
             int(OPTIONS.max_playback_queue))
         self.start_playback()
+        self.stop()
 
     def parse_playlist(self, path):
         playlist = self.load_playlist(path)
@@ -114,6 +115,10 @@ class Player(object):
             response.connection.close()
         return response
 
+    def open_file(self, path):
+        file_name = self.directory + path
+        return open(file_name, 'w')
+
     def write_to_file(self, item, response):
         """
         Write response content to file.
@@ -167,8 +172,12 @@ class Player(object):
         start_time = 0
         report_file = None
         event_file = None
+        stats_file = None
         report = False
         gauged = None
+        _analysis_count = 0
+        _total_download_queue_occupancy = 0
+        _total_playback_queue_occupancy = 0
 
         def __init__(self, player):
             """Initialise files to save reports to."""
@@ -176,14 +185,14 @@ class Player(object):
                 self.gauged = Gauged('mysql://root@localhost/gauged')
                 self.gauged.sync()
             self.player = player
-            file_name = self.player.directory + '/report.csv'
-            self.report_file = open(file_name, 'w')
-            file_name = self.player.directory + '/event.csv'
-            self.event_file = open(file_name, 'w')
+            self.report_file = self.player.open_file('/report.csv')
+            self.event_file  = self.player.open_file('/event.csv')
+            self.stats_file = self.player.open_file('/stats.csv')
             self.start()
 
         def stop(self):
             """Stop reporting and close file handles."""
+            print 'stopping'
             self.report = False
             try:
                 self.report_file.close()
@@ -191,6 +200,11 @@ class Player(object):
                 pass
             try:
                 self.event_file.close()
+            except IOError:
+                pass
+            self.stats()
+            try:
+                self.stats_file.close()
             except IOError:
                 pass
 
@@ -208,47 +222,73 @@ class Player(object):
 
         def reporter(self):
             """Periodic reporting of various stats (every second) to file."""
-            if OPTIONS.gauged:
-                try:
-                    mean = self.gauged.aggregate('bandwidth', Gauged.MEAN)
-                    count = self.gauged.aggregate('downloads', Gauged.SUM)
-                    print '[gauged]', mean, count
-                except:
-                    print '[gauged] exception!'
+            time_elapsed = self.time_elapsed()
             if self.report:
                 thread = threading.Timer(
                     interval=float(OPTIONS.reporting_period),
                     function=self.reporter, args=())
                 thread.daemon = True
                 thread.start()
-            time_elapsed = self.time_elapsed()
+            if OPTIONS.gauged:
+                self.gauged_report()
             if OPTIONS.csv:
-                try:
-                    self.report_file.flush()
-                except ValueError:
-                    pass
-                try:
-                    output = (str(time_elapsed) + ","
-                     + str(self.player.download_queue.time_buffer) + ","
-                     + str(self.player.download_queue.bandwidth) + ","
-                     + str(self.player.download_queue.id_) + ","
-                     + str(self.player.playback_queue.time_buffer) + ","
-                     + str(self.player.playback_queue.time_position) + ","
-                     + str(self.player.playback_queue.bandwidth) + ","
-                     + str(self.player.playback_queue.id_)  + ","
-                     + str(self.player.bandwidth) + "\n")
-                except AttributeError:
-                    output = str(time_elapsed) + str(', 0, 0, 0, 0, 0, 0, 0\n')
-                try:
-                    self.report_file.write(output)
-                except ValueError:
-                    pass
-                if OPTIONS.debug:
-                    print ("[report] " + output),
-                try:
-                    self.report_file.flush()
-                except ValueError:
-                    pass
+                self.csv_report(time_elapsed)
+            self.buffer_analysis()
+
+        def buffer_analysis(self):
+            try:
+                self._analysis_count = self._analysis_count + 1
+                self._total_download_queue_occupancy = self._total_download_queue_occupancy + self.player.download_queue.time_buffer
+                self._total_playback_queue_occupancy = self._total_playback_queue_occupancy + self.player.playback_queue.time_buffer
+                self.average_download_queue_occupancy = self._total_download_queue_occupancy / self._analysis_count
+                self.average_playback_queue_occupancy = self._total_playback_queue_occupancy / self._analysis_count
+            except AttributeError:
+                pass #Download and playback buffers not yet initialised
+
+        def stats(self):
+            self.stats_file.write('average download queue occupancy,' + str(self.average_download_queue_occupancy) + '\n')
+            self.stats_file.write('average playback queue occupancy,' + str(self.average_playback_queue_occupancy) + '\n')
+            self.stats_file.write('average bandwidth,' + str(self.player.playback_queue.average_bandwidth) + '\n')
+            self.stats_file.write('bandwidth changes,' + str(self.player.playback_queue.bandwidth_changes) + '\n')
+            self.stats_file.write('maximum bandwidth,' + str(self.player.playback_queue.max_bandwidth) + '\n')
+            self.stats_file.write('minimum bandwidth,' + str(self.player.playback_queue.min_bandwidth) + '\n')
+            self.stats_file.write('startup delay,' + str(self.startup_delay) + '\n')
+
+        def gauged_report(self):
+            try:
+                mean = self.gauged.aggregate('bandwidth', Gauged.MEAN)
+                count = self.gauged.aggregate('downloads', Gauged.SUM)
+                print '[gauged]', mean, count
+            except:
+                print '[gauged] exception!'
+
+        def csv_report(self, time_elapsed):
+            try:
+                self.report_file.flush()
+            except ValueError:
+                pass
+            try:
+                output = (str(time_elapsed) + ","
+                 + str(self.player.download_queue.time_buffer) + ","
+                 + str(self.player.download_queue.bandwidth) + ","
+                 + str(self.player.download_queue.id_) + ","
+                 + str(self.player.playback_queue.time_buffer) + ","
+                 + str(self.player.playback_queue.time_position) + ","
+                 + str(self.player.playback_queue.bandwidth) + ","
+                 + str(self.player.playback_queue.id_)  + ","
+                 + str(self.player.bandwidth) + "\n")
+            except AttributeError:
+                output = str(time_elapsed) + str(', 0, 0, 0, 0, 0, 0, 0\n')
+            try:
+                self.report_file.write(output)
+            except ValueError:
+                pass
+            if OPTIONS.debug:
+                print ("[report] " + output),
+            try:
+                self.report_file.flush()
+            except ValueError:
+                pass
 
         def event(self, action, description):
             """Create a thread to handle event."""
@@ -260,6 +300,8 @@ class Player(object):
         def event_thread(self, action, description):
             """Event reporting to file."""
             time_elapsed = self.time_elapsed()
+            if action == 'start' and description == 'playback':
+                self.startup_delay = time_elapsed
             if OPTIONS.csv:
                 try:
                     self.event_file.flush()
@@ -560,6 +602,13 @@ class Player(object):
         time_position = 0
         start = False
         player = None
+        _previous_bandwidth = 0
+        max_bandwidth = 0
+        min_bandwidth = 0
+        bandwidth_changes = 0
+        _items_played = 0
+        _total_bandwidth = 0
+
 
         def __init__(self, player, min_buffer, max_buffer):
             """
@@ -602,8 +651,23 @@ class Player(object):
                 time.sleep(int(item[0]))
                 self.queue.task_done()
                 self.time_buffer = self.time_buffer - int(item[0])
+                self.bandwidth_analysis()
             self.player.reporter.event('stop', 'playback')
             self.player.stop()
+
+        def bandwidth_analysis(self):
+            if self.min_bandwidth == 0:
+                self.min_bandwidth = self.bandwidth
+            if self.bandwidth != self._previous_bandwidth:
+                self.bandwidth_changes = self.bandwidth_changes + 1
+            if self.bandwidth > self.max_bandwidth:
+                self.max_bandwidth = self.bandwidth
+            elif self.bandwidth < self.min_bandwidth:
+                self.min_bandwidth = self.bandwidth
+            self._items_played = self._items_played + 1
+            self._total_bandwidth = self.bandwidth + self._total_bandwidth
+            self.average_bandwidth = self._total_bandwidth / self._items_played
+            self._previous_bandwidth = self.bandwidth
 
         def __len__(self):
             """Return the current length of the playback queue."""
@@ -674,7 +738,7 @@ if __name__ == '__main__':
     PARSER.add_option("--max-download-queue", dest="max_download_queue",
         help="""set maximum size of download queue in seconds
         [default: %default seconds]""")
-    PARSER.add_option("-d", "--debug", dest="debug", action="store_true",
+    PARSER.add_option("-d", "-v", "--debug", "--verbose", dest="debug", action="store_true",
         help="print all output to console")
     PARSER.add_option("-r", "--reporting-period", dest="reporting_period",
         help="set reporting period in seconds")
