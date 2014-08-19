@@ -34,17 +34,99 @@ $ python scootplayer.py -h
 
 ### report.csv ###
 
-Contains a periodic log which updates every second. Each entry details the state of the download and playback queues. Also reports the current estimated bandwidth.
+Contains a periodic log which updates every second. Each entry details the state of the download and playback queues. Also reports the current estimated bandwidth. Fields are as follows (includes position in CSV row):
 
-Format is as follows:
+<table>
+	<tr> 
+		<th>Field Name</th>
+		<th>#</th>
+		<th>Notes</th>
+	</tr>
+	<tr> 
+		<td>Timestamp</td>
+		<td>1</td>
+		<td>In seconds</td>
+	</tr>
+	<tr>
+		<td>Download Queue Size</td>
+		<td>2</td>
+		<td>In seconds of playback queued</td>
+	</tr>
+	<tr>
+		<td>Download Queue Representation Bandwidth</td>
+		<td>3</td>
+		<td>In bits per second</td>
+	</tr>
+	<tr>
+		<td>Download Queue Representation ID</td>
+		<td>4</td>
+		<td>As defined in the MPD</td>
+	</tr>
+	<tr>
+		<td>Playback Queue Size</td>
+		<td>5</td>
+		<td>In seconds of playback queued</td>
+	</tr>
+	<tr>
+		<td>Playback Queue Representation Bandwidth</td>
+		<td>6</td>
+		<td>In bits per second</td>
+	</tr>
+	<tr>
+		<td>Playback Queue Representation ID</td>
+		<td>7</td>
+		<td>As defined in the MPD</td>
+	</tr>
+	<tr>
+		<td>Current Observed Bandwidth</td>
+		<td>8</td>
+		<td>In bits per second</td>
+	</tr>
+<table>
 
-Timestamp, DQ Buffer Size (playback seconds), DQ Representation Bandwidth (bps), DQ Representation ID, PQ Buffer Size (playback seconds), PQ Representation Bandwidth (bos), PQ Representation ID, Current Observed Bandwidth (bps)
-
-(DQ: Download Queue, PQ: Playback Queue)
 
 ### event.csv ###
 
 Contains an event driven log for precisely timing playback start and end times, in addition to other useful information.
+
+### stats.csv ###
+
+Contains a number of stats that are output when the player finishes playback. Fields are as follows:
+
+<table>
+	<tr> 
+		<th>Field Name</th>
+		<th>Notes</th>
+	</tr>
+	<tr> 
+		<td>Average Download Queue Occupancy</td>
+		<td>In seconds of playback queued</td>
+	</tr>
+	<tr>
+		<td>Average Playback Queue Occupancy</td>
+		<td>In seconds of playback queued</td>
+	</tr>
+	<tr>
+		<td>Average Bandwidth</td>
+		<td>In bits per second</td>
+	</tr>
+	<tr>
+		<td>Bandwidth Changes</td>
+		<td>If representation bandwidth has changed from one segment to the next</td>
+	</tr>
+	<tr>
+		<td>Maximum Bandwidth</td>
+		<td>In bits per second</td>
+	</tr>
+	<tr>
+		<td>Minimum Bandwidth</td>
+		<td>In bits per second</td>
+	</tr>
+	<tr>
+		<td>Startup Delay</td>
+		<td>In seconds</td>
+	</tr>
+<table>
 
 ## Example MPDs ##
 
