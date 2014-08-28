@@ -3,7 +3,7 @@
 """Experimental MPEG-DASH request engine with support for accurate logging."""
 
 import collections
-import xml.etree.ElementTree as ET
+from lxml import etree
 import time
 import threading
 import Queue
@@ -396,7 +396,7 @@ class Player(object):
             self.load_mpd(manifest)
             self.initialise()
 
-        def get_remote_mpd(self, url):
+        def _get_remote_mpd(self, url):
             """Download a remote MPD if necessary."""
             self.player.reporter.event('start', 'fetching remote mpd')
             response = requests.get(url)
@@ -415,15 +415,43 @@ class Player(object):
                 (?:%[0-9a-fA-F][0-9a-fA-F]))+'''
             url = re.search(expression, manifest)
             if url:
-                manifest = self.get_remote_mpd(url.group())
-            xml = ET.parse(manifest)
-            mpd = xml.getroot()
+                manifest = self._get_remote_mpd(url.group())
+            if OPTIONS.xml_validation:
+                document = self._validate_mpd(manifest)
+            else:
+                document = etree.parse(manifest)
+            mpd = document.getroot()
             base_url = self.BaseURL()
             self.min_buffer = int(float(mpd.attrib['minBufferTime'][2:-1]))
             self.parse_mpd(base_url, mpd)
             sorted(self.representations, key=lambda representation:
                 representation[0])
             self.player.reporter.event('stop', 'parsing mpd')
+
+        def  _validate_mpd(self, manifest):
+            """Validate the integrity of the schema and MPD."""
+            schema = open('validation/DASH-MPD.xsd')
+            schema = etree.parse(schema)
+            self.player.reporter.event('start', 'validating schema')
+            try:
+                schema = etree.XMLSchema(schema)
+            except etree.XMLSchemaParseError as e:
+                self.player.reporter.event('error', str(e))
+                raise SystemExit()
+            self.player.reporter.event('stop', 'validating schema')
+            try:
+                document = etree.parse(manifest)
+            except etree.XMLSyntaxError as e:
+                self.player.reporter.event('error', str(e))
+                raise SystemExit()
+            self.player.reporter.event('start', 'validating document')
+            try:
+                schema.assertValid(document)
+            except etree.DocumentInvalid as e:
+                self.player.reporter.event('error', str(e))
+                raise SystemExit()
+            self.player.reporter.event('stop', 'validating document')
+            return document
 
         def parse_mpd(self, base_url, parent_element):
             """Parse 'mpd' level XML."""
@@ -752,7 +780,7 @@ if __name__ == '__main__':
     PARSER = optparse.OptionParser()
     PARSER.set_defaults(output='out/', keep_alive=True,
         max_playback_queue=60, max_download_queue=30, csv=True, gauged=False,
-        reporting_period=1, playlist=None, manifest=None)
+        reporting_period=1, playlist=None, manifest=None, xml_validation=False)
     PARSER.add_option("-m", "--manifest", dest="manifest",
         help="location of manifest to load")
     PARSER.add_option("-o", "--output", dest="output",
@@ -779,6 +807,9 @@ if __name__ == '__main__':
         help="experimental gauged support")
     PARSER.add_option("-p", "--playlist", dest="playlist",
         help="playlist of MPDs to play in succession")
+    PARSER.add_option("-x", "--xml-validation", dest="xml_validation",
+        action="store_true",
+        help="validate the MPD against the MPEG-DASH schema")
     (OPTIONS, ARGS) = PARSER.parse_args()
     if (OPTIONS.manifest != None or OPTIONS.playlist != None) and not (
         OPTIONS.manifest and OPTIONS.playlist):

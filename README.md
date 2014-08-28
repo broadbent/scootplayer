@@ -37,12 +37,12 @@ $ python scootplayer.py -h
 Contains a periodic log which updates every second. Each entry details the state of the download and playback queues. Also reports the current estimated bandwidth. Fields are as follows (includes position in CSV row):
 
 <table>
-	<tr> 
+	<tr>
 		<th>Field Name</th>
 		<th>#</th>
 		<th>Notes</th>
 	</tr>
-	<tr> 
+	<tr>
 		<td>Timestamp</td>
 		<td>1</td>
 		<td>In seconds</td>
@@ -94,11 +94,11 @@ Contains an event driven log for precisely timing playback start and end times, 
 Contains a number of stats that are output when the player finishes playback. Fields are as follows:
 
 <table>
-	<tr> 
+	<tr>
 		<th>Field Name</th>
 		<th>Notes</th>
 	</tr>
-	<tr> 
+	<tr>
 		<td>Average Download Queue Occupancy</td>
 		<td>In seconds of playback queued</td>
 	</tr>
@@ -131,6 +131,14 @@ Contains a number of stats that are output when the player finishes playback. Fi
 ## Example MPDs ##
 
 Example MPDs are found in the `examples/mpd` folder. These MPDs are not my own, nor do I host the content. These are taken from the [DASH dataset](http://www-itec.uni-klu.ac.at/ftp/datasets/mmsys12/BigBuckBunny/) over at [ITEC](http://www-itec.uni-klu.ac.at/).
+
+## MPD validation ##
+
+`scootplayer` supports the validation of MPD XML files using the [schema provided by the ISO](http://standards.iso.org/ittf/PubliclyAvailableStandards/MPEG-DASH_schema_files/DASH-MPD.xsd). This schema (and its dependecies) can be found in the `validation` folder.
+
+The schema included with `scootplayer` is slightly modified from the original. The namespace, by default, is defined as `urn:mpeg:dash:schema:mpd:2011`. However, example MPDs, including those that ship with `scootplayer`, often use a alternatively capitalised version of this namespace: `urn:mpeg:DASH:schema:MPD:2011`. Until this is normalised, we will follow the majority and support the alternative capitalisation.
+
+It is important to consider that the validation process takes time. If you are using `scootplayer` as a tool for evaluation, it may be prudent not to turn validation on. It is mainly intended as a debugging feature to help with the menagerie of old and non-standard MPDs available.
 
 ## Experimental Features ##
 
