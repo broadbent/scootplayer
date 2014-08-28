@@ -116,23 +116,48 @@ class Player(object):
         return response
 
     def open_file(self, path):
+        """Open a file and return the file handle."""
         file_name = self.directory + path
         return open(file_name, 'w')
 
     def fetch_item(self, item):
-      start = time.time()
-      response = self.make_request(item)
-      duration = time.time() - start
-      if response.status_code >= 400:
-        self.reporter.event('error', 'could not download '
-        + item[1] + ' (code ' + str(response.status_code) + ')')
-        raise SystemExit()
-      else:
-          length = float(response.headers.get('Content-Length'))
-          length = length * 8 #convert octets to bits
-      self.write_to_file(item, response)
-      self.update_bandwidth(duration, length)
-      return duration, length
+        """Fetch an individual item from a remote location.
+
+        Writes the item to file. Also updates the bandwidth based upon the
+        duration of the transaction and the amount of bits received in that
+        time.
+
+        Returns:
+            duration: time taken to fulfil the request
+            length: response length for use with the MPD '@bandwidth' value
+                (in bits).
+        """
+        response, duration = self._time_request(item)
+        self._check_code(response.status_code, item[1])
+        length = self._get_length(response)
+        self.write_to_file(item, response)
+        self.update_bandwidth(duration, length)
+        return duration, length
+
+    def _time_request(self, item):
+        """Makes request and times response."""
+        start = time.time()
+        response = self.make_request(item)
+        duration = time.time() - start
+        return response, duration
+
+    def _check_code(self, code, url):
+        """Checks if the request was successful (using the HTTP error code)"""
+        if code >= 400:
+            self.reporter.event('error', 'could not download '
+            + url + ' (code ' + str(code) + ')')
+            raise SystemExit()
+
+    def _get_length(self, response):
+        """Get length of response from HTTP response header."""
+        length = float(response.headers.get('Content-Length'))
+        length = length * 8 #convert octets to bits
+        return length
 
     def write_to_file(self, item, response):
         """
