@@ -119,6 +119,21 @@ class Player(object):
         file_name = self.directory + path
         return open(file_name, 'w')
 
+    def fetch_item(self, item):
+      start = time.time()
+      response = self.make_request(item)
+      duration = time.time() - start
+      if response.status_code >= 400:
+        self.reporter.event('error', 'could not download '
+        + item[1] + ' (code ' + str(response.status_code) + ')')
+        raise SystemExit()
+      else:
+          length = float(response.headers.get('Content-Length'))
+          length = length * 8 #convert octets to bits
+      self.write_to_file(item, response)
+      self.update_bandwidth(duration, length)
+      return duration, length
+
     def write_to_file(self, item, response):
         """
         Write response content to file.
@@ -477,13 +492,7 @@ class Player(object):
             total_duration = 0
             total_length = 0
             for item in self.initialisations:
-                start = time.time()
-                response = self.player.make_request(item)
-                duration = time.time() - start
-                length = float(response.headers.get('Content-Length'))
-                length = length * 8 #convert octets to bits
-                self.player.write_to_file(item, response)
-                self.player.update_bandwidth(duration, length)
+                duration, length = self.player.fetch_item(item)
                 total_duration += duration
                 total_length += length
             self.player.update_bandwidth(total_duration, total_length)
@@ -573,12 +582,7 @@ class Player(object):
                 item = self.queue.get()
                 self.bandwidth = item[4]
                 self.id_ = int(item[5])
-                start = time.time()
-                response = self.player.make_request(item)
-                duration = time.time() - start
-                length = float(response.headers.get('Content-Length'))
-                self.player.write_to_file(item, response)
-                self.player.update_bandwidth(duration, length)
+                _, length = self.player.fetch_item(item)
                 self.player.playback_queue.add(item)
                 self.queue.task_done()
                 gauged_data = {'downloads':1, 'bandwidth':self.bandwidth,
