@@ -154,9 +154,19 @@ class Player(object):
             raise SystemExit()
 
     def _get_length(self, response):
-        """Get length of response from HTTP response header."""
-        length = float(response.headers.get('Content-Length'))
-        length = length * 8 #convert octets to bits
+        """
+        Get length of response from HTTP response header.
+
+        Falls back to checking the length of the response content if value not
+        present in header. Also ensures that we convert from octets to bits for
+        use in the bandwidth estimation algorithm
+
+        """
+        try:
+            length = int(response.headers.get('Content-Length'))
+        except TypeError:
+            length = len(response.content)
+        length = length * 8
         return length
 
     def write_to_file(self, item, response):
