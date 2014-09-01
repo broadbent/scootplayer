@@ -15,7 +15,8 @@ import re
 import signal
 import random
 from gauged import Gauged
-import pyzmq
+import zmq
+import sys
 
 class Player(object):
     """Object representing scootplayer as a whole."""
@@ -25,6 +26,7 @@ class Player(object):
     playback_queue = None
     download_queue = None
     reporter = None
+    remote_control = None
     session = None
 
     def __init__(self):
@@ -43,6 +45,7 @@ class Player(object):
         self.playback_queue = None
         self.download_queue = None
         self.reporter = None
+        self.remote_control = None
         self.session = None
         self.start_time = time.time()
         self.session = requests.Session()
@@ -50,6 +53,7 @@ class Player(object):
         self.directory = OPTIONS.output + time_now
         create_directory(self.directory + '/downloads')
         self.reporter = self.Reporter(self)
+        self.remote_control = self.RemoteControl(self)
         self.bandwidth = self.Bandwidth()
         self.representations = self.Representations(self, manifest)
         self.download_queue = self.DownloadQueue(self,
@@ -216,6 +220,29 @@ class Player(object):
             pass
         raise SystemExit()
 
+    class RemoteControl():
+
+        def __init__(self, player):
+            thread = threading.Thread(target=self.listen, args=())
+            thread.daemon = True
+            thread.start()
+
+        def listen(self):
+            context = zmq.Context()
+            socket = context.socket(zmq.SUB)
+            socket.connect ("tcp://%s:%s" % (OPTIONS.remote_control_host,
+                OPTIONS.remote_control_port))
+            socket.setsockopt(zmq.SUBSCRIBE, '')
+            while True:
+                string = socket.recv()
+                url = ''
+                try:
+                    action, url = string.split()
+                except:
+                    action = string
+                print action, url
+                #TODO: Change state of player
+
     class Reporter(object):
         """Object used to report both periodic statistics and events."""
 
@@ -226,9 +253,6 @@ class Player(object):
         stats_file = None
         report = False
         gauged = None
-        _analysis_count = 0
-        _total_download_queue_occupancy = 0
-        _total_playback_queue_occupancy = 0
 
         def __init__(self, player):
             """Initialise files to save reports to."""
@@ -280,25 +304,23 @@ class Player(object):
                     function=self.reporter, args=())
                 thread.daemon = True
                 thread.start()
+            self._analysis()
             if OPTIONS.gauged:
                 self.gauged_report()
             if OPTIONS.csv:
                 self.csv_report(time_elapsed)
-            self.buffer_analysis()
 
-        def buffer_analysis(self):
+        def _analysis(self):
             try:
-                self._analysis_count = self._analysis_count + 1
-                self._total_download_queue_occupancy = self._total_download_queue_occupancy + self.player.download_queue.time_buffer
-                self._total_playback_queue_occupancy = self._total_playback_queue_occupancy + self.player.playback_queue.time_buffer
-                self.average_download_queue_occupancy = self._total_download_queue_occupancy / self._analysis_count
-                self.average_playback_queue_occupancy = self._total_playback_queue_occupancy / self._analysis_count
+                self.player.playback_queue.queue_analysis()
+                self.player.download_queue.queue_analysis()
+                self.player.download_queue.bandwidth_analysis()
             except AttributeError:
-                pass #Download and playback buffers not yet initialised
+                    pass #Download and playback queues not yet initialised
 
         def stats(self):
-            self.stats_file.write('average download queue occupancy,' + str(self.average_download_queue_occupancy) + '\n')
-            self.stats_file.write('average playback queue occupancy,' + str(self.average_playback_queue_occupancy) + '\n')
+            self.stats_file.write('average download queue occupancy,' + str(self.player.download_queue.average_occupancy) + '\n')
+            self.stats_file.write('average playback queue occupancy,' + str(self.player.playback_queue.average_occupancy) + '\n')
             self.stats_file.write('average bandwidth,' + str(self.player.playback_queue.average_bandwidth) + '\n')
             self.stats_file.write('bandwidth changes,' + str(self.player.playback_queue.bandwidth_changes) + '\n')
             self.stats_file.write('maximum bandwidth,' + str(self.player.playback_queue.max_bandwidth) + '\n')
@@ -609,7 +631,13 @@ class Player(object):
                 else:
                     return str('')
 
-    class DownloadQueue(object):
+    class Queue():
+
+        def queue_analysis(self):
+            self.occupancy.append(self.time_buffer)
+            self.average_occupancy = sum(self.occupancy) / len(self.occupancy)
+
+    class DownloadQueue(Queue):
         """Object which acts as a download queue for the player."""
 
         queue = Queue.Queue()
@@ -618,6 +646,8 @@ class Player(object):
         player = None
         bandwidth = 0
         id_ = 0
+        occupancy = []
+        average_occupancy = 0
 
         def __init__(self, player, max_buffer):
             """Initialise download queue with max size and start thread."""
@@ -658,7 +688,7 @@ class Player(object):
             """Return the current length of the download queue."""
             return self.queue.qsize()
 
-    class PlaybackQueue(object):
+    class PlaybackQueue(Queue):
         """Object which acts as a playback queue for the player."""
 
         queue = Queue.Queue()
@@ -676,7 +706,8 @@ class Player(object):
         bandwidth_changes = 0
         _items_played = 0
         _total_bandwidth = 0
-
+        occupancy = []
+        average_occupancy = 0
 
         def __init__(self, player, min_buffer, max_buffer):
             """
@@ -719,7 +750,6 @@ class Player(object):
                 time.sleep(int(item[0]))
                 self.queue.task_done()
                 self.time_buffer = self.time_buffer - int(item[0])
-                self.bandwidth_analysis()
             self.player.reporter.event('stop', 'playback')
             self.player.stop()
 
@@ -791,7 +821,8 @@ if __name__ == '__main__':
     PARSER = optparse.OptionParser()
     PARSER.set_defaults(output='out/', keep_alive=True,
         max_playback_queue=60, max_download_queue=30, csv=True, gauged=False,
-        reporting_period=1, playlist=None, manifest=None, xml_validation=False)
+        reporting_period=1, playlist=None, manifest=None, xml_validation=False,
+        remote_control_host='localhost', remote_control_port='5556')
     PARSER.add_option("-m", "--manifest", dest="manifest",
         help="location of manifest to load")
     PARSER.add_option("-o", "--output", dest="output",
@@ -821,6 +852,12 @@ if __name__ == '__main__':
     PARSER.add_option("-x", "--xml-validation", dest="xml_validation",
         action="store_true",
         help="validate the MPD against the MPEG-DASH schema")
+    PARSER.add_option("-c", "--remote-control-host", dest="remote_control_host",
+        help="""set hostname of the remote controller to listen to
+        [default: %default]""")
+    PARSER.add_option("--remote-control-port", dest="remote_control_port",
+        help="""set port of the remote controller to listen to
+        [default: %default]""")
     (OPTIONS, ARGS) = PARSER.parse_args()
     if (OPTIONS.manifest != None or OPTIONS.playlist != None) and not (
         OPTIONS.manifest and OPTIONS.playlist):
