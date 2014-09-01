@@ -15,6 +15,7 @@ import re
 import signal
 import random
 from gauged import Gauged
+import pyzmq
 
 class Player(object):
     """Object representing scootplayer as a whole."""
