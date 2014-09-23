@@ -68,18 +68,23 @@ Contains a periodic log which updates every second. Each entry details the state
 		<td>In seconds of playback queued</td>
 	</tr>
 	<tr>
-		<td>Playback Queue Representation Bandwidth</td>
+		<td>Playback Queue Playback Position</td>
 		<td>6</td>
+		<td>In seconds of playback played</td>
+	</tr>
+	<tr>
+		<td>Playback Queue Representation Bandwidth</td>
+		<td>7</td>
 		<td>In bits per second</td>
 	</tr>
 	<tr>
 		<td>Playback Queue Representation ID</td>
-		<td>7</td>
+		<td>8</td>
 		<td>As defined in the MPD</td>
 	</tr>
 	<tr>
 		<td>Current Observed Bandwidth</td>
-		<td>8</td>
+		<td>9</td>
 		<td>In bits per second</td>
 	</tr>
 <table>
@@ -96,34 +101,42 @@ Contains a number of stats that are output when the player finishes playback. Fi
 <table>
 	<tr>
 		<th>Field Name</th>
+		<th>Short Name</th>
 		<th>Notes</th>
 	</tr>
 	<tr>
 		<td>Average Download Queue Occupancy</td>
+		<td>download_average_occupancy<td>
 		<td>In seconds of playback queued</td>
 	</tr>
 	<tr>
 		<td>Average Playback Queue Occupancy</td>
+		<td>playback_average_occupancy<td>
 		<td>In seconds of playback queued</td>
 	</tr>
 	<tr>
 		<td>Average Bandwidth</td>
+		<td>playback_average_bandwidth<td>
 		<td>In bits per second</td>
 	</tr>
 	<tr>
 		<td>Bandwidth Changes</td>
+		<td>playback_bandwidth_changes<td>
 		<td>If representation bandwidth has changed from one segment to the next</td>
 	</tr>
 	<tr>
 		<td>Maximum Bandwidth</td>
+		<td>playback_max_bandwidth<td>
 		<td>In bits per second</td>
 	</tr>
 	<tr>
 		<td>Minimum Bandwidth</td>
+		<td>playback_min_bandwidth<td>
 		<td>In bits per second</td>
 	</tr>
 	<tr>
 		<td>Startup Delay</td>
+		<td>startup_delay<td>
 		<td>In seconds</td>
 	</tr>
 <table>

@@ -24,7 +24,7 @@ class TestPlaybackQueue(unittest.TestCase):
 
     def test_stop(self):
         self.playback_object.stop()
-        self.player.reporter.event.assert_called_once_with('final', 'playback queue')
+        self.player.event.assert_called_once_with('final', 'playback queue')
 
     def test_add(self):
         iterations = random.randint(self.MIN, self.MAX)
@@ -42,12 +42,12 @@ class TestPlaybackQueue(unittest.TestCase):
         time.sleep((iterations * int(self.representation[0])) + 10)
         self.assertEqual(self.playback_object.count, iterations)
         self.assertEqual(len(self.playback_object.queue.queue), 0)
-        self.player.reporter.event.assert_called_once_with('stop', 'playback')
+        self.player.event.assert_called_once_with('stop', 'playback')
 
         # self.playback_object.playback()
         # self.assertEqual(len(self.playback_object.queue.queue), 0)
         # self.assertEqual(self.playback_object.time_buffer, 0)
-        # self.player.reporter.event.assert_called_once_with('stop', 'playback')
+        # self.player.event.assert_called_once_with('stop', 'playback')
         # self.player.stop.assert_called()
 
     def test_len(self):
@@ -68,12 +68,12 @@ class TestPlaybackQueue(unittest.TestCase):
     def test_start_playback(self):
         self.playback_object._start_playback()
         self.assertEqual(self.playback_object.playing, True)
-        self.player.reporter.event.assert_called_once_with('start', 'playback')
+        self.player.event.assert_called_once_with('start', 'playback')
 
     def test_stop_playback(self):
         self.playback_object._stop_playback()
         self.assertEqual(self.playback_object.playing, False)
-        self.player.reporter.event.assert_called_once_with('stop', 'playback')
+        self.player.event.assert_called_once_with('stop', 'playback')
 
     def test_reset(self):
         pass
@@ -87,12 +87,12 @@ class TestPlaybackQueue(unittest.TestCase):
     #     print self.MAX, len(self.playback_object)
     #     self.playback_object.add((self.representation))
     #     print 'end max'
-    #     assert not self.player.reporter.event.called
+    #     assert not self.player.event.called
 
     def test_min_buffer(self):
         while len(self.playback_object.queue.queue) > self.MIN:
             self.playback_object.add((self.representation))
-        assert not self.player.reporter.event.called
+        assert not self.player.event.called
 
 class TestBandwidthFunctions(unittest.TestCase):
 
