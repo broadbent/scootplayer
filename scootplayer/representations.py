@@ -1,11 +1,12 @@
 #!/usr/bin/env python2.7
 
-import re
 from lxml import etree
-import Queue
-import os
-import requests
 import aniso8601
+import os
+import Queue
+import re
+import requests
+
 
 class Representations(object):
     """
@@ -38,8 +39,7 @@ class Representations(object):
         self.player.event('start', 'fetching remote mpd')
         response = requests.get(url)
         filename = os.path.basename(url)
-        path = self.player.directory + '/mpd/'
-        self.player.create_directory(path)
+        path = self.player.create_directory('/mpd')
         _file = open(path + filename, 'w')
         _file.write(response.content)
         self.player.event('stop', 'fetching remote mpd')
@@ -62,10 +62,10 @@ class Representations(object):
         self.min_buffer = int(float(mpd.attrib['minBufferTime'][2:-1]))
         self.parse_mpd(base_url, mpd)
         sorted(self.representations, key=lambda representation:
-            representation['bandwidth'])
+               representation['bandwidth'])
         self.player.event('stop', 'parsing mpd')
 
-    def  _validate_mpd(self, manifest):
+    def _validate_mpd(self, manifest):
         """Validate the integrity of the schema and MPD."""
         schema = open('validation/DASH-MPD.xsd')
         schema = etree.parse(schema)
@@ -130,11 +130,10 @@ class Representations(object):
                     print 'id not found, generating random integer'
                     id_ = random.randint(0, 1000)
                 self.parse_representation(base_url, bandwidth, id_,
-                    child_element)
+                                          child_element)
         base_url.adaption_set = ''
 
-    def parse_representation(self, base_url, bandwidth, id_,
-        parent_element):
+    def parse_representation(self, base_url, bandwidth, id_, parent_element):
         """Parse 'representation' level XML."""
         for child_element in parent_element:
             if 'SegmentBase' in child_element.tag:
@@ -145,8 +144,10 @@ class Representations(object):
                 duration = int(child_element.attrib['duration'])
                 self._max_duration(duration)
                 self.parse_segment_list(base_url=base_url,
-                    duration=duration, bandwidth=bandwidth, id_=id_,
-                    parent_element=child_element)
+                                        duration=duration,
+                                        bandwidth=bandwidth,
+                                        id_=id_,
+                                        parent_element=child_element)
         base_url.representation = ''
 
     def _max_duration(self, duration):
@@ -166,9 +167,10 @@ class Representations(object):
                     media_range = child_element.attrib['range'].split('-')
                 except KeyError:
                     media_range = (0, 0)
-                self.initialisations.append((None, base_url.resolve()
-                    + child_element.attrib['sourceURL'],
-                    int(media_range[0]), int(media_range[1])))
+                self.initialisations.append((None, base_url.resolve() +
+                                            child_element.attrib['sourceURL'],
+                                            int(media_range[0]),
+                                            int(media_range[1])))
 
     def parse_segment_list(self, **kwargs):
         """
@@ -186,11 +188,12 @@ class Representations(object):
                 except KeyError:
                     media_range = (0, 0)
                 queue.put((kwargs['duration'],
-                    kwargs['base_url'].resolve()
-                    + child_element.attrib['media'], int(media_range[0]),
-                    int(media_range[1]), int(kwargs['bandwidth']),
-                    int(kwargs['id_'])))
-        self.representations.append({'bandwidth':kwargs['bandwidth'], 'queue':queue})
+                           kwargs['base_url'].resolve() +
+                           child_element.attrib['media'], int(media_range[0]),
+                           int(media_range[1]), int(kwargs['bandwidth']),
+                           int(kwargs['id_'])))
+        self.representations.append({'bandwidth': kwargs['bandwidth'],
+                                     'queue': queue})
 
     def initialise(self):
         """Download necessary initialisation files."""
@@ -210,7 +213,7 @@ class Representations(object):
         availability.
 
         """
-        #TODO: account for none aligned segments
+        # TODO: account for none aligned segments
         candidate_index = self.bandwidth_match(bandwidth)
         candidate = None
         for representation in self.representations:
@@ -218,13 +221,14 @@ class Representations(object):
                 candidate = representation['queue'].get()
             else:
                 representation['queue'].get()
-        if candidate == None:
+        if candidate is None:
             raise Queue.Empty
         return candidate
 
     def bandwidth_match(self, bandwidth):
         candidate_index = min(range(len(self.representations)), key=lambda
-            i: abs(self.representations[i]['bandwidth']-int(bandwidth)))
+                              i: abs(self.representations[i]['bandwidth'] -
+                              int(bandwidth)))
         return candidate_index
 
     class BaseURL(object):

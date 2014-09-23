@@ -2,6 +2,7 @@
 
 import zmq
 
+
 class RemoteControl():
 
     def __init__(self, player, options):
@@ -12,8 +13,8 @@ class RemoteControl():
     def _listen(self):
         context = zmq.Context()
         socket = context.socket(zmq.SUB)
-        socket.connect ("tcp://%s:%s" % (self.options.remote_control_host,
-            self.options.remote_control_port))
+        socket.connect("tcp://%s:%s" % (self.options.remote_control_host,
+                       self.options.remote_control_port))
         socket.setsockopt(zmq.SUBSCRIBE, '')
         while True:
             string = socket.recv()
@@ -35,7 +36,7 @@ class RemoteControl():
             try:
                 self.player.event('remote', 'play: ' + str(resource))
             except:
-                pass #Reporter not yet initialised
+                pass  # Reporter not yet initialised
             self.player.pause()
             self.player.playlist.stop()
             self.player.playlist.add(resource)
@@ -45,11 +46,11 @@ class RemoteControl():
             try:
                 self.player.event('remote', 'play')
             except:
-                pass #Reporter not yet initialised - need to restart reporter
+                pass  # Reporter not yet initialised - need to restart reporter
             try:
                 self.player.resume()
             except:
-                pass #Player is not playing!
+                pass  # Player is not playing!
 
     def do_add(self, resource):
         self.player.event('remote', 'add: ' + str(resource))

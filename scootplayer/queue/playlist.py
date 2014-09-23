@@ -1,21 +1,20 @@
 #!/usr/bin/env python2.7
 
-import base
+from base import BaseQueue
+import re
 
-class PlaylistQueue(base.BaseQueue):
 
-    __shared_state = {}
+class PlaylistQueue(BaseQueue):
 
-    def __init__(self, player, options):
+    def __init__(self, *args, **kwargs):
         """Initialise download queue with max size and start thread."""
-        self.__dict__ = self.__shared_state
-        self.player = player
-        if options.playlist:
-            playlist = self._parse_playlist_file(options.playlist)
+        super(PlaylistQueue, self).__init__(*args, **kwargs)
+        if self.options.playlist:
+            playlist = self._parse_playlist_file(self.options.playlist)
             for manifest in playlist:
                 self.add(manifest)
-        elif options.manifest:
-            self.add(options.manifest)
+        elif self.options.manifest:
+            self.add(self.options.manifest)
 
     def _parse_playlist_file(self, path):
         playlist = self._load_playlist_file(path)

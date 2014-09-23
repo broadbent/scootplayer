@@ -3,12 +3,14 @@
 from base import BaseQueue
 import time
 
+
 class DownloadQueue(BaseQueue):
     """Object which acts as a download queue for the player."""
 
     def __init__(self, *args, **kwargs):
         """Initialise download queue with max size and start thread."""
         super(DownloadQueue, self).__init__(*args, **kwargs)
+        self.player.create_directory('/downloads')
         self.stats = dict(average_occupancy=0)
         self.report = dict(time_buffer=0, bandwidth=0, id=0)
         self.player.start_thread(self.downloader)
@@ -22,7 +24,7 @@ class DownloadQueue(BaseQueue):
         """Add an item to the download queue."""
         while self.run:
             if (int(self.report['time_buffer']) + int(representation[0])) \
-                <= int(self.time_buffer_max):
+                    <= int(self.time_buffer_max):
                     self.report['time_buffer'] += int(representation[0])
                     self.queue.put((representation))
                     return
@@ -42,7 +44,8 @@ class DownloadQueue(BaseQueue):
                 # gauged_data = {'downloads':1, 'bandwidth':self.bandwidth,
                 #     'id_':self.id_, 'length':length}
                 # self.player.reporter.gauged_event(**gauged_data)
-                self.report['time_buffer'] = self.report['time_buffer'] - int(item[0])
+                self.report['time_buffer'] = self.report['time_buffer'] - \
+                    int(item[0])
             else:
                 time.sleep(1)
 

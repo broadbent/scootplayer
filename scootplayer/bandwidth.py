@@ -2,12 +2,9 @@
 
 import collections
 
+
 class Bandwidth(object):
     """Object containing the current bandwidth estimation."""
-
-    _current = 0
-    _previous = 0
-    _trend = collections.deque(maxlen=100)
 
     def __init__(self):
         self._current = 0

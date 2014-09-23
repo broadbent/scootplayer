@@ -157,8 +157,6 @@ It is important to consider that the validation process takes time. If you are u
 
 A draft Gnuplot script is included in `examples/gnuplot` folder. This creates a postscript file visualising the bits per second observed by the download and playback queues.
 
-Support for [gauged](https://github.com/chriso/gauged/tree/master) available. Requires a local MySQL database named `gauged`. Use the `-g` flag to enable.
-
 ## License ##
 
 This sofware is licensed under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0).

@@ -2,6 +2,7 @@
 
 import time
 
+
 class Watchdog(object):
 
     watch_value = 0
@@ -25,6 +26,12 @@ class Watchdog(object):
         self.run = False
         self.player.event('stop', 'watchdog')
 
+    def pause(self):
+        self.run = False
+
+    def resume(self):
+        self.run = True
+
     def watchdog(self):
         if self.run:
             self.player.start_timed_thread(self.max_duration, self.watchdog)
@@ -39,7 +46,7 @@ class Watchdog(object):
                 if self.watch_value == report['playback_time_position']:
                     if self.watch_count:
                         self.player.event('error',
-                                                   'detected stalled playback; dumping objects')
+                                          'detected stalled playback')
                         self._dump()
                         self.player.exit()
                         print 'cont'
@@ -54,7 +61,7 @@ class Watchdog(object):
             self.watchdog()
 
     def _dump(self):
-        self.player.create_directory(self.player.directory + '/dump')
+        self.player.create_directory('/dump')
         self._dump_object('player', self.player)
         self._dump_threads()
 

@@ -1,30 +1,26 @@
 #!/usr/bin/env python2.7
 
-"""Experimental MPEG-DASH request engine with support for accurate logging."""
+"""Experimental MPEG-DASH player emulator."""
 
-import time
-import Queue
-import optparse
 import os
-import signal
-import shutil
+import Queue
 import requests
+import shutil
+import signal
 import threading
-from progress.bar import Bar
+import time
 
-import scootplayer.remote as remote
-import scootplayer.reporter as reporter
-import scootplayer.watchdog as watchdog
-import scootplayer.representations as representations
 import scootplayer.bandwidth as bandwidth
 import scootplayer.queue as queue
+import scootplayer.remote as remote
+import scootplayer.reporter as reporter
+import scootplayer.representations as representations
+import scootplayer.watchdog as watchdog
+import scootplayer.progressbar as progressbar
 
-class Scootplayer(object):
-    """Object representing scootplayer as a whole."""
+class Player(object):
 
-    session = None
     bandwidth = None
-
     managed_objects = {'download': None,
                        'playback': None,
                        'download': None,
@@ -33,7 +29,7 @@ class Scootplayer(object):
                        'reporter': None,
                        'watchdog': None,
                        'remote_control': None}
-
+    session = None
     threads = list()
 
     def __init__(self, options):
@@ -41,31 +37,37 @@ class Scootplayer(object):
         self.options = options
         self._setup_signal_handling()
         self.managed_objects['watchdog'] = watchdog.Watchdog(self)
-        self.managed_objects['remote_control'] = remote.RemoteControl(self, options)
-        self.managed_objects['playlist'] = queue.playlist.PlaylistQueue(self, options)
+        self.managed_objects['remote_control'] = remote.RemoteControl(
+            self, options)
+        self.managed_objects['playlist'] = queue.playlist.PlaylistQueue(
+            player=self, options=options)
         self.next()
         self._consumer()
 
     def next(self):
-        self._init_reporter()
+        """Move onto the next item in the playlist, resetting everything."""
+        self._directory_setup()
+        self.managed_objects['reporter'] = reporter.Reporter(self)
         self.pause()
         self.session = requests.Session()
         self.bandwidth = bandwidth.Bandwidth()
         manifest = self.managed_objects['playlist'].get()
-        self.managed_objects['representations'] = representations.Representations(self, manifest)
+        self.managed_objects['download'] = queue.download.DownloadQueue(
+            player=self, time_buffer_max=int(self.options.max_download_queue))
+        self.managed_objects['representations'] = \
+            representations.Representations(self, manifest)
         self.bar = self.create_progress_bar()
-        self.managed_objects['download'] = queue.download.DownloadQueue(player=self,
-            time_buffer_max=int(self.options.max_download_queue))
-        self.managed_objects['playback'] = queue.playback.PlaybackQueue(player=self,
-            time_buffer_min=int(self.managed_objects['representations'].min_buffer),
+        self.managed_objects['playback'] = queue.playback.PlaybackQueue(
+            player=self, time_buffer_min=int(
+                self.managed_objects['representations'].min_buffer),
             time_buffer_max=int(self.options.max_playback_queue))
         self.resume()
 
-    def _init_reporter(self):
+    def _directory_setup(self):
+        """Create directory for storing downloads"""
         time_now = str(int(time.time()))
         self.directory = self.options.output + time_now
-        self.create_directory(self.directory + '/downloads')
-        self.managed_objects['reporter'] = reporter.Reporter(self)
+        self.create_directory()
 
     def _consumer(self):
         while True:
@@ -87,11 +89,11 @@ class Scootplayer(object):
 
     def pause(self):
         self.state = 'pause'
-        self._modify_state(False)
+        self._modify_state('pause')
 
     def resume(self):
         self.state = 'play'
-        self._modify_state(True)
+        self._modify_state('resume')
 
     def stop(self):
         """Stop playback of scootplayer."""
@@ -100,13 +102,10 @@ class Scootplayer(object):
         self.bar.next(0)
         self._modify_state('stop')
 
-    def _modify_state(self, state=None):
+    def _modify_state(self, method=None):
         for _, val in self.managed_objects.items():
             try:
-                if type(state) is bool:
-                    val.__dict__['run'] = state
-                else:
-                    getattr(val, state)()
+                getattr(val, method)()
             except AttributeError:
                 pass
 
@@ -161,9 +160,9 @@ class Scootplayer(object):
 
     def retrieve_metric(self, metric):
         result = {}
-        for object_ in ['download', 'playback']:
-            for key, val in self.managed_objects[object_].__dict__[metric].items():
-                result[object_ + '_' + key] = val
+        for obj in ['download', 'playback']:
+            for key, val in self.managed_objects[obj].__dict__[metric].items():
+                result[obj + '_' + key] = val
         return result
 
     def max_duration(self):
@@ -175,8 +174,7 @@ class Scootplayer(object):
             self.managed_objects['playback'].queue_analysis()
             self.managed_objects['download'].queue_analysis()
         except AttributeError:
-                pass #Download and playback queues not yet initialised
-
+                pass  # Download and playback queues not yet initialised
 
     def _time_request(self, item):
         """Makes request and times response."""
@@ -189,7 +187,7 @@ class Scootplayer(object):
         """Checks if the request was successful (using the HTTP error code)"""
         if code >= 400:
             self.event('error', 'could not download '
-            + url + ' (code ' + str(code) + ')')
+                       + url + ' (code ' + str(code) + ')')
             raise SystemExit()
 
     def _get_length(self, response):
@@ -254,10 +252,12 @@ class Scootplayer(object):
         self.threads.append(thread)
         return thread
 
-    def create_directory(self, path):
+    def create_directory(self, path=''):
         """Create a new directory at the given path."""
+        path = self.directory + path
         if not os.path.exists(path):
             os.makedirs(path)
+        return path
 
     def remove_directory(self, path):
         """Remove an existing directory at the given path."""
@@ -266,80 +266,10 @@ class Scootplayer(object):
 
     def create_progress_bar(self):
         if not self.options.debug:
-            return self.PlaybackBar(player=self, max=self.managed_objects['representations'].duration())
+            return progressbar.PlaybackBar(player=self,
+                                           max=self.managed_objects['representations'].duration())
         else:
-            return self.EmptyBar()
+            return progressbar.NullBar()
 
     def event(self, action, event):
         self.managed_objects['reporter'].event(action, event)
-
-    class EmptyBar():
-
-        def next(self, _):
-            pass
-
-    class PlaybackBar(Bar):
-
-        def __init__(self, *args, **kwargs):
-            super(Bar, self).__init__(*args, **kwargs)
-            total = "%02d:%02d" % (divmod(self.max, 60))
-            self.suffix = '%(elapsed)s / ' + total + ' / ' + '%(state)s'
-
-        @property
-        def elapsed(self):
-            return "%02d:%02d" % (divmod(self.index, 60))
-
-        @property
-        def state(self):
-            return self.player.state
-
-if __name__ == '__main__':
-    parser = optparse.OptionParser()
-    parser.set_defaults(output='out/', keep_alive=True,
-        max_playback_queue=60, max_download_queue=30, csv=True, gauged=False,
-        reporting_period=1, playlist=None, manifest=None, xml_validation=False,
-        remote_control_host='localhost', remote_control_port='5556')
-    parser.add_option("-m", "--manifest", dest="manifest",
-        help="location of manifest to load")
-    parser.add_option("-o", "--output", dest="output",
-        help="""location to store downloaded files and reports
-        [default: %default]""")
-    parser.add_option("--no-keep-alive", dest="keep_alive",
-        action="store_false",
-        help="prevent HTTP connection pooling and persistency")
-    parser.add_option("--max-playback-queue", dest="max_playback_queue",
-        help="""set maximum size of playback queue in seconds
-        [default: %default seconds]""")
-    parser.add_option("--max-download-queue", dest="max_download_queue",
-        help="""set maximum size of download queue in seconds
-        [default: %default seconds]""")
-    parser.add_option("-d", "-v", "--debug", "--verbose", dest="debug", action="store_true",
-        help="print all output to console")
-    parser.add_option("-r", "--reporting-period", dest="reporting_period",
-        help="set reporting period in seconds")
-    parser.add_option("--no-csv", dest="csv",
-        action="store_false",
-        help="stop CSV writing")
-    parser.add_option("-g", "--gauged", dest="gauged",
-        action="store_true",
-        help="experimental gauged support")
-    parser.add_option("-p", "--playlist", dest="playlist",
-        help="playlist of MPDs to play in succession")
-    parser.add_option("-x", "--xml-validation", dest="xml_validation",
-        action="store_true",
-        help="validate the MPD against the MPEG-DASH schema")
-    parser.add_option("-c", "--remote-control-host", dest="remote_control_host",
-        help="""set hostname of the remote controller to listen to
-        [default: %default]""")
-    parser.add_option("--remote-control-port", dest="remote_control_port",
-        help="""set port of the remote controller to listen to
-        [default: %default]""")
-    (options, argsn) = parser.parse_args()
-    if (options.manifest != None or options.playlist != None) and not (
-        options.manifest and options.playlist) or options.remote_control_host:
-        try:
-            PLAYER = Scootplayer(options)
-        except SystemExit:
-            raise
-    else:
-        parser.print_help()
