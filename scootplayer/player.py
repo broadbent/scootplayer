@@ -36,7 +36,6 @@ class Player(object):
         """Initialise the player and start playback."""
         self.options = options
         self._setup_signal_handling()
-        self.managed_objects['watchdog'] = watchdog.Watchdog(self)
         self.managed_objects['remote_control'] = remote.RemoteControl(
             self, options)
         self.managed_objects['playlist'] = queue.playlist.PlaylistQueue(
@@ -61,6 +60,7 @@ class Player(object):
             player=self, time_buffer_min=int(
                 self.managed_objects['representations'].min_buffer),
             time_buffer_max=int(self.options.max_playback_queue))
+        self.managed_objects['watchdog'] = watchdog.Watchdog(self)
         self.resume()
 
     def _directory_setup(self):
@@ -80,7 +80,7 @@ class Player(object):
                 except Queue.Empty:
                     self.next()
             else:
-                time.sleep(10)
+                time.sleep(1)
 
     def exit(self):
         self.state = 'exit'
@@ -97,6 +97,7 @@ class Player(object):
 
     def stop(self):
         """Stop playback of scootplayer."""
+        print 'called'
         self.state = 'stop'
         self.bar.suffix = '0:00 / 0:00 / stop'
         self.bar.next(0)

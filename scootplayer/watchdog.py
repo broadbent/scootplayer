@@ -49,7 +49,6 @@ class Watchdog(object):
                                           'detected stalled playback')
                         self._dump()
                         self.player.exit()
-                        print 'cont'
                     self.watch_count = True
                 else:
                     self.watch_count = False

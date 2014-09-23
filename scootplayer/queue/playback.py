@@ -31,11 +31,11 @@ class PlaybackQueue(BaseQueue):
         while True:
 
             if (int(self.report['time_buffer']) + int(representation[0])) \
-                    <= int(self.time_buffer_max) and self.run:
+             <= int(self.time_buffer_max) and self.run:
                 self.report['time_buffer'] += int(representation[0])
                 self.queue.put((representation))
-                if self.start is True and self.report['time_buffer']  \
-                        >= self.time_buffer_min:
+                if self.start != True and self.report['time_buffer']  \
+                    >= self.time_buffer_min:
                     self.player.event('start', 'playback')
                     self.start = True
                     self.player.start_thread(self.playback)
@@ -54,8 +54,7 @@ class PlaybackQueue(BaseQueue):
                 self.report['id'] = int(item[5])
                 self._consume_chunk(item[0])
                 self.queue.task_done()
-                self.report['time_buffer'] = self.report['time_buffer'] - \
-                    int(item[0])
+                self.report['time_buffer'] = self.report['time_buffer'] - int(item[0])
             else:
                 time.sleep(1)
 
@@ -77,8 +76,7 @@ class PlaybackQueue(BaseQueue):
             self.stats['min_bandwidth'] = self.report['bandwidth']
         self._items_played += 1
         self._total_bandwidth += self.report['bandwidth']
-        self.stats['average_bandwidth'] = self._total_bandwidth / \
-            self._items_played
+        self.stats['average_bandwidth'] = self._total_bandwidth / self._items_played
         self._previous_bandwidth = self.report['bandwidth']
 
     def __len__(self):
