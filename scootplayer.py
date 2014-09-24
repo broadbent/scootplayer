@@ -10,7 +10,7 @@ if __name__ == '__main__':
                         gauged=False, reporting_period=1, playlist=None,
                         manifest=None, xml_validation=False,
                         remote_control_host='localhost',
-                        remote_control_port='5556')
+                        remote_control_port='5556', playback_time=0)
     parser.add_option("-m", "--manifest", dest="manifest",
                       help="location of manifest to load")
     parser.add_option("-o", "--output", dest="output",
@@ -44,13 +44,12 @@ if __name__ == '__main__':
     parser.add_option("--remote-control-port", dest="remote_control_port",
                       help="""set port of the remote controller to listen to
                       [default: %default]""")
+    parser.add_option("-t", "--playback-time", dest="playback_time",
+                      help="""playback content for given time (seconds)""")
     (options, args) = parser.parse_args()
     if (options.manifest is not None or options.playlist is not None) and not \
             (options.manifest and options.playlist) \
             or options.remote_control_host:
-        try:
             player.Player(options)
-        except SystemExit:
-            raise
     else:
         parser.print_help()

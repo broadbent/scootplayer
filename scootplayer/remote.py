@@ -1,30 +1,40 @@
 #!/usr/bin/env python2.7
 
 import zmq
+import time
 
 
 class RemoteControl():
+
+    run = False
 
     def __init__(self, player, options):
         self.player = player
         self.options = options
         self.player.start_thread(self._listen)
 
+    def stop(self):
+        self.socket.close()
+        self.player.event('stop', 'remote')
+
     def _listen(self):
         context = zmq.Context()
-        socket = context.socket(zmq.SUB)
-        socket.connect("tcp://%s:%s" % (self.options.remote_control_host,
+        self.socket = context.socket(zmq.SUB)
+        self.socket.connect("tcp://%s:%s" % (self.options.remote_control_host,
                        self.options.remote_control_port))
-        socket.setsockopt(zmq.SUBSCRIBE, '')
+        self.socket.setsockopt(zmq.SUBSCRIBE, '')
         while True:
-            string = socket.recv()
-            resource = ''
-            try:
-                action, resource = string.split()
-            except:
-                action = string
-            action, resource = action.strip(), resource.strip()
-            self._lookup_method(action)(resource)
+            if self.run:
+                string = self.socket.recv()
+                resource = ''
+                try:
+                    action, resource = string.split()
+                except:
+                    action = string
+                action, resource = action.strip(), resource.strip()
+                self._lookup_method(action)(resource)
+            else:
+                time.sleep(1)
 
     def _lookup_method(self, action):
         return getattr(self, 'do_' + action, None)

@@ -7,6 +7,7 @@ import Queue
 import requests
 import shutil
 import signal
+import sys
 import threading
 import time
 
@@ -31,6 +32,7 @@ class Player(object):
                        'remote_control': None}
     session = None
     threads = list()
+    finished = False
 
     def __init__(self, options):
         """Initialise the player and start playback."""
@@ -45,6 +47,7 @@ class Player(object):
 
     def next(self):
         """Move onto the next item in the playlist, resetting everything."""
+        self.finished = False
         self._directory_setup()
         self.managed_objects['reporter'] = reporter.Reporter(self)
         self.pause()
@@ -61,6 +64,7 @@ class Player(object):
                 self.managed_objects['representations'].min_buffer),
             time_buffer_max=int(self.options.max_playback_queue))
         self.managed_objects['watchdog'] = watchdog.Watchdog(self)
+        self._setup_scheduled_stop(self.options.playback_time)
         self.resume()
 
     def _directory_setup(self):
@@ -73,19 +77,26 @@ class Player(object):
         while True:
             self.bar.next(0)
             if self.state == 'play':
-                try:
-                    representation = self.managed_objects['representations'] \
-                        .candidate(int(self.bandwidth))
-                    self.managed_objects['download'].add(representation)
-                except Queue.Empty:
+                representation = self.managed_objects['representations'] \
+                    .candidate(int(self.bandwidth))
+                self.managed_objects['download'].add(representation)
+                if self.finished:
                     self.next()
             else:
                 time.sleep(1)
 
+    def _setup_scheduled_stop(self, time):
+        if time:
+            self.start_timed_thread(time, self.exit)
+
+    def finish_playback(self):
+        self.finished = True
+
     def exit(self):
         self.state = 'exit'
         self.stop()
-        raise SystemExit()
+        os._exit(0)  # TODO: No cleanup on exit
+        # sys.exit(0)
 
     def pause(self):
         self.state = 'pause'
@@ -97,7 +108,6 @@ class Player(object):
 
     def stop(self):
         """Stop playback of scootplayer."""
-        print 'called'
         self.state = 'stop'
         self.bar.suffix = '0:00 / 0:00 / stop'
         self.bar.next(0)
@@ -117,7 +127,6 @@ class Player(object):
 
     def signal_handler(self, signum, frame):
         """Handle interrupt signals from user."""
-        print 'caught signal', str(signum), str(frame)
         self.exit()
 
     def make_request(self, item):

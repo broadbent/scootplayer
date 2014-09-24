@@ -14,23 +14,28 @@ class Reporter(object):
     report = False
     options = None
     run = False
+    managed_files = {'report': None,
+                     'event': None,
+                     'stats': None}
 
     def __init__(self, player):
         """Initialise files to save reports to."""
         self.player = player
-        self.report_file = self.player.open_file('/report.csv')
-        self.event_file = self.player.open_file('/event.csv')
-        self.stats_file = self.player.open_file('/stats.csv')
+        self.managed_files['report'] = self.player.open_file('/report.csv')
+        self.managed_files['event'] = self.player.open_file('/event.csv')
+        self.managed_files['stats'] = self.player.open_file('/stats.csv')
         self.start()
 
     def stop(self):
         """Stop reporting and close file handles."""
-        self.report = False
-        for file in ['report', 'event', 'stats']:
+        self.run = False
+        self.stats()
+        for _, obj in self.managed_files.items():
             try:
-                getattr('self.' + file + '_file', 'close')()
-            except:
+                getattr(obj, 'close')()
+            except Exception:
                 pass
+        self.player.event('stop', 'reporter')
 
     def pause(self):
         self.run = False
@@ -63,13 +68,13 @@ class Reporter(object):
     def stats(self):
         stats = self.player.retrieve_metric('stats')
         for key, value in stats.items():
-            self.stats_file.write(str(key) + ',' + str(value) + '\n')
-        self.stats_file.write('startup_delay,' + str(self.startup_delay) + '\n')
+            self.managed_files['stats'].write(str(key) + ',' + str(value) + '\n')
+        self.managed_files['stats'].write('startup_delay,' + str(self.startup_delay) + '\n')
 
 
     def csv_report(self, time_elapsed):
         try:
-            self.report_file.flush()
+            self.managed_files['report'].flush()
         except ValueError:
             pass
         try:
@@ -86,13 +91,13 @@ class Reporter(object):
         except AttributeError:
             output = str(time_elapsed) + str(', 0, 0, 0, 0, 0, 0, 0, 0\n')
         try:
-            self.report_file.write(output)
+            self.managed_files['report'].write(output)
         except ValueError:
             pass
         if self.player.options.debug:
             print ("[report] " + output),
         try:
-            self.report_file.flush()
+            self.managed_files['report'].flush()
         except ValueError:
             pass
 
@@ -107,18 +112,18 @@ class Reporter(object):
             self.startup_delay = time_elapsed
         if self.player.options.csv:
             try:
-                self.event_file.flush()
+                self.managed_files['event'].flush()
             except ValueError:
                 pass
             output = (str(time_elapsed) + "," + str(action) + ","
                       + str(description) + "\n")
             try:
-                self.event_file.write(output)
+                self.managed_files['event'].write(output)
             except ValueError:
                 pass
             if self.player.options.debug:
                 print ("[event] " + output),
             try:
-                self.event_file.flush()
+                self.managed_files['event'].flush()
             except ValueError:
                 pass

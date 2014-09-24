@@ -5,14 +5,12 @@ import Queue
 
 class BaseQueue(object):
 
-    run = False
-    queue = Queue.Queue()
-
     def __init__(self, *args, **kwargs):
-        self.queue.queue.clear()
         self.occupancy = []
         for key, val in kwargs.items():
             setattr(self, key, val)
+        self.run = False
+        self.queue = Queue.Queue()
 
     def pause(self):
         self.run = False

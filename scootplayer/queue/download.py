@@ -41,9 +41,6 @@ class DownloadQueue(BaseQueue):
                 _, length = self.player.fetch_item(item)
                 self.player.item_ready(item)
                 self.queue.task_done()
-                # gauged_data = {'downloads':1, 'bandwidth':self.bandwidth,
-                #     'id_':self.id_, 'length':length}
-                # self.player.reporter.gauged_event(**gauged_data)
                 self.report['time_buffer'] = self.report['time_buffer'] - \
                     int(item[0])
             else:
