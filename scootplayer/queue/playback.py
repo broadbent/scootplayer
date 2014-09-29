@@ -55,8 +55,7 @@ class PlaybackQueue(BaseQueue):
                 self._consume_chunk(item[0])
                 self.queue.task_done()
                 self.report['time_buffer'] = self.report['time_buffer'] - int(item[0])
-            elif self.report['time_buffer'] == 0:
-                print 'here'
+            elif self.report['time_buffer'] <= 0:
                 self.player.finish_playback()
             else:
                 time.sleep(1)

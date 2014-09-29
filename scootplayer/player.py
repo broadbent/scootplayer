@@ -70,7 +70,7 @@ class Player(object):
     def _directory_setup(self):
         """Create directory for storing downloads"""
         time_now = str(int(time.time()))
-        self.directory = self.options.output + time_now
+        self.directory = self.options.output + '/' + time_now
         self.create_directory()
 
     def _consumer(self):
