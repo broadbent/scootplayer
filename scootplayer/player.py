@@ -70,7 +70,7 @@ class Player(object):
     def _directory_setup(self):
         """Create directory for storing downloads"""
         time_now = str(int(time.time()))
-        self.directory = self.options.output + '/' + time_now
+        self.directory = '/'.join(__file__.split('/')[:-2]) + '/' + self.options.output + '/' + time_now
         self.create_directory()
 
     def _consumer(self):
@@ -226,12 +226,12 @@ class Player(object):
         content = response.content
         file_name = item[1].split('/')[-1]
         full_path = self.directory + '/downloads/' + file_name
-        file_start = int(item[2])
+	file_start = int(item[2])
         file_end = int(item[3])
         try:
             _file = open(full_path, 'r+')
         except IOError:
-            _file = open(full_path, 'w')
+            _file = open(full_path, 'w+')
         _file.seek(int(item[2]))
         _file.write(content)
         file_pointer = int(_file.tell()-1)
