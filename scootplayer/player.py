@@ -47,13 +47,18 @@ class Player(object):
 
     def next(self):
         """Move onto the next item in the playlist, resetting everything."""
-        self.finished = False
+        if self.managed_objects['playlist'].empty():
+		self.event('empty','playlist')
+		self.exit()
+	self.finished = False
         self._directory_setup()
         self.managed_objects['reporter'] = reporter.Reporter(self)
+	self.event('next','playing next item')
         self.pause()
         self.session = requests.Session()
         self.bandwidth = bandwidth.Bandwidth()
         manifest = self.managed_objects['playlist'].get()
+        print manifest
         self.managed_objects['download'] = queue.download.DownloadQueue(
             player=self, time_buffer_max=int(self.options.max_download_queue))
         self.managed_objects['representations'] = \
@@ -109,8 +114,11 @@ class Player(object):
     def stop(self):
         """Stop playback of scootplayer."""
         self.state = 'stop'
-        self.bar.suffix = '0:00 / 0:00 / stop'
-        self.bar.next(0)
+        try:
+            self.bar.suffix = '0:00 / 0:00 / stop'
+            self.bar.next(0)
+        except:
+            pass
         self._modify_state('stop')
 
     def _modify_state(self, method=None):
@@ -231,7 +239,7 @@ class Player(object):
         try:
             _file = open(full_path, 'r+')
         except IOError:
-            _file = open(full_path, 'w+')
+            _file = open(full_path, 'w')
         _file.seek(int(item[2]))
         _file.write(content)
         file_pointer = int(_file.tell()-1)
