@@ -6,6 +6,7 @@ import os
 import Queue
 import re
 import requests
+from pymediainfo import MediaInfo
 
 
 class Representations(object):
@@ -137,7 +138,7 @@ class Representations(object):
         """Parse 'representation' level XML."""
         for child_element in parent_element:
             if 'SegmentBase' in child_element.tag:
-                self.parse_segment_base(base_url, child_element)
+                self.parse_segment_base(base_url, child_element, id_)
             if 'BaseURL' in child_element.tag:
                 base_url.representation = child_element.text
             if 'SegmentList' in child_element.tag:
@@ -154,7 +155,7 @@ class Representations(object):
         if duration > self.max_duration:
             self.max_duration = duration
 
-    def parse_segment_base(self, base_url, parent_element):
+    def parse_segment_base(self, base_url, parent_element, id_):
         """
         Parse 'segment_base' level XML.
 
@@ -170,7 +171,7 @@ class Representations(object):
                 self.initialisations.append((None, base_url.resolve() +
                                             child_element.attrib['sourceURL'],
                                             int(media_range[0]),
-                                            int(media_range[1])))
+                                            int(media_range[1]), id_))
 
     def parse_segment_list(self, **kwargs):
         """
@@ -193,7 +194,7 @@ class Representations(object):
                            int(media_range[1]), int(kwargs['bandwidth']),
                            int(kwargs['id_'])))
         self.representations.append({'bandwidth': kwargs['bandwidth'],
-                                     'queue': queue})
+                                     'id': kwargs['id_'], 'queue': queue})
 
     def initialise(self):
         """Download necessary initialisation files."""
@@ -202,11 +203,39 @@ class Representations(object):
 	total_duration = 0
         total_length = 0
         for item in self.initialisations:
-            duration, length = self.player.fetch_item(item)
+            duration, length, path = self.player.fetch_item(item)
             total_duration += duration
             total_length += length
+	    self._parse_metadata(path, item[4])
         self.player.update_bandwidth(total_duration, total_length)
         self.player.event('stop ', 'downloading initializations')
+
+    def _parse_metadata(self, path, id_):
+	found = False
+	try:
+	    media_info = MediaInfo.parse(path)
+	except OSError:
+	    self._set_maximum_encoded_bitrate(0, id_)		
+	    self.player.event('error','MediaInfo not installed')
+	    return
+	for track in media_info.tracks:
+    	    if track.track_type == 'Video':
+		maximum_bitrate = track.maximum_bit_rate
+		if maximum_bitrate:
+		    self._set_maximum_encoded_bitrate(maximum_bitrate, id_)
+	    	    found = True
+		else:
+		    self.player.event('error','maximum bitrate not found in metadata')
+	    	    self._set_maximum_encoded_bitrate(0, id_)
+		    return				
+	if not found:
+	    self.player.event('error','no video track in metadata')
+	    self._set_maximum_encoded_bitrate(0, id_)		
+
+
+    def _set_maximum_encoded_bitrate(self, bitrate, id_):
+	representation = (i for i in self.representations if i['id'] == id_).next()                
+	representation['maximum_encoded_bitrate'] = bitrate
 
     def candidate(self, bandwidth):
         """
@@ -219,7 +248,9 @@ class Representations(object):
         candidate = None
         for representation in self.representations:
             if representation is self.representations[candidate_index]:
-                candidate = representation['queue'].get()
+                candidate = {'item': representation['queue'].get(), 'id': representation['id'],
+		'bandwidth': representation['bandwidth'], 
+		'max_encoded_bitrate': representation['maximum_encoded_bitrate']}
             else:
                 representation['queue'].get()
         if candidate is None:

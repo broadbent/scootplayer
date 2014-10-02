@@ -24,9 +24,9 @@ class PlaybackQueue(BaseQueue):
         """Add an item to the playback queue."""
         while True:
 
-            if (int(self.report['time_buffer']) + int(representation[0])) \
+            if (int(self.report['time_buffer']) + int(representation['item'][0])) \
              <= int(self.time_buffer_max) and self.run:
-                self.report['time_buffer'] += int(representation[0])
+                self.report['time_buffer'] += int(representation['item'][0])
                 self.queue.put((representation))
                 if self.start != True and self.report['time_buffer']  \
                     >= self.time_buffer_min:
@@ -43,12 +43,13 @@ class PlaybackQueue(BaseQueue):
         while True:
             if self.report['time_buffer'] > 0 and self.run:
                 item = self.queue.get()
-                self.report['time_position'] += int(item[0])
-                self.report['bandwidth'] = int(item[4])
-                self.report['id'] = int(item[5])
-                self._consume_chunk(item[0])
+                self.report['time_position'] += int(item['item'][0])
+                self.report['bandwidth'] = int(item['bandwidth'])
+                self.report['max_encoded_bitrate'] = item['max_encoded_bitrate']
+                self.report['id'] = int(item['id'])
+                self._consume_chunk(item['item'][0])
                 self.queue.task_done()
-                self.report['time_buffer'] = self.report['time_buffer'] - int(item[0])
+                self.report['time_buffer'] = self.report['time_buffer'] - int(item['item'][0])
             elif self.report['time_buffer'] <= 0:
                 self.player.finish_playback()
             else:

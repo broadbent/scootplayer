@@ -171,9 +171,9 @@ class Player(object):
         response, duration = self._time_request(item)
         self._check_code(response.status_code, item[1])
         length = self._get_length(response)
-        self.write_to_file(item, response)
+        path = self.write_to_file(item, response)
         self.update_bandwidth(duration, length)
-        return duration, length
+        return duration, length, path
 
     def item_ready(self, item):
         self.managed_objects['playback'].add(item)
@@ -237,19 +237,20 @@ class Player(object):
         """
         content = response.content
         file_name = item[1].split('/')[-1]
-        full_path = self.directory + '/downloads/' + file_name
+        path = self.directory + '/downloads/' + file_name
 	file_start = int(item[2])
         file_end = int(item[3])
         try:
-            _file = open(full_path, 'r+')
+            _file = open(path, 'r+')
         except IOError:
-            _file = open(full_path, 'w')
+            _file = open(path, 'w')
         _file.seek(int(item[2]))
         _file.write(content)
         file_pointer = int(_file.tell()-1)
         if file_end != file_pointer and file_start != 0:
             print 'ends do not match'
         _file.close()
+	return path
 
     def update_bandwidth(self, duration, length):
         """Update the current bandwidth estimation."""
