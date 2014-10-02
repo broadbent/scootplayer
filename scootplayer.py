@@ -10,7 +10,8 @@ if __name__ == '__main__':
                         gauged=False, reporting_period=1, playlist=None,
                         manifest=None, xml_validation=False,
                         remote_control_host='localhost',
-                        remote_control_port='5556', playback_time=0)
+                        remote_control_port='5556', playback_time=0,
+			window_multiplier=5)
     parser.add_option("-m", "--manifest", dest="manifest",
                       help="location of manifest to load")
     parser.add_option("-o", "--output", dest="output",
@@ -46,6 +47,10 @@ if __name__ == '__main__':
                       [default: %default]""")
     parser.add_option("-t", "--playback-time", dest="playback_time",
                       help="""playback content for given time (seconds)""")
+    parser.add_option("-w", "--window-multiplier", dest="window_multiplier",
+                      help="""moving average window calculated by multiplying 
+		      maximum segment duration with this value 
+		      [default: %default])""")
     (options, args) = parser.parse_args()
     if (options.manifest is not None or options.playlist is not None) and not \
             (options.manifest and options.playlist) \

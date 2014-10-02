@@ -2,7 +2,6 @@
 
 import time
 
-
 class Reporter(object):
     """Object used to report both periodic statistics and events."""
 
@@ -46,6 +45,7 @@ class Reporter(object):
     def start(self):
         """Start reporting thread."""
         self.start_time = time.time()
+	self.csv_new = True
         self.player.start_thread(self.reporter)
 
     def time_elapsed(self):
@@ -60,6 +60,8 @@ class Reporter(object):
                 self.reporter)
             self.player.analysis()
             if self.player.options.csv:
+		if self.csv_new:
+		    self.csv_setup()
                 self.csv_report(time_elapsed)
         else:
             time.sleep(self.player.options.reporting_period)
@@ -71,31 +73,35 @@ class Reporter(object):
             self.managed_files['stats'].write(str(key) + ',' + str(value) + '\n')
         self.managed_files['stats'].write('startup_delay,' + str(self.startup_delay) + '\n')
 
+    def _make_csv_from_list(self, _list, time=True):
+	_list = [str(i) for i in _list]
+	if time:
+            return str(self.time_elapsed()) + ',' + ','.join(_list) + '\n'
+	else:
+            return str(','.join(_list) + '\n')
+	    
+    def csv_setup(self):
+	header = self.player.retrieve_metric('report').keys()
+	header.insert(0, 'elapsed_time')
+	self.managed_files['report'].write(self._make_csv_from_list(header, time=False))
+	self.csv_new = False
 
     def csv_report(self, time_elapsed):
-        try:
+	try:
             self.managed_files['report'].flush()
         except ValueError:
             pass
         try:
-            report = self.player.retrieve_metric('report')
-            output = (str(time_elapsed) + ","
-                      + str(report['download_time_buffer']) + ","
-                      + str(report['download_bandwidth']) + ","
-                      + str(report['download_id']) + ","
-                      + str(report['playback_time_buffer']) + ","
-                      + str(report['playback_time_position']) + ","
-                      + str(report['playback_bandwidth']) + ","
-                      + str(report['playback_id']) + ","
-                      + str(self.player.bandwidth) + "\n")
+            report = self.player.retrieve_metric('report').values()
         except AttributeError:
-            output = str(time_elapsed) + str(', 0, 0, 0, 0, 0, 0, 0, 0\n')
+	    report = [0, 0, 0, 0, 0, 0, 0, 0, 0]
         try:
-            self.managed_files['report'].write(output)
+            report_csv = self._make_csv_from_list(report)
+            self.managed_files['report'].write(report_csv)
         except ValueError:
             pass
         if self.player.options.debug:
-            print ("[report] " + output),
+            print ("[report] " + report_csv),
         try:
             self.managed_files['report'].flush()
         except ValueError:

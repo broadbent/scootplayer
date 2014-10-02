@@ -11,8 +11,6 @@ class DownloadQueue(BaseQueue):
         """Initialise download queue with max size and start thread."""
         super(DownloadQueue, self).__init__(*args, **kwargs)
         self.player.create_directory('/downloads')
-        self.stats = dict(average_occupancy=0)
-        self.report = dict(time_buffer=0, bandwidth=0, id=0)
         self.player.start_thread(self.downloader)
 
     def stop(self):

@@ -198,7 +198,8 @@ class Representations(object):
     def initialise(self):
         """Download necessary initialisation files."""
         self.player.event('start', 'downloading initializations')
-        total_duration = 0
+        self.player.create_directory('/downloads')        
+	total_duration = 0
         total_length = 0
         for item in self.initialisations:
             duration, length = self.player.fetch_item(item)

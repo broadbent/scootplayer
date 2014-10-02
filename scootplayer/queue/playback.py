@@ -13,13 +13,7 @@ class PlaybackQueue(BaseQueue):
 
         """
         super(PlaybackQueue, self).__init__(*args, **kwargs)
-        self.stats = dict(average_occupancy=0, min_bandwidth=0, max_bandwidth=0,
-                          average_bandwidth=0, bandwidth_changes=0)
-        self.report = dict(time_buffer=0, bandwidth=0, id=0, time_position=0)
         self.start = False
-        self._previous_bandwidth = 0
-        self._items_played = 0
-        self._total_bandwidth = 0
 
     def stop(self):
         """Stop the playback queue."""
@@ -66,20 +60,6 @@ class PlaybackQueue(BaseQueue):
                 duration = duration - 1
                 self.player.bar.next(1)
             time.sleep(1)
-
-    def bandwidth_analysis(self):
-        if self.stats['min_bandwidth'] == 0:
-            self.stats['min_bandwidth'] = self.report['bandwidth']
-        if self.report['bandwidth'] != self._previous_bandwidth:
-            self.stats['bandwidth_changes'] += 1
-        if self.report['bandwidth'] > self.stats['max_bandwidth']:
-            self.stats['max_bandwidth'] = self.report['bandwidth']
-        elif self.report['bandwidth'] < self.stats['min_bandwidth']:
-            self.stats['min_bandwidth'] = self.report['bandwidth']
-        self._items_played += 1
-        self._total_bandwidth += self.report['bandwidth']
-        self.stats['average_bandwidth'] = self._total_bandwidth / self._items_played
-        self._previous_bandwidth = self.report['bandwidth']
 
     def __len__(self):
         """Return the current length of the playback queue."""

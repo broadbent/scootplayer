@@ -58,16 +58,18 @@ class Player(object):
         self.session = requests.Session()
         self.bandwidth = bandwidth.Bandwidth()
         manifest = self.managed_objects['playlist'].get()
-        print manifest
-        self.managed_objects['download'] = queue.download.DownloadQueue(
-            player=self, time_buffer_max=int(self.options.max_download_queue))
         self.managed_objects['representations'] = \
             representations.Representations(self, manifest)
-        self.bar = self.create_progress_bar()
+	window_size = self.max_duration() * int(self.options.window_multiplier)
+        self.managed_objects['download'] = queue.download.DownloadQueue(
+            player=self, time_buffer_max=int(self.options.max_download_queue),
+	    window_size=window_size)
         self.managed_objects['playback'] = queue.playback.PlaybackQueue(
             player=self, time_buffer_min=int(
                 self.managed_objects['representations'].min_buffer),
-            time_buffer_max=int(self.options.max_playback_queue))
+            time_buffer_max=int(self.options.max_playback_queue),
+	    window_size=window_size)
+        self.bar = self.create_progress_bar()
         self.managed_objects['watchdog'] = watchdog.Watchdog(self)
         self._setup_scheduled_stop(self.options.playback_time)
         self.resume()
@@ -188,11 +190,13 @@ class Player(object):
 
     def analysis(self):
         try:
+            self.managed_objects['download'].bandwidth_analysis()
             self.managed_objects['playback'].bandwidth_analysis()
             self.managed_objects['playback'].queue_analysis()
             self.managed_objects['download'].queue_analysis()
         except AttributeError:
                 pass  # Download and playback queues not yet initialised
+
 
     def _time_request(self, item):
         """Makes request and times response."""
