@@ -10,7 +10,8 @@ class BaseQueue(object):
 	self.bandwidth = []
 	self.stats = dict(mean_average_occupancy=0, min_bandwidth=0, max_bandwidth=0,
                           mean_average_bandwidth=0, bandwidth_changes=0)
-        self.report = dict(time_buffer=0, bandwidth=0, id=0, time_position=0, moving_average_bandwidth=0)
+        self.report = dict(time_buffer=0, bandwidth=0, id=0, time_position=0, 
+			   moving_average_bandwidth=0, max_encoded_bitrate=0)
         self._previous_bandwidth = 0
 	for key, val in kwargs.items():
             setattr(self, key, val)
