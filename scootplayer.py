@@ -11,7 +11,7 @@ if __name__ == '__main__':
                         manifest=None, xml_validation=False,
                         remote_control_host='localhost',
                         remote_control_port='5556', playback_time=0,
-			window_multiplier=5)
+			window_multiplier=5, vlc=False)
     parser.add_option("-m", "--manifest", dest="manifest",
                       help="location of manifest to load")
     parser.add_option("-o", "--output", dest="output",
@@ -51,6 +51,8 @@ if __name__ == '__main__':
                       help="""moving average window calculated by multiplying 
 		      maximum segment duration with this value 
 		      [default: %default])""")
+    parser.add_option("--vlc", dest="vlc", action="store_true", 
+		      help="""emulate VLC playback behaviour""")
     (options, args) = parser.parse_args()
     if (options.manifest is not None or options.playlist is not None) and not \
             (options.manifest and options.playlist) \

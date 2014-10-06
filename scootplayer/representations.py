@@ -20,6 +20,7 @@ class Representations(object):
     initialisations = None
     min_buffer = 0
     max_duration = 0
+    max_bandwidth = 0
     player = None
 
     def __init__(self, player, manifest):
@@ -138,12 +139,12 @@ class Representations(object):
         """Parse 'representation' level XML."""
         for child_element in parent_element:
             if 'SegmentBase' in child_element.tag:
-                self.parse_segment_base(base_url, child_element, id_)
+                self.parse_segment_base(base_url, bandwidth, id_, child_element)
             if 'BaseURL' in child_element.tag:
                 base_url.representation = child_element.text
             if 'SegmentList' in child_element.tag:
                 duration = int(child_element.attrib['duration'])
-                self._max_duration(duration)
+                self._max_values(duration, bandwidth)
                 self.parse_segment_list(base_url=base_url,
                                         duration=duration,
                                         bandwidth=bandwidth,
@@ -151,11 +152,13 @@ class Representations(object):
                                         parent_element=child_element)
         base_url.representation = ''
 
-    def _max_duration(self, duration):
+    def _max_values(self, duration, bandwidth):
         if duration > self.max_duration:
             self.max_duration = duration
+	if bandwidth > self.max_bandwidth:
+	    self.max_bandwidth = bandwidth
 
-    def parse_segment_base(self, base_url, parent_element, id_):
+    def parse_segment_base(self, base_url, bandwidth, id_, parent_element):
         """
         Parse 'segment_base' level XML.
 
@@ -171,7 +174,7 @@ class Representations(object):
                 self.initialisations.append((None, base_url.resolve() +
                                             child_element.attrib['sourceURL'],
                                             int(media_range[0]),
-                                            int(media_range[1]), id_))
+                                            int(media_range[1]), bandwidth, id_))
 
     def parse_segment_list(self, **kwargs):
         """
@@ -194,7 +197,8 @@ class Representations(object):
                            int(media_range[1]), int(kwargs['bandwidth']),
                            int(kwargs['id_'])))
         self.representations.append({'bandwidth': kwargs['bandwidth'],
-                                     'id': kwargs['id_'], 'queue': queue})
+                                     'id': kwargs['id_'], 'queue': queue,
+				     'maximum_encoded_bitrate': 0})
 
     def initialise(self):
         """Download necessary initialisation files."""
@@ -202,11 +206,16 @@ class Representations(object):
         self.player.create_directory('/downloads')        
 	total_duration = 0
         total_length = 0
-        for item in self.initialisations:
-            duration, length, path = self.player.fetch_item(item)
-            total_duration += duration
-            total_length += length
-	    self._parse_metadata(path, item[4])
+        if self.player.options.vlc:
+	    for item in self.initialisations:
+	        if item[4] == self.max_bandwidth:
+		    total_duration, total_length, path = self.player.fetch_item(item)
+	else:
+	    for item in self.initialisations:
+            	duration, length, path = self.player.fetch_item(item)
+            	total_duration += duration
+            	total_length += length
+	    	self._parse_metadata(path, item[4])
         self.player.update_bandwidth(total_duration, total_length)
         self.player.event('stop ', 'downloading initializations')
 

@@ -1,6 +1,7 @@
 #!/usr/bin/env python2.7
 
 import Queue
+import itertools
 
 
 class BaseQueue(object):
