@@ -21,6 +21,7 @@ class Representations(object):
     min_buffer = 0
     max_duration = 0
     max_bandwidth = 0
+    first_chunk = True
     player = None
 
     def __init__(self, player, manifest):
@@ -255,7 +256,11 @@ class Representations(object):
 
         """
         # TODO: account for none aligned segments
-        candidate_index = self.bandwidth_match(bandwidth)
+        if self.player.options.vlc and self.first_chunk:
+            candidate_index = self.bandwidth_match(self.max_bandwidth)
+            self.first_chunk = False
+        else:
+            candidate_index = self.bandwidth_match(bandwidth)
         candidate = None
         for representation in self.representations:
             if representation is self.representations[candidate_index]:
