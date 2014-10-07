@@ -215,7 +215,7 @@ class Representations(object):
             	duration, length, path = self.player.fetch_item(item)
             	total_duration += duration
             	total_length += length
-	    	self._parse_metadata(path, item[4])
+	    	self._parse_metadata(path, item[5])
         self.player.update_bandwidth(total_duration, total_length)
         self.player.event('stop ', 'downloading initializations')
 
