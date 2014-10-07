@@ -156,7 +156,7 @@ class Player(object):
         file_name = self.directory + path
         return open(file_name, 'w')
 
-    def fetch_item(self, item):
+    def fetch_item(self, item, dummy=False):
         """Fetch an individual item from a remote location.
 
         Writes the item to file. Also updates the bandwidth based upon the
@@ -168,12 +168,15 @@ class Player(object):
             length: response length for use with the MPD '@bandwidth' value
                 (in bits).
         """
-        response, duration = self._time_request(item)
-        self._check_code(response.status_code, item[1])
-        length = self._get_length(response)
-        path = self.write_to_file(item, response)
-        self.update_bandwidth(duration, length)
-        return duration, length, path
+	if not dummy:
+            response, duration = self._time_request(item)
+            self._check_code(response.status_code, item[1])
+            length = self._get_length(response)
+            path = self.write_to_file(item, response.content)
+            self.update_bandwidth(duration, length)
+            return duration, length, path
+	else:
+	    self.write_to_file(item, '')
 
     def item_ready(self, item):
         self.managed_objects['playback'].add(item)
@@ -228,14 +231,13 @@ class Player(object):
         length = length * 8
         return length
 
-    def write_to_file(self, item, response):
+    def write_to_file(self, item, content):
         """
         Write response content to file.
 
         This may be a complete file, or a byte range to an existing file.
 
         """
-        content = response.content
         file_name = item[1].split('/')[-1]
         path = self.directory + '/downloads/' + file_name
 	file_start = int(item[2])

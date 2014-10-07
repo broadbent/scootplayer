@@ -210,6 +210,8 @@ class Representations(object):
 	    for item in self.initialisations:
 	        if item[4] == self.max_bandwidth:
 		    total_duration, total_length, path = self.player.fetch_item(item)
+		else:
+		    self.player.fetch_item(item, dummy=True)
 	else:
 	    for item in self.initialisations:
             	duration, length, path = self.player.fetch_item(item)
