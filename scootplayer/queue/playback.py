@@ -43,6 +43,8 @@ class PlaybackQueue(BaseQueue):
         while True:
             if self.report['time_buffer'] > 0 and self.run:
                 item = self.queue.get()
+	        if self.player.options.url:
+                	self._url_parser(item['item'][1])
                 self.report['time_position'] += int(item['item'][0])
                 self.report['bandwidth'] = int(item['bandwidth'])
                 self.report['max_encoded_bitrate'] = item['max_encoded_bitrate']

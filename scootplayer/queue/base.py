@@ -2,7 +2,7 @@
 
 import Queue
 import itertools
-
+import re
 
 class BaseQueue(object):
 
@@ -12,7 +12,8 @@ class BaseQueue(object):
 	self.stats = dict(mean_average_occupancy=0, min_bandwidth=0, max_bandwidth=0,
                           mean_average_bandwidth=0, bandwidth_changes=0)
         self.report = dict(time_buffer=0, bandwidth=0, id=0, time_position=0, 
-			   moving_average_bandwidth=0, max_encoded_bitrate=0)
+			   moving_average_bandwidth=0, max_encoded_bitrate=0,
+			   url_bitrate=0)
         self._previous_bandwidth = 0
 	for key, val in kwargs.items():
             setattr(self, key, val)
@@ -28,6 +29,11 @@ class BaseQueue(object):
     def queue_analysis(self):
         self.occupancy.append(self.report['time_buffer'])
 	self.stats['mean_average_occupancy'] = self._average(self.occupancy)
+	
+    def _url_parser(self, url):
+	p = re.compile(ur'.*\_(.*kbit).*')
+	m = re.match(p, url)
+	self.report['url_bitrate'] = m.group(1).replace('kbit', '')
 
     def _average(self, _list):
 	try:

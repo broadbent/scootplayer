@@ -34,6 +34,8 @@ class DownloadQueue(BaseQueue):
         while True:
             if self.run:
                 item = self.queue.get()
+		if self.player.options.url:
+		    self._url_parser(item['item'][1])		
 		self.report['bandwidth'] = item['bandwidth']
 		self.report['max_encoded_bitrate'] = item['max_encoded_bitrate']
                 self.report['id'] = int(item['id'])		
