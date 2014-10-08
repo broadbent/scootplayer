@@ -1,5 +1,7 @@
 #!/usr/bin/env python2.7
 
+"""Facilitates the measurement of current network bandwidth."""
+
 import collections
 
 

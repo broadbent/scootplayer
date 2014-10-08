@@ -1,21 +1,26 @@
 #!/usr/bin/env python2.7
 
+"""Represents the different playback levels in an MPD."""
+
 from lxml import etree
 import aniso8601
 import os
 import Queue
+import random
 import re
 import requests
 from pymediainfo import MediaInfo
 
 
 class Representations(object):
+
     """
-    Object containing the different representations available to the
-    player.
+    Parses an MPD and contains the representations available to the
+    player. Also decides the most appropriate candidate given a bandwidth.
 
     """
 
+    media = {'representations': None, 'initialisations': None}
     representations = None
     initialisations = None
     min_buffer = 0
@@ -23,18 +28,20 @@ class Representations(object):
     max_bandwidth = 0
     first_chunk = True
     player = None
+    duration = 0
 
     def __init__(self, player, manifest):
         """Load the representations from the MPD."""
         self.player = player
-        self.representations = list()
-        self.initialisations = list()
+        self.media['representations'] = list()
+        self.media['initialisations'] = list()
         self.load_mpd(manifest)
         self.initialise()
 
     def stop(self):
-        self.representations = list()
-        self.initialistations = list()
+        """Clear the current set of representations and initialisations."""
+        self.media['representations'] = list()
+        self.media['initialisations'] = list()
         self.player.event('stop', 'representations')
 
     def _get_remote_mpd(self, url):
@@ -64,7 +71,7 @@ class Representations(object):
         base_url = self.BaseURL()
         self.min_buffer = int(float(mpd.attrib['minBufferTime'][2:-1]))
         self.parse_mpd(base_url, mpd)
-        sorted(self.representations, key=lambda representation:
+        sorted(self.media['representations'], key=lambda representation:
                representation['bandwidth'])
         self.player.event('stop', 'parsing mpd')
 
@@ -75,20 +82,20 @@ class Representations(object):
         self.player.event('start', 'validating schema')
         try:
             schema = etree.XMLSchema(schema)
-        except etree.XMLSchemaParseError as e:
-            self.player.event('error', str(e))
+        except etree.XMLSchemaParseError as exception:
+            self.player.event('error', str(exception))
             raise SystemExit()
         self.player.event('stop', 'validating schema')
         try:
             document = etree.parse(manifest)
-        except etree.XMLSyntaxError as e:
-            self.player.event('error', str(e))
+        except etree.XMLSyntaxError as exception:
+            self.player.event('error', str(exception))
             raise SystemExit()
         self.player.event('start', 'validating document')
         try:
             schema.assertValid(document)
-        except etree.DocumentInvalid as e:
-            self.player.event('error', str(e))
+        except etree.DocumentInvalid as exception:
+            self.player.event('error', str(exception))
             raise SystemExit()
         self.player.event('stop', 'validating document')
         return document
@@ -97,9 +104,8 @@ class Representations(object):
         """Parse 'mpd' level XML."""
         try:
             self._set_duration(parent_element.get('mediaPresentationDuration'))
-        except Exception:
+        except (TypeError, IndexError, ValueError):
             self.duration = 0
-        # print parent_element('mediaPresentationDuration')
         for child_element in parent_element:
             if 'BaseURL' in child_element.tag:
                 base_url.mpd = child_element.text
@@ -107,10 +113,8 @@ class Representations(object):
         base_url.mpd = ''
 
     def _set_duration(self, duration):
-        self._duration = aniso8601.parse_duration(duration).seconds
-
-    def duration(self):
-        return int(self._duration)
+        """Set the duration of playback defined in the MPD."""
+        self.duration = aniso8601.parse_duration(duration).seconds
 
     def parse_period(self, base_url, parent_element):
         """Parse 'period' level XML."""
@@ -140,7 +144,11 @@ class Representations(object):
         """Parse 'representation' level XML."""
         for child_element in parent_element:
             if 'SegmentBase' in child_element.tag:
-                self.parse_segment_base(base_url, bandwidth, id_, child_element)
+                self.parse_segment_base(
+                    base_url,
+                    bandwidth,
+                    id_,
+                    child_element)
             if 'BaseURL' in child_element.tag:
                 base_url.representation = child_element.text
             if 'SegmentList' in child_element.tag:
@@ -154,10 +162,11 @@ class Representations(object):
         base_url.representation = ''
 
     def _max_values(self, duration, bandwidth):
+        """Find maximum values for duration and bandwidth in the MPD."""
         if duration > self.max_duration:
             self.max_duration = duration
-	if bandwidth > self.max_bandwidth:
-	    self.max_bandwidth = bandwidth
+        if bandwidth > self.max_bandwidth:
+            self.max_bandwidth = bandwidth
 
     def parse_segment_base(self, base_url, bandwidth, id_, parent_element):
         """
@@ -172,10 +181,12 @@ class Representations(object):
                     media_range = child_element.attrib['range'].split('-')
                 except KeyError:
                     media_range = (0, 0)
-                self.initialisations.append((None, base_url.resolve() +
-                                            child_element.attrib['sourceURL'],
-                                            int(media_range[0]),
-                                            int(media_range[1]), bandwidth, id_))
+                self.media['initialisations'].append((None, base_url.resolve() +
+                                                      child_element.attrib[
+                                                          'sourceURL'],
+                                                      int(media_range[0]),
+                                                      int(media_range[1]),
+                                                      bandwidth, id_))
 
     def parse_segment_list(self, **kwargs):
         """
@@ -197,57 +208,72 @@ class Representations(object):
                            child_element.attrib['media'], int(media_range[0]),
                            int(media_range[1]), int(kwargs['bandwidth']),
                            int(kwargs['id_'])))
-        self.representations.append({'bandwidth': kwargs['bandwidth'],
-                                     'id': kwargs['id_'], 'queue': queue,
-				     'maximum_encoded_bitrate': 0})
+        self.media['representations'].append({
+            'bandwidth': kwargs['bandwidth'],
+            'id': kwargs['id_'], 'queue': queue,
+            'maximum_encoded_bitrate': 0})
 
     def initialise(self):
         """Download necessary initialisation files."""
         self.player.event('start', 'downloading initializations')
-        self.player.create_directory('/downloads')        
-	total_duration = 0
+        self.player.create_directory('/downloads')
+        total_duration = 0
         total_length = 0
         if self.player.options.vlc:
-	    for item in self.initialisations:
-	        if item[4] == self.max_bandwidth:
-		    total_duration, total_length, path = self.player.fetch_item(item)
-		else:
-		    self.player.fetch_item(item, dummy=True)
-	else:
-	    for item in self.initialisations:
-            	duration, length, path = self.player.fetch_item(item)
-            	total_duration += duration
-            	total_length += length
-	    	self._parse_metadata(path, item[5])
+            for item in self.media['initialisations']:
+                if item[4] == self.max_bandwidth:
+                    total_duration, total_length, path = self.player.fetch_item(
+                        item)
+                else:
+                    self.player.fetch_item(item, dummy=True)
+        else:
+            for item in self.media['initialisations']:
+                duration, length, path = self.player.fetch_item(item)
+                total_duration += duration
+                total_length += length
+                self._parse_metadata(path, item[5])
         self.player.update_bandwidth(total_duration, total_length)
         self.player.event('stop ', 'downloading initializations')
 
     def _parse_metadata(self, path, id_):
-	found = False
-	try:
-	    media_info = MediaInfo.parse(path)
-	except OSError:
-	    self._set_maximum_encoded_bitrate(0, id_)		
-	    self.player.event('error','MediaInfo not installed')
-	    return
-	for track in media_info.tracks:
-    	    if track.track_type == 'Video':
-		maximum_bitrate = track.maximum_bit_rate
-		if maximum_bitrate:
-		    self._set_maximum_encoded_bitrate(maximum_bitrate, id_)
-	    	    found = True
-		else:
-		    self.player.event('error','maximum bitrate not found in metadata')
-	    	    self._set_maximum_encoded_bitrate(0, id_)
-		    return				
-	if not found:
-	    self.player.event('error','no video track in metadata')
-	    self._set_maximum_encoded_bitrate(0, id_)		
+        """
+        Parse the MP4 header metadata for bitrate information.
 
+        Specifically, retrieve the maximum encoded bitrate for each quality
+        level.
+
+        """
+        found = False
+        try:
+            media_info = MediaInfo.parse(path)
+        except OSError:
+            self._set_maximum_encoded_bitrate(0, id_)
+            self.player.event('error', 'MediaInfo not installed')
+            return
+        for track in media_info.tracks:
+            if track.track_type == 'Video':
+                maximum_bitrate = track.maximum_bit_rate
+                if maximum_bitrate:
+                    self._set_maximum_encoded_bitrate(maximum_bitrate, id_)
+                    found = True
+                else:
+                    self.player.event(
+                        'error',
+                        'maximum bitrate not found in metadata')
+                    self._set_maximum_encoded_bitrate(0, id_)
+                    return
+        if not found:
+            self.player.event('error', 'no video track in metadata')
+            self._set_maximum_encoded_bitrate(0, id_)
 
     def _set_maximum_encoded_bitrate(self, bitrate, id_):
-	representation = (i for i in self.representations if i['id'] == id_).next()                
-	representation['maximum_encoded_bitrate'] = bitrate
+        """
+        Includes the maximum encoded bitrate in the data for each representaton.
+
+        """
+        representation = (
+            i for i in self.media['representations'] if i['id'] == id_).next()
+        representation['maximum_encoded_bitrate'] = bitrate
 
     def candidate(self, bandwidth):
         """
@@ -262,11 +288,14 @@ class Representations(object):
         else:
             candidate_index = self.bandwidth_match(bandwidth)
         candidate = None
-        for representation in self.representations:
-            if representation is self.representations[candidate_index]:
-                candidate = {'item': representation['queue'].get(), 'id': representation['id'],
-		'bandwidth': representation['bandwidth'], 
-		'max_encoded_bitrate': representation['maximum_encoded_bitrate']}
+        for representation in self.media['representations']:
+            if representation is self.media[
+                    'representations'][candidate_index]:
+                candidate = {'item': representation['queue'].get(),
+                             'id': representation['id'],
+                             'bandwidth': representation['bandwidth'],
+                             'max_encoded_bitrate':
+                             representation['maximum_encoded_bitrate']}
             else:
                 representation['queue'].get()
         if candidate is None:
@@ -274,16 +303,19 @@ class Representations(object):
         return candidate
 
     def bandwidth_match(self, bandwidth):
-        candidate_index = min(range(len(self.representations)), key=lambda
-                              i: abs(self.representations[i]['bandwidth'] -
-                              int(bandwidth)))
+        """Matches the bandwidth with the nearest representation."""
+        candidate_index = min(range(len(self.media['representations'])),
+                              key=lambda
+                              i: abs(self.media['representations']
+                                     [i]['bandwidth'] - int(bandwidth)))
         return candidate_index
 
     class BaseURL(object):
-        """
-        Object used to resolve the current level of base URL.
 
-        This is used as a prefix on the source URL if found.
+        """
+        Used to resolve the current level of base URL.
+
+        Determines a prefix on the source URL if found.
 
         """
 

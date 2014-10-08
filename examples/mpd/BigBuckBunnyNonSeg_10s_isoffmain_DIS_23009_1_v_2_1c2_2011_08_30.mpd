@@ -3,7 +3,7 @@
      xmlns="urn:mpeg:DASH:schema:MPD:2011"
      xsi:schemaLocation="urn:mpeg:DASH:schema:MPD:2011"
      profiles="urn:mpeg:dash:profile:isoff-main:2011"
-     type="static"
+     type="static"     
      mediaPresentationDuration="PT0H9M56.46S"
      minBufferTime="PT10.0S">   
      <BaseURL>http://www-itec.uni-klu.ac.at/ftp/datasets/mmsys12/BigBuckBunny/bunny_10s/</BaseURL>
