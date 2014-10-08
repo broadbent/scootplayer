@@ -164,7 +164,10 @@ class Player(object):
         if item[3] != 0:
             byte_range = 'bytes=%s-%s' % (item[2], item[3])
             headers['Range'] = byte_range
-        response = self.session.get(url, headers=headers)
+        try:
+            response = self.session.get(url, headers=headers)
+        except requests.exceptions.ConnectionError:
+            response = None  # Return a None value if connection has failed.
         if not self.options.keep_alive:
             response.connection.close()
         return response
