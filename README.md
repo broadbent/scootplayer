@@ -42,9 +42,9 @@ Contains an event driven log for precisely timing playback start and end times, 
 
 Produces a number of stats that are output when the player finishes playback. Fields are self-described in the file.
 
-### dump.txt ### 
+### Debug Output ###
 
-Scootplayer implements a watchdog to detect stalled playback. If the player stops responding, Scootplayer will dump the status of current objects (playback and download queues, for example) to a file entitled `dump.txt`. This is intended for debugging only: if there is no issue with playback, this file will not be present.
+Scootplayer implements a watchdog to detect stalled playback. If the player stops responding, Scootplayer will dump the status of current objects (playback and download queues, for example) to a file entitled named after the object. This is intended for debugging only: if there is no issue with playback, this file will not be present.
 
 ## Example MPDs ##
 
