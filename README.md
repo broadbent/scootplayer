@@ -44,7 +44,7 @@ Produces a number of stats that are output when the player finishes playback. Fi
 
 ### Debug Output ###
 
-Scootplayer implements a watchdog to detect stalled playback. If the player stops responding, Scootplayer will dump the status of current objects (playback and download queues, for example) to a file entitled named after the object. This is intended for debugging only: if there is no issue with playback, this file will not be present.
+Scootplayer implements a watchdog to detect stalled playback. If the player stops responding, Scootplayer will dump the status of current objects (playback and download queues, for example) to a file entitled named after the object. This is intended for debugging only: if there is no issue with playback, these files will not be present.
 
 ## Example MPDs ##
 
