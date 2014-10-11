@@ -10,6 +10,8 @@ import random
 import re
 import requests
 from pymediainfo import MediaInfo
+import threading
+import time
 
 
 class Representations(object):
@@ -29,6 +31,7 @@ class Representations(object):
     first_chunk = True
     player = None
     duration = 0
+    init_done = 0
 
     def __init__(self, player, manifest):
         """Load the representations from the MPD."""
@@ -214,28 +217,55 @@ class Representations(object):
             'maximum_encoded_bitrate': 0})
 
     def initialise(self):
-        """Download necessary initialisation files."""
+        """
+        Fetch the necessary initialisation files.
+
+        If there are multiple initialisation files to download, this will be
+        done concurrently.
+
+        """
         self.player.event('start', 'downloading initializations')
         self.player.create_directory('/downloads')
-        total_duration = 0
-        total_length = 0
+        self.total_duration = 0
+        self.total_length = 0
         if self.player.options.vlc:
             for item in self.media['initialisations']:
                 if item[4] == self.max_bandwidth:
-                    total_duration, total_length, path = self.player.fetch_item(
-                        item)
+                    self.total_duration, self.total_length, path = self.player.fetch_item(item)
                 else:
                     self.player.fetch_item(item, dummy=True)
         else:
+            self.done = 0
+            lock = threading.Lock()
             for item in self.media['initialisations']:
-                duration, length, path = self.player.fetch_item(item)
-                total_duration += duration
-                total_length += length
-                self._parse_metadata(path, item[5])
-        self.player.update_bandwidth(total_duration, total_length)
+                self.player.start_thread(self.fetch_initialisation,
+                                         (item, lock))
+            while self.init_done < len(self.media['initialisations']):
+                time.sleep(0.1)
+        self.player.update_bandwidth(self.total_duration, self.total_length)
         self.player.event('stop ', 'downloading initializations')
 
-    def _parse_metadata(self, path, id_):
+    def fetch_initialisation(self, item, lock):
+        """
+        Fetch an initialisation and update the shared duration and length
+        totals.
+
+        Delay the parsing of header metadata for a few seconds to allow
+        playback to start.
+
+        """
+        duration, length, path = self.player.fetch_item(item)
+        lock.acquire()
+        try:
+            self.total_duration += duration
+            self.total_length += length
+            self.init_done += 1
+        finally:
+            lock.release()
+        self.player.start_timed_thread(5, self.parse_metadata,
+                                       (path, item[5]))
+
+    def parse_metadata(self, path, id_):
         """
         Parse the MP4 header metadata for bitrate information.
 
@@ -243,6 +273,7 @@ class Representations(object):
         level.
 
         """
+        self.player.event('start', 'parsing metadata ' + str(path))
         found = False
         try:
             media_info = MediaInfo.parse(path)
@@ -265,6 +296,7 @@ class Representations(object):
         if not found:
             self.player.event('error', 'no video track in metadata')
             self._set_maximum_encoded_bitrate(0, id_)
+        self.player.event('stop', 'parsing metadata ' + str(path))
 
     def _set_maximum_encoded_bitrate(self, bitrate, id_):
         """

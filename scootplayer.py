@@ -9,11 +9,11 @@ if __name__ == '__main__':
     PARSER = optparse.OptionParser()
     PARSER.set_defaults(output='out/', keep_alive=True,
                         max_playback_queue=60, max_download_queue=30, csv=True,
-                        gauged=False, reporting_period=1, playlist=None,
-                        manifest=None, xml_validation=False,
-                        remote_control_host='localhost',
+                        reporting_period=1, playlist=None, manifest=None,
+                        xml_validation=False, remote_control_host='localhost',
                         remote_control_port='5556', playback_time=0,
-			window_multiplier=5, vlc=False, url=False)
+                        window_multiplier=5, vlc=False, url=False,
+                        conn_pool=100)
     PARSER.add_option("-m", "--manifest", dest="manifest",
                       help="location of manifest to load")
     PARSER.add_option("-o", "--output", dest="output",
@@ -51,17 +51,21 @@ if __name__ == '__main__':
                       help="""playback content for given time (seconds)""")
     PARSER.add_option("-w", "--window-multiplier", dest="window_multiplier",
                       help="""moving average window calculated by multiplying
-		      maximum segment duration with this value 
-		      [default: %default])""")
+                      maximum segment duration with this value
+                      [default: %default])""")
     PARSER.add_option("--vlc", dest="vlc", action="store_true",
-		      help="""emulate VLC playback behaviour [default: %default]""")
+                      help="""emulate VLC playback behaviour (experimental)
+                      [default: %default]""")
     PARSER.add_option("--url", dest="url", action="store_true",
-		      help="""parse the URL to unreliably(!) determine playback
-		      bitrate [default: %default]""")
+                      help="""parse the URL to unreliably(!) determine playback
+                      bitrate [default: %default]""")
+    PARSER.add_option("--connection-pool", dest="conn_pool",
+                      help="""set the amount of simultaneous connections that
+                      can be made [default: %default])""")
     (OPTIONS, _) = PARSER.parse_args()
     if (OPTIONS.manifest is not None or OPTIONS.playlist is not None) and not \
         (OPTIONS.manifest and OPTIONS.playlist) \
-        or OPTIONS.remote_control_host:
-        player.Player(OPTIONS)
+            or OPTIONS.remote_control_host:
+                player.Player(OPTIONS)
     else:
         PARSER.print_help()

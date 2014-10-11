@@ -58,6 +58,10 @@ class Player(object):
         self.event('next', 'playing next item')
         self.pause()
         self.session = requests.Session()
+        adapter = requests.adapters.HTTPAdapter(
+            pool_connections=int(self.options.conn_pool),
+            pool_maxsize=int(self.options.conn_pool))
+        self.session.mount('http://', adapter)
         self.bandwidth = bandwidth.Bandwidth()
         manifest = self.managed_objects['playlist'].get()
         self.managed_objects['representations'] = \
@@ -191,11 +195,14 @@ class Player(object):
                 (in bits).
         """
         if not dummy:
+            self.event('start', 'downloading ' + str(item[1]))
             response, duration = self._time_request(item)
             self._check_code(response.status_code, item[1])
             length = get_length(response)
             path = self._write_to_file(item, response.content)
             self.update_bandwidth(duration, length)
+            self.event('stop', 'downloading ' + str(item[1]) +
+                       ' (' + str(length) + 'b)')
             return duration, length, path
         else:
             self._write_to_file(item, '')
