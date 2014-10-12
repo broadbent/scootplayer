@@ -38,7 +38,7 @@ class PlaybackQueue(BaseQueue):
                     self.player.start_thread(self.playback)
                 return
             else:
-                time.sleep(1)
+                time.sleep(0.1)
 
     def playback(self):
         """Consume the next item in the playback queue."""
@@ -60,7 +60,7 @@ class PlaybackQueue(BaseQueue):
             elif self.report['time_buffer'] <= 0:
                 self.player.finish_playback()
             else:
-                time.sleep(1)
+                time.sleep(0.1)
 
     def _consume_chunk(self, duration):
         """

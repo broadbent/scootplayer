@@ -105,7 +105,7 @@ class Player(object):
                 if self.finished:
                     self.next()
             else:
-                time.sleep(1)
+                time.sleep(0.1)
 
     def _setup_scheduled_stop(self, time_):
         """
@@ -308,8 +308,10 @@ class Player(object):
 
     def event(self, action, event):
         """Register event with the reporting module."""
-        self.managed_objects['reporter'].event(action, event)
-
+        try:
+            self.managed_objects['reporter'].event(action, event)
+        except AttributeError:
+            print action, event
 
 def get_length(response):
     """

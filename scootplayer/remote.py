@@ -54,7 +54,7 @@ class RemoteControl(object):
                 action, resource = action.strip(), resource.strip()
                 self._lookup_method(action)(resource)
             else:
-                time.sleep(1)
+                time.sleep(0.1)
 
     def _lookup_method(self, action):
         """Call the appropriate method given the action."""

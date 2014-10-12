@@ -31,7 +31,7 @@ class DownloadQueue(BaseQueue):
                 self.queue.put((representation))
                 return
             else:
-                time.sleep(1)
+                time.sleep(0.1)
 
     def downloader(self):
         """Download the next item in the download queue."""
@@ -50,7 +50,7 @@ class DownloadQueue(BaseQueue):
                 self.report['time_buffer'] = self.report['time_buffer'] - \
                     int(item['item'][0])
             else:
-                time.sleep(1)
+                time.sleep(0.1)
 
     def __len__(self):
         """Return the current length of the download queue."""
