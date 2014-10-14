@@ -16,9 +16,10 @@ class BaseQueue(object):
         """Initialise a queue object with default values."""
         self.occupancy = []
         self.bandwidth = []
+        self.url_bitrate = []
         self.stats = dict(mean_average_occupancy=0, min_bandwidth=0,
                           max_bandwidth=0, mean_average_bandwidth=0,
-                          bandwidth_changes=0)
+                          bandwidth_changes=0, mean_average_url_bitrate=0)
         self.report = dict(time_buffer=0, bandwidth=0, id=0, time_position=0,
                            moving_average_bandwidth=0, max_encoded_bitrate=0,
                            url_bitrate=0)
@@ -39,13 +40,15 @@ class BaseQueue(object):
     def _queue_analysis(self):
         """Analyse the occupancy of a queue."""
         self.occupancy.append(self.report['time_buffer'])
-        self.stats['mean_average__occupancy'] = average(self.occupancy)
+        self.stats['mean_average_occupancy'] = average(self.occupancy)
 
     def _url_parser(self, url):
         """Parse the URL to unreliably(!) determine the playback bitrate."""
         pattern = re.compile(ur'.*\_(.*kbit).*')
         match = re.match(pattern, url)
-        self.report['url_bitrate'] = match.group(1).replace('kbit', '')
+        self.report['url_bitrate'] = int(match.group(1).replace('kbit', ''))
+        self.url_bitrate.append(self.report['url_bitrate'])
+        self.stats['mean_average_url_bitrate'] = average(self.url_bitrate)
 
     def analysis(self):
         """Run both analysis methods on a queue object."""
@@ -82,4 +85,3 @@ def average(list_):
         return sum(list_) / len(list_)
     except ZeroDivisionError:
         return 0
-
