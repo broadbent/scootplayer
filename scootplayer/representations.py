@@ -184,12 +184,15 @@ class Representations(object):
                     media_range = child_element.attrib['range'].split('-')
                 except KeyError:
                     media_range = (0, 0)
-                self.media['initialisations'].append((None, base_url.resolve() +
-                                                      child_element.attrib[
-                                                          'sourceURL'],
-                                                      int(media_range[0]),
-                                                      int(media_range[1]),
-                                                      bandwidth, id_))
+                self.media['initialisations'].append({
+                           'bandwidth' : bandwidth,
+                           'id' : id_,
+                           'item': {'duration': 0,
+                                    'url': base_url.resolve() +
+                                    child_element.attrib['sourceURL'],
+                                    'bytes_from': int(media_range[0]),
+                                    'bytes_to': int(media_range[1])}
+                                    })
 
     def parse_segment_list(self, **kwargs):
         """
@@ -206,11 +209,11 @@ class Representations(object):
                         .split('-')
                 except KeyError:
                     media_range = (0, 0)
-                queue.put((kwargs['duration'],
-                           kwargs['base_url'].resolve() +
-                           child_element.attrib['media'], int(media_range[0]),
-                           int(media_range[1]), int(kwargs['bandwidth']),
-                           int(kwargs['id_'])))
+                queue.put({'duration': kwargs['duration'],
+                           'url': kwargs['base_url'].resolve() +
+                           child_element.attrib['media'],
+                           'bytes_from': int(media_range[0]),
+                           'bytes_to': int(media_range[1])})
         self.media['representations'].append({
             'bandwidth': kwargs['bandwidth'],
             'id': kwargs['id_'], 'queue': queue,
@@ -229,23 +232,25 @@ class Representations(object):
         self.total_duration = 0
         self.total_length = 0
         if self.player.options.vlc:
-            for item in self.media['initialisations']:
-                if item[4] == self.max_bandwidth:
-                    self.total_duration, self.total_length, path = self.player.fetch_item(item)
+            for init in self.media['initialisations']:
+                if init['bandwidth'] == self.max_bandwidth:
+                    duration, length, path = self.player.fetch_item(init['item'])
+                    self.total_duration = duration
+                    self.total_length = duration
                 else:
-                    self.player.fetch_item(item, dummy=True)
+                    self.player.fetch_item(init['item'], dummy=True)
         else:
             self.done = 0
             lock = threading.Lock()
-            for item in self.media['initialisations']:
+            for init in self.media['initialisations']:
                 self.player.start_thread(self.fetch_initialisation,
-                                         (item, lock))
+                                         (init['item'], init['id'], lock))
             while self.init_done < len(self.media['initialisations']):
                 time.sleep(0.1)
         self.player.update_bandwidth(self.total_duration, self.total_length)
         self.player.event('stop ', 'downloading initializations')
 
-    def fetch_initialisation(self, item, lock):
+    def fetch_initialisation(self, item, id_, lock):
         """
         Fetch an initialisation and update the shared duration and length
         totals.
@@ -262,7 +267,7 @@ class Representations(object):
             self.init_done += 1
         finally:
             lock.release()
-        self.player.start_thread(self.parse_metadata, (path, item[5]))
+        self.player.start_thread(self.parse_metadata, (path, id_))
 
     def parse_metadata(self, path, id_):
         """

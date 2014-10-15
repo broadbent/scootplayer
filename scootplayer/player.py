@@ -85,7 +85,7 @@ class Player(object):
         """Create directory for storing downloads"""
         time_now = str(int(time.time()))
         self.directory = '/'.join(__file__.split('/')
-                                  [:-2]) + '/' + self.options.output  + \
+                                  [:-2]) + '/' + self.options.output + \
             '/' + time_now
         self.create_directory()
 
@@ -164,10 +164,10 @@ class Player(object):
 
     def make_request(self, item):
         """Make a HTTP request for a single item within the playback queue."""
-        url = item[1]
+        url = item['url']
         headers = {}
-        if item[3] != 0:
-            byte_range = 'bytes=%s-%s' % (item[2], item[3])
+        if item['bytes_to'] != 0:
+            byte_range = 'bytes=%s-%s' % (item['bytes_from'], item['bytes_to'])
             headers['Range'] = byte_range
         try:
             response = self.session.get(url, headers=headers)
@@ -196,13 +196,13 @@ class Player(object):
                 (in bits).
         """
         if not dummy:
-            self.event('start', 'downloading ' + str(item[1]))
+            self.event('start', 'downloading ' + str(item['url']))
             response, duration = self._time_request(item)
-            self._check_code(response.status_code, item[1])
+            self._check_code(response.status_code, item['url'])
             length = get_length(response)
             path = self._write_to_file(item, response.content)
             self.update_bandwidth(duration, length)
-            self.event('stop', 'downloading ' + str(item[1]) +
+            self.event('stop', 'downloading ' + str(item['url']) +
                        ' (' + str(length) + 'b)')
             return duration, length, path
         else:
@@ -250,15 +250,15 @@ class Player(object):
         This may be a complete file, or a byte range to an existing file.
 
         """
-        file_name = item[1].split('/')[-1]
+        file_name = item['url'].split('/')[-1]
         path = self.directory + '/downloads/' + file_name
-        file_start = int(item[2])
-        file_end = int(item[3])
+        file_start = int(item['bytes_from'])
+        file_end = int(item['bytes_to'])
         try:
             _file = open(path, 'r+')
         except IOError:
             _file = open(path, 'w')
-        _file.seek(int(item[2]))
+        _file.seek(int(item['bytes_from']))
         _file.write(content)
         file_pointer = int(_file.tell() - 1)
         if file_end != file_pointer and file_start != 0:

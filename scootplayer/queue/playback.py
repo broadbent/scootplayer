@@ -27,9 +27,10 @@ class PlaybackQueue(BaseQueue):
         """Add an item to the playback queue."""
         while True:
             if (int(self.report['time_buffer'])
-                    + int(representation['item'][0])) \
+                    + int(representation['item']['duration'])) \
                     <= int(self.time_buffer_max) and self.run:
-                self.report['time_buffer'] += int(representation['item'][0])
+                self.report['time_buffer'] += int(
+                    representation['item']['duration'])
                 self.queue.put((representation))
                 if self.start != True and self.report['time_buffer'] \
                         >= self.time_buffer_min:
@@ -45,18 +46,18 @@ class PlaybackQueue(BaseQueue):
         self.report['time_position'] = 0
         while True:
             if self.report['time_buffer'] > 0 and self.run:
-                item = self.queue.get()
+                representation = self.queue.get()
                 if self.player.options.url:
-                    self._url_parser(item['item'][1])
-                self.report['time_position'] += int(item['item'][0])
-                self.report['bandwidth'] = int(item['bandwidth'])
-                self.report['max_encoded_bitrate'] = item[
-                    'max_encoded_bitrate']
-                self.report['id'] = int(item['id'])
-                self._consume_chunk(item['item'][0])
+                    self._url_parser(representation['item']['url'])
+                self.report['time_position'] += int(
+                    representation['item']['duration'])
+                self.report['bandwidth'] = int(representation['bandwidth'])
+                self.report['max_encoded_bitrate'] = representation['max_encoded_bitrate']
+                self.report['id'] = int(representation['id'])
+                self._consume_chunk(representation['item']['duration'])
                 self.queue.task_done()
                 self.report['time_buffer'] = self.report[
-                    'time_buffer'] - int(item['item'][0])
+                    'time_buffer'] - int(representation['item']['duration'])
             elif self.report['time_buffer'] <= 0:
                 self.player.finish_playback()
             else:

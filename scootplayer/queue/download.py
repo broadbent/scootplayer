@@ -25,9 +25,10 @@ class DownloadQueue(BaseQueue):
         """Add an item to the download queue."""
         while self.run:
             if (int(self.report['time_buffer'])
-		    + int(representation['item'][0])) \
+		    + int(representation['item']['duration'])) \
                     <= int(self.time_buffer_max):
-                self.report['time_buffer'] += int(representation['item'][0])
+                self.report['time_buffer'] += int(
+                    representation['item']['duration'])
                 self.queue.put((representation))
                 return
             else:
@@ -37,18 +38,18 @@ class DownloadQueue(BaseQueue):
         """Download the next item in the download queue."""
         while True:
             if self.run:
-                item = self.queue.get()
+                representation = self.queue.get()
                 if self.player.options.url:
-                    self._url_parser(item['item'][1])
-                self.report['bandwidth'] = item['bandwidth']
-                self.report['max_encoded_bitrate'] = item[
+                    self._url_parser(representation['item']['url'])
+                self.report['bandwidth'] = representation['bandwidth']
+                self.report['max_encoded_bitrate'] = representation[
                     'max_encoded_bitrate']
-                self.report['id'] = int(item['id'])
-                self.player.fetch_item(item['item'])
-                self.player.item_ready(item)
+                self.report['id'] = int(representation['id'])
+                self.player.fetch_item((representation['item']))
+                self.player.item_ready(representation)
                 self.queue.task_done()
                 self.report['time_buffer'] = self.report['time_buffer'] - \
-                    int(item['item'][0])
+                    int(representation['item']['duration'])
             else:
                 time.sleep(0.1)
 
