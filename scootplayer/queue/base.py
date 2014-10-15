@@ -48,19 +48,30 @@ class BaseQueue(object):
         self._object_analysis('url_bitrate', self.url_bitrate)
 
     def report_tick(self):
+        """
+        Called periodically by the player on a fixed interval.
+
+        Append the latest values of bandwidth and occupancy to the object lists.
+        Run the periodic statistical analysis of the bandwidth and occupancy
+        lists.
+
+        """
         self.bandwidth.append(self.report['bandwidth'])
         self.occupancy.append(self.report['time_buffer'])
         self._report_analysis('occupancy', self.occupancy)
         self._report_analysis('bandwidth', self.bandwidth)
 
     def calculate_stats(self):
+        """Run fianl statistical analysis on the bandwidth and occupancy lists."""
         self._stats_analysis('occupancy', self.occupancy)
         self._stats_analysis('bandwidth', self.bandwidth)
 
     def _report_analysis(self, name, object_):
+        """Calculate the moving average using NumPy."""
         self.report['moving_average_' + name] = np.average(object_[-self.window_size:])
 
     def _stats_analysis(self, name, object_):
+        """Calculate various statistics using NumPy."""
         self.stats['min_' + name] = np.amin(object_)
         self.stats['max_' + name] = np.amax(object_)
         self.stats['changes_' + name] = self._changes(object_)
@@ -69,6 +80,7 @@ class BaseQueue(object):
         self.stats['var_' + name] = np.var(object_)
 
     def _changes(self, list_):
+        """Count the number of changes in a list object."""
         prev = list_[0]
         count = 0
         for item in list_[1:]:

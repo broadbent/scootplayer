@@ -61,7 +61,8 @@ class RemoteControl(object):
         return getattr(self, 'do_' + action, None)
 
     def do_play(self, resource):
-        """Handle a `play` command from the remote controller.
+        """
+        Handle a `play` command from the remote controller.
 
         If a resource is given, stop playback, clear playlist and add the item
         to the playlist queue. Then, play this item.
