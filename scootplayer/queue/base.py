@@ -45,7 +45,7 @@ class BaseQueue(object):
         match = re.match(pattern, url)
         self.report['url_bitrate'] = int(match.group(1).replace('kbit', ''))
         self.url_bitrate.append(self.report['url_bitrate'])
-        self._object_analysis('url_bitrate', self.url_bitrate)
+        self._stats_analysis('url_bitrate', self.url_bitrate)
 
     def report_tick(self):
         """
