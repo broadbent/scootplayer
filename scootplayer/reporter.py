@@ -3,6 +3,8 @@
 """Reporter used to report periodic statistics and events."""
 
 import time
+import platform
+import sys
 
 
 class Reporter(object):
@@ -29,13 +31,45 @@ class Reporter(object):
         """Initialise files to save reports to."""
         self.player = player
         self._setup_managed_files()
+        self.start_time = time.time()
+        self.player.start_timed_thread(5, self.info)
         self.start()
 
+    def info(self):
+        """Collect system and Python information to aid with profiling."""
+        self.managed_files['info'] = self.player.open_file('/info.csv')
+        self.managed_files['info'].write('local time,' +
+                                         time.strftime("%d/%m/%Y %H:%M:%S",
+                                         time.localtime(self.start_time))
+                                         + '\n')
+        self.managed_files['info'].write('manifest,' +
+                                         self.player.current_manifest + '\n')
+        self.managed_files['info'].write('python version,'
+                                         + str(sys.version_info.major)
+                                         + '.' + str(sys.version_info.minor)
+                                         + '.' + str(sys.version_info.micro)
+                                         + '\n')
+        self.managed_files['info'].write('system platform,' + platform.system()
+                                         + '\n')
+        self.managed_files['info'].write('system node,' + platform.node()
+                                         + '\n')
+        self.managed_files['info'].write('system release,' + platform.release()
+                                         + '\n')
+        self.managed_files['info'].write('system version,' + platform.version()
+                                         + '\n')
+        self.managed_files['info'].write('system machine,' + platform.machine()
+                                         + '\n')
+        self.managed_files['info'].write('system processor,'
+                                         + platform.processor() + '\n')
+        self.managed_files['info'].flush()
+
     def _setup_managed_files(self):
+        """Setup the files required at playback start."""
         self.managed_files['event'] = self.player.open_file('/event.csv')
         self._create_dir_structure('report', self._object_focus)
 
     def _create_dir_structure(self, folder, files):
+        """Create a folder containing a number of (empty) CSV files."""
         self.player.create_directory(path='/' + folder)
         for file in files:
             self.managed_files[folder + '_' + file] = self.player.open_file(
@@ -62,7 +96,6 @@ class Reporter(object):
 
     def start(self):
         """Start reporting thread."""
-        self.start_time = time.time()
         self.csv_new = True
         self.player.start_thread(self.reporter)
 

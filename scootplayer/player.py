@@ -35,6 +35,7 @@ class Player(object):
     progress_bar = None
     state = 'stop'
     directory = ''
+    current_manifest = ''
 
     def __init__(self, options):
         """Initialise the player and start playback."""
@@ -63,9 +64,9 @@ class Player(object):
             pool_maxsize=int(self.options.conn_pool))
         self.session.mount('http://', adapter)
         self.bandwidth = bandwidth.Bandwidth()
-        manifest = self.managed_objects['playlist'].get()
+        self.current_manifest = self.managed_objects['playlist'].get()
         self.managed_objects['representations'] = \
-            representations.Representations(self, manifest)
+            representations.Representations(self, self.current_manifest)
         window_size = self.max_duration() * int(self.options.window_multiplier)
         self.managed_objects['download'] = queue.download.DownloadQueue(
             player=self, time_buffer_max=int(self.options.max_download_queue),
