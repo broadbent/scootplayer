@@ -4,6 +4,7 @@
 
 import Queue
 import re
+import numpy as np
 
 
 class BaseQueue(object):
@@ -17,9 +18,7 @@ class BaseQueue(object):
         self.occupancy = []
         self.bandwidth = []
         self.url_bitrate = []
-        self.stats = dict(mean_average_occupancy=0, min_bandwidth=0,
-                          max_bandwidth=0, mean_average_bandwidth=0,
-                          bandwidth_changes=0, mean_average_url_bitrate=0)
+        self.stats = dict()
         self.report = dict(time_buffer=0, bandwidth=0, id=0, time_position=0,
                            moving_average_bandwidth=0, max_encoded_bitrate=0,
                            url_bitrate=0)
@@ -39,8 +38,6 @@ class BaseQueue(object):
 
     def _queue_analysis(self):
         """Analyse the occupancy of a queue."""
-        self.occupancy.append(self.report['time_buffer'])
-        self.stats['mean_average_occupancy'] = average(self.occupancy)
 
     def _url_parser(self, url):
         """Parse the URL to unreliably(!) determine the playback bitrate."""
@@ -48,40 +45,34 @@ class BaseQueue(object):
         match = re.match(pattern, url)
         self.report['url_bitrate'] = int(match.group(1).replace('kbit', ''))
         self.url_bitrate.append(self.report['url_bitrate'])
-        self.stats['mean_average_url_bitrate'] = average(self.url_bitrate)
+        self._object_analysis('url_bitrate', self.url_bitrate)
 
-    def analysis(self):
-        """Run both analysis methods on a queue object."""
-        self._queue_analysis()
-        self._bandwidth_analysis()
-
-    def _bandwidth_analysis(self):
-        """
-        Analyse the current bandwidth.
-
-        Update the minimum, maximum, and amount of bandwidth changes.
-
-        Calculate the arithmetic mean for the whole period of playback
-        and for the n most recent bandwidth values.
-
-        """
-        if self.stats['min_bandwidth'] == 0:
-            self.stats['min_bandwidth'] = self.report['bandwidth']
-        if self.report['bandwidth'] != self._previous_bandwidth:
-            self.stats['bandwidth_changes'] += 1
-        if self.report['bandwidth'] > self.stats['max_bandwidth']:
-            self.stats['max_bandwidth'] = self.report['bandwidth']
-        elif self.report['bandwidth'] < self.stats['min_bandwidth']:
-            self.stats['min_bandwidth'] = self.report['bandwidth']
+    def report_tick(self):
         self.bandwidth.append(self.report['bandwidth'])
-        self.stats['mean_average_bandwidth'] = average(self.bandwidth)
-        self.report['moving_average_bandwidth'] = average(
-            self.bandwidth[-self.window_size:])
-        self._previous_bandwidth = self.report['bandwidth']
+        self.occupancy.append(self.report['time_buffer'])
+        self._report_analysis('occupancy', self.occupancy)
+        self._report_analysis('bandwidth', self.bandwidth)
 
-def average(list_):
-    """Calculate an arithmetic mean for a List of values."""
-    try:
-        return sum(list_) / len(list_)
-    except ZeroDivisionError:
-        return 0
+    def calculate_stats(self):
+        self._stats_analysis('occupancy', self.occupancy)
+        self._stats_analysis('bandwidth', self.bandwidth)
+
+    def _report_analysis(self, name, object_):
+        self.report['moving_average_' + name] = np.average(object_[-self.window_size:])
+
+    def _stats_analysis(self, name, object_):
+        self.stats['min_' + name] = np.amin(object_)
+        self.stats['max_' + name] = np.amax(object_)
+        self.stats['changes_' + name] = self._changes(object_)
+        self.stats['average_' + name] = np.average(object_)
+        self.stats['std_' + name] = np.std(object_)
+        self.stats['var_' + name] = np.var(object_)
+
+    def _changes(self, list_):
+        prev = list_[0]
+        count = 0
+        for item in list_[1:]:
+            if not item == prev:
+                count += 1
+            prev = item
+        return count

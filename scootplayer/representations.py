@@ -262,9 +262,7 @@ class Representations(object):
             self.init_done += 1
         finally:
             lock.release()
-        self.player.start_timed_thread(random.randint(2, 16),
-                                       self.parse_metadata,
-                                       (path, item[5]))
+        self.player.start_thread(self.parse_metadata, (path, item[5]))
 
     def parse_metadata(self, path, id_):
         """

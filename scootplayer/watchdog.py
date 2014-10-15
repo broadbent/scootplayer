@@ -63,7 +63,7 @@ class Watchdog(object):
                     self.watch_value = report['playback_time_position']
                 except AttributeError:
                     pass
-            if self.watch_value == report['playback_time_position']:
+            if self.watch_value == report['playback']['time_position']:
                 if self.watch_count:
                     self.player.event('error',
                                       'detected stalled playback')
@@ -72,7 +72,7 @@ class Watchdog(object):
                 self.watch_count = True
             else:
                 self.watch_count = False
-            self.watch_value = report['playback_time_position']
+            self.watch_value = report['playback']['time_position']
         else:
             time.sleep(self.max_duration)
             self.watchdog()

@@ -211,21 +211,22 @@ class Player(object):
         """Add a given item to the playback queue."""
         self.managed_objects['playback'].add(item)
 
-    def retrieve_metric(self, metric):
+    def retrieve_metric(self, metric, func=None):
         """Retrieve given metric from each of the managed objects."""
+        if func:
+            self._modify_state(func)
         result = {}
         for obj in ['download', 'playback']:
-            for key, val in self.managed_objects[obj].__dict__[metric].items():
-                result[obj + '_' + key] = val
+            result[obj] = self.managed_objects[obj].__dict__[metric]
         return result
 
     def max_duration(self):
         """Return maximum duration present in current set of representations."""
         return self.managed_objects['representations'].max_duration
 
-    def analysis(self):
-        """Call analysis method on each of the managed objects."""
-        self._modify_state('analysis')
+    def report_tick(self):
+        """Call report method on each of the managed objects."""
+        self._modify_state('report_tick')
 
     def _time_request(self, item):
         """Make request and time response."""

@@ -21,17 +21,25 @@ class Reporter(object):
     run = False
     startup_delay = 0
     csv_new = True
-    managed_files = {'report': None,
-                     'event': None,
-                     'stats': None}
+    managed_files = {}
+    _object_focus = ['playback', 'download']
+    _header_width = 0
 
     def __init__(self, player):
         """Initialise files to save reports to."""
         self.player = player
-        self.managed_files['report'] = self.player.open_file('/report.csv')
-        self.managed_files['event'] = self.player.open_file('/event.csv')
-        self.managed_files['stats'] = self.player.open_file('/stats.csv')
+        self._setup_managed_files()
         self.start()
+
+    def _setup_managed_files(self):
+        self.managed_files['event'] = self.player.open_file('/event.csv')
+        self._create_dir_structure('report', self._object_focus)
+
+    def _create_dir_structure(self, folder, files):
+        self.player.create_directory(path='/' + folder)
+        for file in files:
+            self.managed_files[folder + '_' + file] = self.player.open_file(
+                '/' + folder + '/' + file + '.csv')
 
     def stop(self):
         """Stop reporting and close file handles."""
@@ -72,7 +80,7 @@ class Reporter(object):
         if self.run:
             self.player.start_timed_thread(self.player.options.reporting_period,
                                            self.reporter)
-            self.player.analysis()
+            self.player.report_tick()
             if self.player.options.csv:
                 if self.csv_new:
                     self._csv_setup()
@@ -83,14 +91,16 @@ class Reporter(object):
 
     def _stats(self):
         """Retrieve statistics and print them to file."""
-        stats = self.player.retrieve_metric('stats')
-        for key, value in stats.items():
-            self.managed_files['stats'].write(
-                str(key) +
-                ',' +
-                str(value) +
-                '\n')
-        self.managed_files['stats'].write(
+        self._create_dir_structure('stats', self._object_focus)
+        stats = self.player.retrieve_metric('stats', func='calculate_stats')
+        for name, dict_ in stats.iteritems():
+            for key, value in dict_.iteritems():
+                self.managed_files['stats_' + name].write(
+                    str(key) +
+                    ',' +
+                    str(value) +
+                    '\n')
+        self.managed_files['stats_playback'].write(
             'startup_delay,' + str(self.startup_delay) + '\n')
 
     def _make_csv_from_list(self, list_, time_=True):
@@ -110,35 +120,38 @@ class Reporter(object):
         The column headers are derived from the dictionary keys.
 
         """
-        header = self.player.retrieve_metric('report').keys()
-        header.insert(0, 'elapsed_time')
-        self.managed_files['report'].write(
-            self._make_csv_from_list(
-                header,
-                time_=False))
-        self.csv_new = False
+        for object_ in self._object_focus:
+            header = self.player.retrieve_metric('report')[object_].keys()
+            header.insert(0, 'elapsed_time')
+            self.managed_files['report_' + object_].write(
+                self._make_csv_from_list(
+                    header,
+                    time_=False))
+            self.csv_new = False
+            self._header_width = len(header)
 
     def csv_report(self):
         """Print a periodic report to file and/or STDOUT."""
-        try:
-            self.managed_files['report'].flush()
-        except ValueError:
-            pass
-        try:
-            report = self.player.retrieve_metric('report').values()
-        except AttributeError:
-            report = [0, 0, 0, 0, 0, 0, 0, 0, 0]
-        try:
-            report_csv = self._make_csv_from_list(report)
-            self.managed_files['report'].write(report_csv)
-        except ValueError:
-            pass
-        if self.player.options.debug:
-            print ("[report] " + report_csv),
-        try:
-            self.managed_files['report'].flush()
-        except ValueError:
-            pass
+        for object_ in self._object_focus:
+            try:
+                self.managed_files['report_' + object_].flush()
+            except ValueError:
+                pass
+            try:
+                report = self.player.retrieve_metric('report')[object_].values()
+            except AttributeError:
+                report = [0] * self._header_width
+            try:
+                report_csv = self._make_csv_from_list(report)
+                self.managed_files['report_' + object_].write(report_csv)
+            except ValueError:
+                pass
+            if self.player.options.debug:
+                print ('[report][' + object_ + '] ' + report_csv),
+            try:
+                self.managed_files['report_' + object_].flush()
+            except ValueError:
+                pass
 
     def event(self, action, description):
         """Create a thread to handle event."""
