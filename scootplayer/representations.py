@@ -9,13 +9,17 @@ import Queue
 import random
 import re
 import requests
+import multiprocessing
 from pymediainfo import MediaInfo
-import threading
-import time
 
+
+def call_it(instance, name, args=(), kwargs=None):
+    "Indirect caller for instance methods and multiprocessing."
+    if kwargs is None:
+        kwargs = {}
+    return getattr(instance, name)(*args, **kwargs)
 
 class Representations(object):
-
     """
     Parses an MPD and contains the representations available to the
     player. Also decides the most appropriate candidate given a bandwidth.
@@ -229,28 +233,29 @@ class Representations(object):
         """
         self.player.event('start', 'downloading initializations')
         self.player.create_directory('/downloads')
-        self.total_duration = 0
-        self.total_length = 0
+        total_duration = 0
+        total_length = 0
         if self.player.options.vlc:
             for init in self.media['initialisations']:
                 if init['bandwidth'] == self.max_bandwidth:
-                    duration, length, path = self.player.fetch_item(init['item'])
-                    self.total_duration = duration
-                    self.total_length = duration
+                    total_duration, total_length, _ = self.player.fetch_item(init['item'])
                 else:
                     self.player.fetch_item(init['item'], dummy=True)
         else:
-            self.done = 0
-            lock = threading.Lock()
-            for init in self.media['initialisations']:
-                self.player.start_thread(self.fetch_initialisation,
-                                         (init['item'], init['id'], lock))
-            while self.init_done < len(self.media['initialisations']):
-                time.sleep(0.1)
-        self.player.update_bandwidth(self.total_duration, self.total_length)
+            pool = multiprocessing.Pool(processes=4)
+            results = [pool.apply_async(call_it,
+                       args=(self, 'fetch_initialisation', (i,)))
+                       for i in self.media['initialisations']]
+            pool.close()
+            map(multiprocessing.pool.ApplyResult.wait, results)
+            for result in results:
+                duration, length, _ = result.get()
+                total_duration += duration
+                total_length += length
+        self.player.update_bandwidth(total_duration, total_length)
         self.player.event('stop ', 'downloading initializations')
 
-    def fetch_initialisation(self, item, id_, lock):
+    def fetch_initialisation(self, initialisation):
         """
         Fetch an initialisation and update the shared duration and length
         totals.
@@ -259,15 +264,11 @@ class Representations(object):
         playback to start.
 
         """
-        duration, length, path = self.player.fetch_item(item)
-        lock.acquire()
-        try:
-            self.total_duration += duration
-            self.total_length += length
-            self.init_done += 1
-        finally:
-            lock.release()
-        self.player.start_thread(self.parse_metadata, (path, id_))
+        duration, length, path = self.player.fetch_item(initialisation['item'])
+        self.player.start_timed_thread(10, self.parse_metadata, (path,
+                                       initialisation['id']))
+        return duration, length, path
+
 
     def parse_metadata(self, path, id_):
         """

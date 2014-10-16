@@ -106,7 +106,7 @@ class Player(object):
                 if self.finished:
                     self.next()
             else:
-                time.sleep(0.1)
+                time.sleep(0.01)
 
     def _setup_scheduled_stop(self, time_):
         """
@@ -206,7 +206,8 @@ class Player(object):
                        ' (' + str(length) + 'b)')
             return duration, length, path
         else:
-            self._write_to_file(item, '')
+            path = self._write_to_file(item, '')
+            return 0, 0, path
 
     def item_ready(self, item):
         """Add a given item to the playback queue."""
