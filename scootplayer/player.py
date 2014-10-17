@@ -31,7 +31,6 @@ class Player(object):
                        'remote_control': None}
     session = None
     threads = list()
-    finished = False
     progress_bar = None
     state = 'stop'
     directory = ''
@@ -53,7 +52,6 @@ class Player(object):
         if self.managed_objects['playlist'].empty():
             self.event('empty', 'playlist')
             self.exit()
-        self.finished = False
         self._directory_setup()
         self.managed_objects['reporter'] = reporter.Reporter(self)
         self.event('next', 'playing next item')
@@ -103,8 +101,6 @@ class Player(object):
                 representation = self.managed_objects['representations'] \
                     .candidate(int(self.bandwidth))
                 self.managed_objects['download'].add(representation)
-                if self.finished:
-                    self.next()
             else:
                 time.sleep(0.01)
 
@@ -116,10 +112,6 @@ class Player(object):
         """
         if time_:
             self.start_timed_thread(time_, self.exit)
-
-    def finish_playback(self):
-        """Mark playback as finished when method called."""
-        self.finished = True
 
     def exit(self):
         """Stop playback and exit player."""

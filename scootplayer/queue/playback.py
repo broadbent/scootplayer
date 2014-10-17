@@ -45,21 +45,23 @@ class PlaybackQueue(BaseQueue):
         """Consume the next item in the playback queue."""
         self.report['time_position'] = 0
         while True:
-            if self.report['time_buffer'] > 0 and self.run:
-                representation = self.queue.get()
-                if self.player.options.url:
-                    self._url_parser(representation['item']['url'])
-                self.report['time_position'] += int(
-                    representation['item']['duration'])
-                self.report['bandwidth'] = int(representation['bandwidth'])
-                self.report['max_encoded_bitrate'] = representation['max_encoded_bitrate']
-                self.report['id'] = int(representation['id'])
-                self._consume_chunk(representation['item']['duration'])
-                self.queue.task_done()
-                self.report['time_buffer'] = self.report[
-                    'time_buffer'] - int(representation['item']['duration'])
-            elif self.report['time_buffer'] <= 0:
-                self.player.finish_playback()
+            if self.run:
+                if self.report['time_buffer'] > 0:
+                    representation = self.queue.get()
+                    if self.player.options.url:
+                        self._url_parser(representation['item']['url'])
+                    self.report['time_position'] += int(
+                        representation['item']['duration'])
+                    self.report['bandwidth'] = int(representation['bandwidth'])
+                    self.report['max_encoded_bitrate'] = representation['max_encoded_bitrate']
+                    self.report['id'] = int(representation['id'])
+                    self._consume_chunk(representation['item']['duration'])
+                    self.queue.task_done()
+                    self.report['time_buffer'] = self.report[
+                        'time_buffer'] - int(representation['item']['duration'])
+                elif self.report['time_buffer'] == 0:
+                    self.player.pause()
+                    self.player.next()
             else:
                 time.sleep(0.01)
 
