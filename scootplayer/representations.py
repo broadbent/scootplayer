@@ -242,7 +242,8 @@ class Representations(object):
                 else:
                     self.player.fetch_item(init['item'], dummy=True)
         else:
-            pool = multiprocessing.Pool(processes=4)
+            pool = multiprocessing.Pool(
+                processes=int(self.player.options.proc_pool))
             results = [pool.apply_async(call_it,
                        args=(self, 'fetch_initialisation', (i,)))
                        for i in self.media['initialisations']]
