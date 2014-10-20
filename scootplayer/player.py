@@ -192,7 +192,10 @@ class Player(object):
             response, duration = self._time_request(item)
             self._check_code(response.status_code, item['url'])
             length = get_length(response)
-            path = self._write_to_file(item, response.content)
+            if self.options.write:
+                path = self._write_to_file(item, response.content)
+            else:
+                path = ''
             self.update_bandwidth(duration, length)
             self.event('stop', 'downloading ' + str(item['url']) +
                        ' (' + str(length) + 'b)')

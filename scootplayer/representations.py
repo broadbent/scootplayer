@@ -232,7 +232,8 @@ class Representations(object):
 
         """
         self.player.event('start', 'downloading initializations')
-        self.player.create_directory('/downloads')
+        if self.player.options.write:
+            self.player.create_directory('/downloads')
         total_duration = 0
         total_length = 0
         if self.player.options.vlc:

@@ -13,7 +13,7 @@ if __name__ == '__main__':
                         xml_validation=False, remote_control_host='localhost',
                         remote_control_port='5556', playback_time=0,
                         window_multiplier=5, vlc=False, url=False,
-                        conn_pool=100, proc_pool=4)
+                        conn_pool=100, proc_pool=4, write=True)
     PARSER.add_option("-m", "--manifest", dest="manifest",
                       help="location of manifest to load")
     PARSER.add_option("-o", "--output", dest="output",
@@ -65,6 +65,9 @@ if __name__ == '__main__':
     PARSER.add_option("--process-pool", dest="proc_pool",
                       help="""set the amount of processes that can be used to
                       fetch the initialisation [default: %default])""")
+    PARSER.add_option("--no-write", dest="write", action="store_false",
+                      help="""prevent the player writing downloaded files to
+                      disk [default: %default])""")
     (OPTIONS, _) = PARSER.parse_args()
     if (OPTIONS.manifest is not None or OPTIONS.playlist is not None) and not \
         (OPTIONS.manifest and OPTIONS.playlist) \
