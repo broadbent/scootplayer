@@ -255,7 +255,10 @@ class Player(object):
         except IOError:
             _file = open(path, 'w')
         _file.seek(int(item['bytes_from']))
-        _file.write(content)
+        try:
+            _file.write(content)
+        except IOError as exception:
+            self.event('error', str(exception))
         file_pointer = int(_file.tell() - 1)
         if file_end != file_pointer and file_start != 0:
             print 'ends do not match'
