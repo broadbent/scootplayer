@@ -3,7 +3,6 @@
 """Functions as a list of manifests to be played back in order."""
 
 from .base import BaseQueue
-import re
 
 
 class PlaylistQueue(BaseQueue):
@@ -45,15 +44,17 @@ class PlaylistQueue(BaseQueue):
         """Return the current length of the playlist queue."""
         return self.queue.qsize()
 
-
-def load_playlist_file(path):
-    """Load the file from disk."""
-    _file = open(path, 'r')
-    return _file.read()
-
-
-def parse_playlist_file(path):
-    """Open and parse the M3U playlist file."""
-    playlist = load_playlist_file(path)
-    playlist = re.split(r'(\n)', playlist)
-    return playlist
+    def parse_playlist_file(self, path):
+        """Open and parse the M3U playlist file."""
+        file = open(path, 'r')
+        line = file.readline()
+        playlist = []
+        if not line.startswith('#EXTM3U'):
+            self.player.event('error', 'M3U playlist not valid')
+            return
+        for line in file:
+            line = line.strip()
+            if (len(line) != 0):
+                playlist.append(line)
+        file.close()
+        return playlist
