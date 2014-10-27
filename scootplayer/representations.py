@@ -60,7 +60,7 @@ class Representations(object):
             self.player.event('error', str(exception))
             return ''
         filename = os.path.basename(url)
-        path = self.player.create_directory('/mpd') + '/' + filename
+        path = self.player.create_directory('/downloads/mpd') + '/' + filename
         _file = open(path, 'w')
         _file.write(response.content)
         self.player.event('stop', 'fetching remote mpd')
