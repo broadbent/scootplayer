@@ -58,11 +58,11 @@ The schema included with Scootplayer is slightly modified from the original. The
 
 It is important to consider that the validation process takes time. If you are using Scootplayer as a tool for evaluation, it may be prudent not to turn validation on. It is mainly intended as a debugging feature to help with the menagerie of old and non-standard MPDs available.
 
-## Remote Control ## 
+## Remote Control ##
 
 Multiple Scootplayer instances can be controlled through a single remote control. See `remote/scootplayer_remote_control.py` for more details.
 
-## VLC Emulation ## 
+## VLC Emulation ##
 
 Scootplayer can emulate VLC's MPEG-DASH playback behaviour. This is enabled using the `--vlc` flag. This is still an experimental feature, and likely to change as both VLC and Scootplayer are updated.
 
