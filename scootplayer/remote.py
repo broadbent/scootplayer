@@ -33,7 +33,6 @@ class RemoteControl(object):
 
     def stop(self):
         """Stop listening to commands from remote control."""
-        self.socket.close()
         self.player.event('stop', 'remote')
 
     def _listen(self):

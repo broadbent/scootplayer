@@ -54,17 +54,21 @@ class Representations(object):
     def _get_remote_mpd(self, url):
         """Download a remote MPD if necessary."""
         self.player.event('start', 'fetching remote mpd')
-        response = requests.get(url)
+        try:
+            response = requests.get(url)
+        except requests.ConnectionError as exception:
+            self.player.event('error', str(exception))
+            return ''
         filename = os.path.basename(url)
-        path = self.player.create_directory('/mpd')
-        _file = open(path + filename, 'w')
+        path = self.player.create_directory('/mpd') + '/' + filename
+        _file = open(path, 'w')
         _file.write(response.content)
         self.player.event('stop', 'fetching remote mpd')
-        return path + filename
+        return path
 
     def load_mpd(self, manifest):
         """Load an MPD from file."""
-        self.player.event('start', 'parsing mpd')
+        self.player.event('start', 'parsing mpd: ' + str(manifest))
         expression = r'''http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|
             (?:%[0-9a-fA-F][0-9a-fA-F]))+'''
         url = re.search(expression, manifest)
@@ -271,7 +275,6 @@ class Representations(object):
                                        initialisation['id']))
         return duration, length, path
 
-
     def parse_metadata(self, path, id_):
         """
         Parse the MP4 header metadata for bitrate information.
@@ -330,15 +333,19 @@ class Representations(object):
         for representation in self.media['representations']:
             if representation is self.media[
                     'representations'][candidate_index]:
-                candidate = {'item': representation['queue'].get(),
-                             'id': representation['id'],
-                             'bandwidth': representation['bandwidth'],
-                             'max_encoded_bitrate':
-                             representation['maximum_encoded_bitrate']}
+                try:
+                    candidate = {'item': representation['queue'].get_nowait(),
+                                 'id': representation['id'],
+                                 'bandwidth': representation['bandwidth'],
+                                 'max_encoded_bitrate':
+                                 representation['maximum_encoded_bitrate']}
+                except Queue.Empty:
+                    break
             else:
-                representation['queue'].get()
-        if candidate is None:
-            raise Queue.Empty
+                try:
+                    representation['queue'].get_nowait()
+                except Queue.Empty:
+                    break
         return candidate
 
     def bandwidth_match(self, bandwidth):

@@ -110,17 +110,14 @@ class Reporter(object):
         If CSV file is new, append headers to first row.
 
         """
+        self.player.start_timed_thread(self.player.options.reporting_period,
+                                       self.reporter)
         if self.run:
-            self.player.start_timed_thread(self.player.options.reporting_period,
-                                           self.reporter)
             self.player.report_tick()
             if self.player.options.csv:
                 if self.csv_new:
                     self._csv_setup()
                 self.csv_report()
-        else:
-            time.sleep(self.player.options.reporting_period)
-            self.reporter()
 
     def _stats(self):
         """Retrieve statistics and print them to file."""

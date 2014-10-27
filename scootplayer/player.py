@@ -54,7 +54,7 @@ class Player(object):
             self.exit()
         self._directory_setup()
         self.managed_objects['reporter'] = reporter.Reporter(self)
-        self.event('next', 'playing next item')
+        self.event('next', 'playing item')
         self.pause()
         self.session = requests.Session()
         adapter = requests.adapters.HTTPAdapter(
@@ -100,7 +100,10 @@ class Player(object):
             if self.state == 'play':
                 representation = self.managed_objects['representations'] \
                     .candidate(int(self.bandwidth))
-                self.managed_objects['download'].add(representation)
+                if representation:
+                    self.managed_objects['download'].add(representation)
+                else:
+                    time.sleep(0.01)
             else:
                 time.sleep(0.01)
 
@@ -186,10 +189,15 @@ class Player(object):
             duration: time taken to fulfil the request
             length: response length for use with the MPD '@bandwidth' value
                 (in bits).
+
         """
         if not dummy:
             self.event('start', 'downloading ' + str(item['url']))
             response, duration = self._time_request(item)
+            if not response:
+                self.event('error', 'no response returned from '
+                           + str(item['url']) + '; writing to dummy file')
+                return self.fetch_item(item, dummy=True)
             self._check_code(response.status_code, item['url'])
             length = get_length(response)
             if self.options.write:
@@ -251,9 +259,14 @@ class Player(object):
         file_start = int(item['bytes_from'])
         file_end = int(item['bytes_to'])
         try:
-            _file = open(path, 'r+')
-        except IOError:
-            _file = open(path, 'w')
+            if os.path.isfile(path):
+                _file = open(path, 'r+')
+            else:
+                _file = open(path, 'w')
+        except IOError as exception:
+            self.event('error', 'could not append or write to file: '
+                       + str(exception))
+            return path
         _file.seek(int(item['bytes_from']))
         try:
             _file.write(content)
@@ -313,6 +326,7 @@ class Player(object):
             self.managed_objects['reporter'].event(action, event)
         except AttributeError:
             print action, event
+
 
 def get_length(response):
     """

@@ -54,8 +54,8 @@ class Watchdog(object):
         file for analysis and debug.
 
         """
+        self.player.start_timed_thread(self.max_duration, self.watchdog)
         if self.run:
-            self.player.start_timed_thread(self.max_duration, self.watchdog)
             report = self.player.retrieve_metric('report')
             if self.watch_value == 0:
                 try:
@@ -73,9 +73,6 @@ class Watchdog(object):
             else:
                 self.watch_count = False
             self.watch_value = report['playback']['time_position']
-        else:
-            time.sleep(self.max_duration)
-            self.watchdog()
 
     def _dump(self):
         """
