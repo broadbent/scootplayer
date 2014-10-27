@@ -1,0 +1,10 @@
+site_name: Scootplayer
+pages:
+- ['index.md', 'Introduction']
+- ['options.md', 'Options']
+- ['output.md', 'Logging']
+- ['mpd.md', 'MPD']
+- ['features.md', 'Advanced Features']
+- ['about.md', 'About']
+theme: readthedocs
+repo_url: https://github.com/broadbent/scootplayer

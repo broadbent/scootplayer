@@ -1,6 +1,4 @@
-# Scootplayer #
-
-An experimental MPEG-DASH request engine with support for accurate logging.
+Scootplayer is an experimental MPEG-DASH request engine with support for accurate logging.
 
 Downloads the required files/byte ranges, but does not playback content. Can be used to simulate MPEG-DASH playback when viewing the video itself is not important. The motivation behind the creation of Scootplayer was to analyse the network characteristics of HTTP Adaptive Streaming (HAS) traffic in a deterministic way.
 
@@ -34,4 +32,4 @@ $ python scootplayer.py -h
 
 ## Documentation ##
 
-Further documentation is available at [https://scootplayer.readthedocs.org](https://scootplayer.readthedocs.org).
+Further documentation is available at [http://scootplayer.readthedocs.org](https://scootplayer.readthedocs.org).
