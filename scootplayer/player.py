@@ -59,7 +59,8 @@ class Player(object):
         self.session = requests.Session()
         adapter = requests.adapters.HTTPAdapter(
             pool_connections=int(self.options.conn_pool),
-            pool_maxsize=int(self.options.conn_pool))
+            pool_maxsize=int(self.options.conn_pool),
+            max_retries=int(self.options.max_retries))
         self.session.mount('http://', adapter)
         self.bandwidth = bandwidth.Bandwidth()
         self.current_manifest = self.managed_objects['playlist'].get()
@@ -166,7 +167,8 @@ class Player(object):
             headers['Range'] = byte_range
         try:
             response = self.session.get(url, headers=headers)
-        except requests.exceptions.ConnectionError:
+        except requests.exceptions.ConnectionError as exception:
+            self.event('error', str(exception))
             response = None  # Return a None value if connection has failed.
         if not self.options.keep_alive:
             response.connection.close()
@@ -200,10 +202,7 @@ class Player(object):
                 return self.fetch_item(item, dummy=True)
             self._check_code(response.status_code, item['url'])
             length = get_length(response)
-            if self.options.write:
-                path = self._write_to_file(item, response.content)
-            else:
-                path = ''
+            path = self._write_to_file(item, response.content)
             self.update_bandwidth(duration, length)
             self.event('stop', 'downloading ' + str(item['url']) +
                        ' (' + str(length) + 'b)')
@@ -254,28 +253,31 @@ class Player(object):
         This may be a complete file, or a byte range to an existing file.
 
         """
-        file_name = item['url'].split('/')[-1]
-        path = self.directory + '/downloads/' + file_name
-        file_start = int(item['bytes_from'])
-        file_end = int(item['bytes_to'])
-        try:
-            if os.path.isfile(path):
-                _file = open(path, 'r+')
-            else:
-                _file = open(path, 'w')
-        except IOError as exception:
-            self.event('error', 'could not append or write to file: '
-                       + str(exception))
-            return path
-        _file.seek(int(item['bytes_from']))
-        try:
-            _file.write(content)
-        except IOError as exception:
-            self.event('error', str(exception))
-        file_pointer = int(_file.tell() - 1)
-        if file_end != file_pointer and file_start != 0:
-            print 'ends do not match'
-        _file.close()
+        if self.options.write:
+            file_name = item['url'].split('/')[-1]
+            path = self.directory + '/downloads/' + file_name
+            file_start = int(item['bytes_from'])
+            file_end = int(item['bytes_to'])
+            try:
+                if os.path.isfile(path):
+                    _file = open(path, 'r+')
+                else:
+                    _file = open(path, 'w')
+            except IOError as exception:
+                self.event('error', 'could not append or write to file: '
+                           + str(exception))
+                return path
+            _file.seek(int(item['bytes_from']))
+            try:
+                _file.write(content)
+            except IOError as exception:
+                self.event('error', str(exception))
+            file_pointer = int(_file.tell() - 1)
+            if file_end != file_pointer and file_start != 0:
+                print 'ends do not match'
+            _file.close()
+        else:
+            path = ''
         return path
 
     def update_bandwidth(self, duration, length):

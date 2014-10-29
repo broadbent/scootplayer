@@ -1,6 +1,6 @@
 site_name: Scootplayer
 pages:
-- ['index.md', 'Introduction']
+- ['index.md', 'Introduction to Scootplayer']
 - ['options.md', 'Options']
 - ['output.md', 'Logging']
 - ['mpd.md', 'MPD']
