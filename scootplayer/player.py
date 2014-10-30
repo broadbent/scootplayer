@@ -167,10 +167,14 @@ class Player(object):
             byte_range = 'bytes=%s-%s' % (item['bytes_from'], item['bytes_to'])
             headers['Range'] = byte_range
         try:
-            response = self.session.get(url, headers=headers)
+            response = self.session.get(url, headers=headers,
+                                        timeout=float(self.options.timeout))
+        except requests.exceptions.Timeout as exception:
+            self.event('error', 'timeout: ' + str(exception))
+            response = None  # Return a None value if timeout occurred
         except requests.exceptions.ConnectionError as exception:
-            self.event('error', str(exception))
-            response = None  # Return a None value if connection has failed.
+            self.event('error', 'connection error: ' + str(exception))
+            response = None  # Return a None value if connection has failed
         if not self.options.keep_alive:
             response.connection.close()
         return response

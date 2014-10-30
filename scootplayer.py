@@ -14,7 +14,7 @@ if __name__ == '__main__':
                         remote_control_port='5556', playback_time=0,
                         window_multiplier=5, vlc=False, url=False,
                         conn_pool=100, proc_pool=4, write=True, max_retries=3,
-                        threading=False)
+                        threading=False, timeout=1)
     PARSER.add_option("-m", "--manifest", dest="manifest",
                       help="location of manifest to load")
     PARSER.add_option("-o", "--output", dest="output",
@@ -75,6 +75,9 @@ if __name__ == '__main__':
     PARSER.add_option("--threading", dest="threading", action="store_true",
                       help="""use multithreading rather than multiprocessing
                       when downloading the initialisations""")
+    PARSER.add_option("--timeout", dest="timeout",
+                      help="""stop waiting for a response after a given number
+                      of seconds [default: %default])""")
     (OPTIONS, _) = PARSER.parse_args()
     if (OPTIONS.manifest is not None or OPTIONS.playlist is not None) and not \
         (OPTIONS.manifest and OPTIONS.playlist) \

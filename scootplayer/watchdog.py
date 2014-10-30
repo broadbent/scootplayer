@@ -2,8 +2,6 @@
 
 """Inspects player behaviour to ensure playback is occuring."""
 
-import time
-
 
 class Watchdog(object):
 

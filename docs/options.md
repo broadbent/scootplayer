@@ -26,3 +26,4 @@ Scootplayer includes a number of configurable options. These can be found using 
 |                        | --no-write                                | Prevent the player writing downloaded files to disk                                      |             |
 |                        | --max-retries                             | Set the amount of retries attempted when fetching remote content                         | 3           |
 |                        | --threading                               | Use multithreading rather than multiprocessing when downloading the initialisations      |             |
+|                        | --timeout                                 | Stop waiting for a response after a given number of seconds                              | 1           |
