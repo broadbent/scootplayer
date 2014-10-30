@@ -11,15 +11,15 @@ class Watchdog(object):
 
     watch_value = 0
     watch_count = False
-    max_duration = 0
+    max_seg_duration = 0
     run = False
 
     def __init__(self, player):
         """Start thread to wait for max duration to become available."""
         self.player = player
-        self.player.start_thread(self.wait_for_max_duration)
+        self.player.start_thread(self.wait_for_max_seg_duration)
 
-    def wait_for_max_duration(self):
+    def wait_for_max_seg_duration(self):
         """
         Get maximum segment duration of current MPD. If not available, wait and
         try again.
@@ -28,10 +28,10 @@ class Watchdog(object):
 
         """
         try:
-            self.max_duration = self.player.max_duration()
+            self.max_seg_duration = self.player.max_seg_duration()
             self.player.start_thread(self.watchdog)
         except AttributeError:
-            self.player.start_timed_thread(1, self.wait_for_max_duration)
+            self.player.start_timed_thread(1, self.wait_for_max_seg_duration)
 
     def stop(self):
         """Stop watching."""
@@ -54,7 +54,7 @@ class Watchdog(object):
         file for analysis and debug.
 
         """
-        self.player.start_timed_thread(self.max_duration, self.watchdog)
+        self.player.start_timed_thread(self.max_seg_duration, self.watchdog)
         if self.run:
             report = self.player.retrieve_metric('report')
             if self.watch_value == 0:

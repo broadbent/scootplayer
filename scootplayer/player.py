@@ -66,7 +66,8 @@ class Player(object):
         self.current_manifest = self.managed_objects['playlist'].get()
         self.managed_objects['representations'] = \
             representations.Representations(self, self.current_manifest)
-        window_size = self.max_duration() * int(self.options.window_multiplier)
+        window_size = self.max_seg_duration() * int(
+            self.options.window_multiplier)
         self.managed_objects['download'] = queue.download.DownloadQueue(
             player=self, time_buffer_max=int(self.options.max_download_queue),
             window_size=window_size)
@@ -224,9 +225,13 @@ class Player(object):
             result[obj] = self.managed_objects[obj].__dict__[metric]
         return result
 
-    def max_duration(self):
+    def max_seg_duration(self):
         """Return maximum duration present in current set of representations."""
-        return self.managed_objects['representations'].max_duration
+        return self.managed_objects['representations'].max_seg_duration
+
+    def mpd_duration(self):
+        """Return maximum duration present in current set of representations."""
+        return self.managed_objects['representations'].mpd_duration
 
     def report_tick(self):
         """Call report method on each of the managed objects."""

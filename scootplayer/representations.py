@@ -9,6 +9,8 @@ import Queue
 import random
 import re
 import requests
+import threading
+import time
 import multiprocessing
 from pymediainfo import MediaInfo
 
@@ -18,6 +20,7 @@ def call_it(instance, name, args=(), kwargs=None):
     if kwargs is None:
         kwargs = {}
     return getattr(instance, name)(*args, **kwargs)
+
 
 class Representations(object):
     """
@@ -30,12 +33,14 @@ class Representations(object):
     representations = None
     initialisations = None
     min_buffer = 0
-    max_duration = 0
+    max_seg_duration = 0
     max_bandwidth = 0
     first_chunk = True
     player = None
-    duration = 0
+    mpd_duration = 0
     init_done = 0
+    total_duration = 0
+    total_length = 0
 
     def __init__(self, player, manifest):
         """Load the representations from the MPD."""
@@ -114,18 +119,19 @@ class Representations(object):
     def parse_mpd(self, base_url, parent_element):
         """Parse 'mpd' level XML."""
         try:
-            self._set_duration(parent_element.get('mediaPresentationDuration'))
+            self._set_mpd_duration(
+                parent_element.get('mediaPresentationDuration'))
         except (TypeError, IndexError, ValueError):
-            self.duration = 0
+            self.mpd_duration = 0
         for child_element in parent_element:
             if 'BaseURL' in child_element.tag:
                 base_url.mpd = child_element.text
             self.parse_period(base_url, child_element)
         base_url.mpd = ''
 
-    def _set_duration(self, duration):
+    def _set_mpd_duration(self, duration):
         """Set the duration of playback defined in the MPD."""
-        self.duration = aniso8601.parse_duration(duration).seconds
+        self.mpd_duration = aniso8601.parse_duration(duration).seconds
 
     def parse_period(self, base_url, parent_element):
         """Parse 'period' level XML."""
@@ -174,8 +180,8 @@ class Representations(object):
 
     def _max_values(self, duration, bandwidth):
         """Find maximum values for duration and bandwidth in the MPD."""
-        if duration > self.max_duration:
-            self.max_duration = duration
+        if duration > self.max_seg_duration:
+            self.max_seg_duration = duration
         if bandwidth > self.max_bandwidth:
             self.max_bandwidth = bandwidth
 
@@ -238,30 +244,42 @@ class Representations(object):
         self.player.event('start', 'downloading initializations')
         if self.player.options.write:
             self.player.create_directory('/downloads')
-        total_duration = 0
-        total_length = 0
-        if self.player.options.vlc:
+        elif self.player.options.vlc:
             for init in self.media['initialisations']:
                 if init['bandwidth'] == self.max_bandwidth:
                     total_duration, total_length, _ = self.player.fetch_item(init['item'])
                 else:
                     self.player.fetch_item(init['item'], dummy=True)
+        if self.player.options.threading:
+            self._multithreaded_fetch()
         else:
-            pool = multiprocessing.Pool(
-                processes=int(self.player.options.proc_pool))
-            results = [pool.apply_async(call_it,
-                       args=(self, 'fetch_initialisation', (i,)))
-                       for i in self.media['initialisations']]
-            pool.close()
-            map(multiprocessing.pool.ApplyResult.wait, results)
-            for result in results:
-                duration, length, _ = result.get()
-                total_duration += duration
-                total_length += length
-        self.player.update_bandwidth(total_duration, total_length)
+            self._multiprocessing_fetch()
+        self.player.update_bandwidth(self.total_duration, self.total_length)
         self.player.event('stop ', 'downloading initializations')
 
-    def fetch_initialisation(self, initialisation):
+    def _multithreaded_fetch(self):
+        self.done = 0
+        lock = threading.Lock()
+        for item in self.media['initialisations']:
+            self.player.start_thread(self.fetch_initialisation,
+                                     (item, lock))
+        while self.init_done < len(self.media['initialisations']):
+            time.sleep(0.01)
+
+    def _multiprocessing_fetch(self):
+        pool = multiprocessing.Pool(
+            processes=int(self.player.options.proc_pool))
+        results = [pool.apply_async(call_it,
+                   args=(self, 'fetch_initialisation', (item,)))
+                   for item in self.media['initialisations']]
+        pool.close()
+        map(multiprocessing.pool.ApplyResult.wait, results)
+        for result in results:
+            duration, length, _ = result.get()
+            self.total_duration += duration
+            self.total_length += length
+
+    def fetch_initialisation(self, initialisation, lock=None):
         """
         Fetch an initialisation and update the shared duration and length
         totals.
@@ -271,6 +289,14 @@ class Representations(object):
 
         """
         duration, length, path = self.player.fetch_item(initialisation['item'])
+        if lock:
+            lock.acquire()
+            try:
+                self.total_duration += duration
+                self.total_length += length
+                self.init_done += 1
+            finally:
+                lock.release()
         self.player.start_timed_thread(10, self.parse_metadata, (path,
                                        initialisation['id']))
         return duration, length, path

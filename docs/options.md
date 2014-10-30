@@ -24,3 +24,5 @@ Scootplayer includes a number of configurable options. These can be found using 
 |                        | --connection-pool=CONN_POOL               | Set the amount of simultaneous connections that,can be made                              | 100         |
 |                        | --process-pool=PROC_POOL                  | Set the amount of processes that can be used to,fetch the initialisation                 | 4           |
 |                        | --no-write                                | Prevent the player writing downloaded files to disk                                      |             |
+|                        | --max-retries                             | Set the amount of retries attempted when fetching remote content                         | 3           |
+|                        | --threading                               | Use multithreading rather than multiprocessing when downloading the initialisations      |             |

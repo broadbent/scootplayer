@@ -10,6 +10,8 @@ class PlaybackQueue(BaseQueue):
 
     """Object which acts as a playback queue for the player."""
 
+    mpd_duration = 0
+
     def __init__(self, *args, **kwargs):
         """
         Initialise playback queue with minimum and maximum buffer sizes.
@@ -17,6 +19,7 @@ class PlaybackQueue(BaseQueue):
         """
         super(PlaybackQueue, self).__init__(*args, **kwargs)
         self.start = False
+        self.mpd_duration = self.player.mpd_duration()
 
     def stop(self):
         """Stop the playback queue."""
@@ -44,6 +47,7 @@ class PlaybackQueue(BaseQueue):
     def playback(self):
         """Consume the next item in the playback queue."""
         self.report['time_position'] = 0
+        seconds_played = 0
         while True:
             if self.run:
                 if self.report['time_buffer'] > 0:
@@ -59,9 +63,14 @@ class PlaybackQueue(BaseQueue):
                     self.queue.task_done()
                     self.report['time_buffer'] = self.report[
                         'time_buffer'] - int(representation['item']['duration'])
+                    seconds_played += int(representation['item']['duration'])
                 elif self.report['time_buffer'] == 0:
-                    self.player.pause()
-                    self.player.next()
+                    if seconds_played >= self.mpd_duration:
+                        self.player.pause()
+                        self.player.next()
+                    else:
+                        self.player.event('empty', 'playback buffer ; stalled')
+                        time.sleep(0.01)
             else:
                 time.sleep(0.01)
 
