@@ -77,7 +77,8 @@ class Player(object):
             time_buffer_max=int(self.options.max_playback_queue),
             window_size=window_size)
         self.progress_bar = self._create_progress_bar()
-        self.managed_objects['watchdog'] = watchdog.Watchdog(self)
+        if self.options.watchdog:
+            self.managed_objects['watchdog'] = watchdog.Watchdog(self)
         self._setup_scheduled_stop(self.options.playback_time)
         self.resume()
 

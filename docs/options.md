@@ -27,3 +27,4 @@ Scootplayer includes a number of configurable options. These can be found using 
 |                        | --max-retries                             | Set the amount of retries attempted when fetching remote content                         | 3           |
 |                        | --threading                               | Use multithreading rather than multiprocessing when downloading the initialisations      |             |
 |                        | --timeout                                 | Stop waiting for a response after a given number of seconds                              | 1           |
+|                        | --no-watchdog                             | Prevent the playback watchdog from running                                               |             |
