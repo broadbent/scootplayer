@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+        <meta content="utf-8" http-equiv="encoding">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+        <link rel="stylesheet" type="text/css" href="static/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="static/common.css">
+
+        <title>Scootplayer</title>
+    </head>
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                {% for element in playback %}
+                    {% if element != 'time_elapsed' %}
+                        <div class="col-sm-6 card col-md-4">
+                            <h3 class="title">{{element}}</h3>
+                            <div class="body">
+                                <div class="graph" id=playback-{{element}}></div>
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+            <br>
+            <br>
+
+        <div class="row">
+            {% for element in download %}
+                {% if element != 'time_elapsed' %}
+                    <div class="col-sm-6 card col-md-4">
+                        <h3 class="title">{{element}}</h3>
+                        <div class="body">
+                            <div class="graph" id=download-{{element}}></div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        </div>
+
+        <script src="static/jquery.min.js"></script>
+        <script src="static/jquery.flot.min.js"></script>
+        <script src="static/graphs.js"></script>
+        <script>
+            $(".title").click(function () {
+
+                $header = $(this);
+                //getting the next element
+                $content = $header.next();
+                //open up the content needed - toggle the slide- if visible, slide up, if not slidedown.
+                $content.slideToggle(300, function () {
+                    //execute this after slideToggle is done
+                    //change text of header based on visibility of content div
+                    $header.text(function () {
+                        //change text based on condition
+                        //return $content.is(":visible") ? "Collapse" : "Expand";
+                    });
+                });
+
+            });
+        </script>
+    </body>
+</html>

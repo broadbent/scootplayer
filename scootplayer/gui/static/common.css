@@ -1,0 +1,28 @@
+.card .title {
+    text-transform: uppercase;
+    font-size: 1.6em;
+    cursor: pointer;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+
+}
+
+.card .body {
+    border: 1px solid grey;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    background: white;
+    height: 18em;
+    padding: 13px;
+}
+
+.card .body .graph {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    max-width: 1200px;
+    width: 99%;
+    margin: 0 auto;
+    background: #F0F8FF;
+}
