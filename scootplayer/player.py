@@ -319,7 +319,10 @@ class Player(object):
         """Create a new directory at the given path."""
         path = self.directory + path
         if not os.path.exists(path):
-            os.makedirs(path)
+            try:
+                os.makedirs(path)
+            except OSError as exception:
+                self.event('error', 'could not create dir')
         return path
 
     def _create_progress_bar(self):
@@ -328,7 +331,7 @@ class Player(object):
             return progressbar.PlaybackBar(player=self,
                                            max=self
                                            .managed_objects['representations']
-                                           .duration)
+                                           .mpd_duration)
         else:
             return progressbar.NullBar()
 

@@ -82,7 +82,7 @@ class Reporter(object):
         for _, obj in self.managed_files.items():
             try:
                 getattr(obj, 'close')()
-            except AttributeError:
+            except (AttributeError, IOError):
                 pass
         self.player.event('stop', 'reporter')
 
@@ -125,13 +125,16 @@ class Reporter(object):
         stats = self.player.retrieve_metric('stats', func='calculate_stats')
         for name, dict_ in stats.iteritems():
             for key, value in dict_.iteritems():
-                self.managed_files['stats_' + name].write(
-                    str(key) +
-                    ',' +
-                    str(value) +
-                    '\n')
-        self.managed_files['stats_playback'].write(
-            'startup_delay,' + str(self.startup_delay) + '\n')
+                try:
+                    self.managed_files['stats_' + name].write(
+                        str(key) + ',' + str(value) + '\n')
+                except (IOError, ValueError):
+                    pass
+        try:
+            self.managed_files['stats_playback'].write(
+                'startup_delay,' + str(self.startup_delay) + '\n')
+        except (IOError, ValueError):
+            pass
 
     def _make_csv_from_list(self, list_, time_=True):
         """

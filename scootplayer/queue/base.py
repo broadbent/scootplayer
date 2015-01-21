@@ -72,12 +72,20 @@ class BaseQueue(object):
 
     def _stats_analysis(self, name, object_):
         """Calculate various statistics using NumPy."""
-        self.stats['min_' + name] = np.amin(object_)
-        self.stats['max_' + name] = np.amax(object_)
-        self.stats['changes_' + name] = self._changes(object_)
-        self.stats['average_' + name] = np.average(object_)
-        self.stats['std_' + name] = np.std(object_)
-        self.stats['var_' + name] = np.var(object_)
+        if len(object_):
+            self.stats['min_' + name] = np.amin(object_)
+            self.stats['max_' + name] = np.amax(object_)
+            self.stats['changes_' + name] = self._changes(object_)
+            self.stats['average_' + name] = np.average(object_)
+            self.stats['std_' + name] = np.std(object_)
+            self.stats['var_' + name] = np.var(object_)
+        else:
+            self.stats['min_' + name] = 0
+            self.stats['max_' + name] = 0
+            self.stats['changes_' + name] = 0
+            self.stats['average_' + name] = 0
+            self.stats['std_' + name] = 0
+            self.stats['var_' + name] = 0
 
     def _changes(self, list_):
         """Count the number of changes in a list object."""

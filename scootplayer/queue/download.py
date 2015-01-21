@@ -45,7 +45,7 @@ class DownloadQueue(BaseQueue):
                 self.report['bandwidth'] = representation['bandwidth']
                 self.report['max_encoded_bitrate'] = representation[
                     'max_encoded_bitrate']
-                self.report['id'] = int(representation['id'])
+                self.report['id'] = str(representation['id'])
                 self.player.fetch_item((representation['item']))
                 self.player.item_ready(representation)
                 self.queue.task_done()

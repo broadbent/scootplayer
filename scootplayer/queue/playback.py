@@ -58,7 +58,7 @@ class PlaybackQueue(BaseQueue):
                         representation['item']['duration'])
                     self.report['bandwidth'] = int(representation['bandwidth'])
                     self.report['max_encoded_bitrate'] = representation['max_encoded_bitrate']
-                    self.report['id'] = int(representation['id'])
+                    self.report['id'] = str(representation['id'])
                     self._consume_chunk(representation['item']['duration'])
                     self.queue.task_done()
                     self.report['time_buffer'] = self.report[

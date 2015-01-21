@@ -74,17 +74,20 @@ class Representations(object):
     def load_mpd(self, manifest):
         """Load an MPD from file."""
         self.player.event('start', 'parsing mpd: ' + str(manifest))
-        expression = r'''http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|
+        pattern = r'''http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|
             (?:%[0-9a-fA-F][0-9a-fA-F]))+'''
-        url = re.search(expression, manifest)
+        url = re.search(pattern, manifest)
         if url:
             manifest = self._get_remote_mpd(url.group())
+            origin = '/'.join(url.group().split('/')[:-1]) + '/'
+        else:
+            origin = ''
         if self.player.options.xml_validation:
             document = self._validate_mpd(manifest)
         else:
             document = etree.parse(manifest)
         mpd = document.getroot()
-        base_url = self.BaseURL()
+        base_url = self.BaseURL(origin)
         self.min_buffer = int(float(mpd.attrib['minBufferTime'][2:-1]))
         self.parse_mpd(base_url, mpd)
         sorted(self.media['representations'], key=lambda representation:
@@ -126,7 +129,8 @@ class Representations(object):
         for child_element in parent_element:
             if 'BaseURL' in child_element.tag:
                 base_url.mpd = child_element.text
-            self.parse_period(base_url, child_element)
+            if 'Period' in child_element.tag:
+                self.parse_period(base_url, child_element)
         base_url.mpd = ''
 
     def _set_mpd_duration(self, duration):
@@ -138,27 +142,52 @@ class Representations(object):
         for child_element in parent_element:
             if 'BaseURL' in child_element.tag:
                 base_url.period = child_element.text
-            self.parse_adaption_set(base_url, child_element)
+            if 'AdaptationSet' in child_element.tag:
+                self.parse_adaptation_set(base_url, child_element)
         base_url.period = ''
 
-    def parse_adaption_set(self, base_url, parent_element):
-        """Parse 'adaption set' level XML."""
+    def parse_adaptation_set(self, base_url, parent_element):
+        """Parse 'adaption set' level XML. Create a new template if present."""
+        template = None
         for child_element in parent_element:
             if 'BaseURL' in child_element.tag:
                 base_url.adaption_set = child_element.text
-            if 'Representation' in child_element.tag:
+            if 'SegmentTemplate' in child_element.tag:
+                template = self.Template(child_element)
+            elif 'Representation' in child_element.tag:
                 bandwidth = int(child_element.attrib['bandwidth'])
                 try:
-                    id_ = int(child_element.attrib['id'])
+                    id_ = str(child_element.attrib['id'])
                 except KeyError:
-                    print 'id not found, generating random integer'
-                    id_ = random.randint(0, 1000)
-                self.parse_representation(base_url, bandwidth, id_,
+                    print 'id not found, generating random number'
+                    id_ = str(random.randint(0, 1000))
+                if template:
+                    self.parse_templated_representation(template, base_url, child_element)
+                else:
+                    self.parse_representation(base_url, bandwidth, id_,
                                           child_element)
         base_url.adaption_set = ''
 
+    def parse_templated_representation(self, template, base_url, parent_element):
+         """Parse 'representation' level XML given a template."""
+         bandwidth = int(parent_element.attrib['bandwidth'])
+         duration = template.duration / template.timescale
+         total_files = (self.mpd_duration / duration)  + 1
+         self._max_values(duration, bandwidth)
+         queue = Queue.Queue()
+         for number in range(template.start_number, total_files + 1):
+             media = template.resolve(representationID=str(parent_element.attrib['id']),
+                number=number, bandwidth=bandwidth, time= (number * duration))
+             queue.put({'duration': duration, 'url': base_url.resolve() + media,
+             'bytes_from': int(0),
+             'bytes_to': int(0)})
+         self.media['representations'].append({
+             'bandwidth': bandwidth,
+             'id': str(parent_element.attrib['id']), 'queue': queue,
+             'maximum_encoded_bitrate': 0})
+
     def parse_representation(self, base_url, bandwidth, id_, parent_element):
-        """Parse 'representation' level XML."""
+        """Parse 'representation' level XML without a template."""
         for child_element in parent_element:
             if 'SegmentBase' in child_element.tag:
                 self.parse_segment_base(
@@ -382,6 +411,31 @@ class Representations(object):
                                      [i]['bandwidth'] - int(bandwidth)))
         return candidate_index
 
+    class Template(object):
+
+        """
+        Represents a Segment Template and the details within.
+
+        Used to resolve a URL given the current parameters.
+
+        """
+
+        def __init__(self, element):
+            """Initialise template object using XML element."""
+            self.timescale = int(element.attrib['timescale'])
+            self.media = str(element.attrib['media'])
+            self.start_number = int(element.attrib['startNumber'])
+            self.duration = int(element.attrib['duration'])
+            self.initialisation = str(element.attrib['initialization'])
+
+        def resolve(self, **kwargs):
+            """Return the URL with arguments substituted."""
+            media = self.media
+            for key, value in kwargs.items():
+                key = "$" + key.title() +"$"
+                media = media.replace(key, str(value))
+            return media
+
     class BaseURL(object):
 
         """
@@ -395,10 +449,12 @@ class Representations(object):
         adaption_set = None
         period = None
         mpd = None
+        origin = None
 
-        def __init__(self):
+        def __init__(self, origin):
             """Initialise base URL object by clearing all values."""
             self.clear()
+            self.origin = origin
 
         def clear(self):
             """Clear all values with an empty string."""
@@ -406,6 +462,7 @@ class Representations(object):
             self.adaption_set = ''
             self.period = ''
             self.mpd = ''
+            self.origin = ''
 
         def resolve(self):
             """Return the correct base URL."""
@@ -418,4 +475,4 @@ class Representations(object):
             elif self.mpd != str(''):
                 return self.mpd
             else:
-                return str('')
+                return self.origin
