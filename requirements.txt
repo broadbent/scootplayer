@@ -8,4 +8,6 @@ pymediainfo==1.4.0
 pyzmq==14.3.1
 requests==2.2.1
 wsgiref==0.1.2
-
+PyFlot==0.2
+Flask==0.10.1
+PyYAML==3.11

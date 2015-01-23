@@ -21,8 +21,42 @@
 }
 
 body {
+    background: #FFFFFE;
+}
+
+.content {
     max-width: 1200px;
     width: 99%;
     margin: 0 auto;
-    background: #FFFFFE;
+    padding-bottom: 1em;
+}
+
+button {
+    border: 1px solid grey;
+    background: #EEE;
+}
+
+button:hover {
+    background: #DDD;
+}
+
+button:active {
+    background: #BBB;
+}
+
+button:disabled {
+    color: #EEEEEF;
+    background: #7EC0EE;
+}
+
+.button_right {
+    border-radius: 0px 15px 15px 0px;
+    padding-right: 10px;
+    margin-left: -2px;
+}
+
+.button_left {
+    border-radius: 15px 0px 0px 15px;
+    padding-left: 10px;
+    margin-right: -2px;
 }
