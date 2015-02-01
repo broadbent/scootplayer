@@ -11,33 +11,40 @@
     </head>
 
     <body>
-        <button type="button" onclick="toggle_playback_graphs()" id="playback_button" class="button_left">Playback</button>
-        <button type="button" onclick="toggle_download_graphs()" id="download_button" class="button_right">Download</button>
         <div class="container-fluid content">
-            <div class="row" id="playback_graphs">
-                {% for element in playback %}
-                    {% if element != 'time_elapsed' %}
-                        <div class="col-sm-6 card col-md-4">
-                            <h3 class="title">{{element}}</h3>
-                            <div class="body">
-                                <div class="graph" id=playback-{{element}}></div>
+
+            <div class="buffer">
+                <h2 class="buffer_title" onclick="toggle_playback_graphs()">Playback</h2>
+                <div class="row buffer_graphs"  id="playback_graphs">
+                    {% for element in playback %}
+                        {% if element != 'time_elapsed' %}
+                            <div class="col-sm-6 card col-md-4">
+                                <h3 class="title">{{element}}</h3>
+                                <div class="body">
+                                    <div class="graph" id=playback-{{element}}></div>
+                                </div>
                             </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
-            <div class="row" id="download_graphs">
-                {% for element in download %}
-                    {% if element != 'time_elapsed' %}
-                        <div class="col-sm-6 card col-md-4">
-                            <h3 class="title">{{element}}</h3>
-                            <div class="body">
-                                <div class="graph" id=download-{{element}}></div>
+
+            <div class="buffer">
+                <h2 class="buffer_title" onclick="toggle_download_graphs()">Download</h2>
+                <div class="row buffer_graphs" id="download_graphs">
+                    {% for element in download %}
+                        {% if element != 'time_elapsed' %}
+                            <div class="col-sm-6 card col-md-4">
+                                <h3 class="title">{{element}}</h3>
+                                <div class="body">
+                                    <div class="graph" id=download-{{element}}></div>
+                                </div>
                             </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                </div>
             </div>
+
         </div>
 
         <script src="static/jquery.min.js"></script>
@@ -63,19 +70,11 @@
         </script>
         <script>
             function toggle_playback_graphs() {
-                $("#playback_graphs").show();
-                $("#playback_button").attr("disabled", true);
-
-                $("#download_button").attr("disabled", false);
-                $("#download_graphs").hide();
+                $("#playback_graphs").toggle();
             }
 
             function toggle_download_graphs() {
-                $("#download_graphs").show();
-                $("#download_button").attr("disabled", true);
-
-                $("#playback_button").attr("disabled", false);
-                $("#playback_graphs").hide();
+                $("#download_graphs").toggle();
             }
         </script>
 
