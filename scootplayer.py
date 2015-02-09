@@ -35,8 +35,7 @@ if __name__ == '__main__':
     PARSER.add_option("-r", "--reporting-period", dest="reporting_period",
                       help="set reporting period in seconds")
     PARSER.add_option("--no-csv", dest="csv",
-                      action="store_false",
-                      help="stop CSV writing")
+                      action="store_false", help="stop CSV writing")
     PARSER.add_option("-p", "--playlist", dest="playlist",
                       help="playlist of MPDs to play in succession")
     PARSER.add_option("-x", "--xml-validation", dest="xml_validation",
@@ -53,7 +52,7 @@ if __name__ == '__main__':
     PARSER.add_option("-w", "--window-multiplier", dest="window_multiplier",
                       help="""moving average window calculated by multiplying
                       maximum segment duration with this value
-                      [default: %default])""")
+                      [default: %default]""")
     PARSER.add_option("--vlc", dest="vlc", action="store_true",
                       help="""emulate VLC playback behaviour (experimental)
                       [default: %default]""")
@@ -62,24 +61,27 @@ if __name__ == '__main__':
                       bitrate [default: %default]""")
     PARSER.add_option("--connection-pool", dest="conn_pool",
                       help="""set the amount of simultaneous connections that
-                      can be made [default: %default])""")
+                      can be made [default: %default]""")
     PARSER.add_option("--process-pool", dest="proc_pool",
                       help="""set the amount of processes that can be used to
-                      fetch the initialisation [default: %default])""")
+                      fetch the initialisation [default: %default]""")
     PARSER.add_option("--no-write", dest="write", action="store_false",
                       help="""prevent the player writing downloaded files to
-                      disk [default: %default])""")
+                      disk [default: %default]""")
     PARSER.add_option("--max-retries", dest="max_retries",
                       help="""set the amount of retries attempted when fetching
-                      remote content [default: %default])""")
+                      remote content [default: %default]""")
     PARSER.add_option("--threading", dest="threading", action="store_true",
                       help="""use multithreading rather than multiprocessing
                       when downloading the initialisations""")
     PARSER.add_option("--timeout", dest="timeout",
                       help="""stop waiting for a response after a given number
-                      of seconds [default: %default])""")
+                      of seconds [default: %default]""")
     PARSER.add_option("--no-watchdog", dest="watchdog", action="store_false",
-                      help="""prevent the playback watchdog from running)""")
+                      help="""prevent the playback watchdog from running""")
+    PARSER.add_option("-l", "--live-stats", dest="live", action="store_true",
+                      help="""update playback statistics in realtime, rather
+                      than at the end of playback (useful for visualisation)""")
     (OPTIONS, _) = PARSER.parse_args()
     if (OPTIONS.manifest is not None or OPTIONS.playlist is not None) and not \
         (OPTIONS.manifest and OPTIONS.playlist) \

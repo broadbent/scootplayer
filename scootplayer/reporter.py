@@ -78,7 +78,8 @@ class Reporter(object):
     def stop(self):
         """Stop reporting and close file handles."""
         self.run = False
-        self._stats()
+        if not self.player.options.live:
+            self._stats()
         for _, obj in self.managed_files.items():
             try:
                 getattr(obj, 'close')()
@@ -109,6 +110,7 @@ class Reporter(object):
 
         If CSV file is new, append headers to first row.
 
+
         """
         self.player.start_timed_thread(self.player.options.reporting_period,
                                        self.reporter)
@@ -118,6 +120,8 @@ class Reporter(object):
                 if self.csv_new:
                     self._csv_setup()
                 self.csv_report()
+                if self.player.options.live:
+                    self._stats()
 
     def _stats(self):
         """Retrieve statistics and print them to file."""

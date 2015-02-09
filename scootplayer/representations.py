@@ -177,7 +177,7 @@ class Representations(object):
          queue = Queue.Queue()
          for number in range(template.start_number, total_files + 1):
              media = template.resolve(representationID=str(parent_element.attrib['id']),
-                number=number, bandwidth=bandwidth, time= (number * duration))
+                number=number, bandwidth=bandwidth, time=(number * duration))
              queue.put({'duration': duration, 'url': base_url.resolve() + media,
              'bytes_from': int(0),
              'bytes_to': int(0)})
