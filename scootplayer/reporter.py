@@ -5,6 +5,7 @@
 import time
 import platform
 import sys
+from gui import web as gui
 
 
 class Reporter(object):
@@ -176,6 +177,10 @@ class Reporter(object):
                 pass
             try:
                 report = self.player.retrieve_metric('report')[object_].values()
+
+                gui_report =  self.player.retrieve_metric('report')[object_]
+                gui_report['time_elapsed'] = self.time_elapsed()
+                gui.send_data(object_, gui_report)
             except AttributeError:
                 report = [0] * self._header_width
             try:
@@ -184,7 +189,7 @@ class Reporter(object):
             except ValueError:
                 pass
             if self.player.options.debug:
-                print ('[report][' + object_ + '] ' + report_csv),
+                print ('[report][' + object_ + '] ' + report_csv)
             try:
                 self.managed_files['report_' + object_].flush()
             except ValueError:

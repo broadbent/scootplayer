@@ -1,0 +1,49 @@
+playback:
+    url_bitrate:
+        display: true
+
+    time_position:
+        display: false
+
+    time_buffer:
+        display: true
+
+    moving_average_bandwidth:
+        display: true
+
+    bandwidth:
+        display: true
+
+    moving_average_occupancy:
+        display: true
+
+    max_encoded_bitrate:
+        display: false
+
+    id:
+        display: false
+
+download:
+    url_bitrate:
+        display: true
+
+    time_position:
+        display: false
+
+    time_buffer:
+        display: true
+
+    moving_average_bandwidth:
+        display: true
+
+    bandwidth:
+        display: true
+
+    moving_average_occupancy:
+        display: true
+
+    max_encoded_bitrate:
+        display: false
+
+    id:
+        display: false

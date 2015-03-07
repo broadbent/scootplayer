@@ -17,7 +17,6 @@ import scootplayer.representations as representations
 import scootplayer.watchdog as watchdog
 import scootplayer.progressbar as progressbar
 
-
 class Player(object):
 
     """Main player which facilitates interaction between the other modules."""

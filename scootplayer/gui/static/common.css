@@ -1,0 +1,44 @@
+.card .title {
+    text-transform: uppercase;
+    font-size: 1.3em;
+    cursor: pointer;
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+}
+
+.card .body {
+    border: 1px solid grey;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    background: white;
+    height: 18em;
+    padding: 13px;
+}
+
+.card .body .graph {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    background: #fffffd;
+}
+
+.buffer .buffer_title {
+    cursor: pointer;
+}
+
+.buffer .buffer_graphs {
+    border: 1px solid grey;
+    background: #F5F5F5;
+    margin: 20px 20px 40px 20px;
+    padding: 0 10px 40px 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+.content {
+    max-width: 1200px;
+    width: 99%;
+    margin: 0 auto;
+    padding-bottom: 1em;
+}
