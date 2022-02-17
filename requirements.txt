@@ -1,11 +1,12 @@
 aniso8601==0.83
 beautifulsoup4==4.3.2
-lxml==4.6.5
+lxml==3.3.5
 mock==1.0.1
-numpy==1.22.2
+numpy==1.9.0
 progress==1.2
 pymediainfo==1.4.0
 pyzmq==14.3.1
-requests==2.20
+requests==2.2.1
 wsgiref==0.1.2
 
+urllib3>=1.26.5 # not directly required, pinned by Snyk to avoid a vulnerability
