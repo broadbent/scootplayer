@@ -6,7 +6,7 @@ numpy==1.22.2
 progress==1.2
 pymediainfo==1.4.0
 pyzmq==14.3.1
-requests==2.20
+requests==2.31.0
 wsgiref==0.1.2
 
 urllib3>=1.26.5 # not directly required, pinned by Snyk to avoid a vulnerability
