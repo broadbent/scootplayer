@@ -10,3 +10,4 @@ requests==2.20
 wsgiref==0.1.2
 
 urllib3>=1.26.5 # not directly required, pinned by Snyk to avoid a vulnerability
+certifi>=2023.7.22 # not directly required, pinned by Snyk to avoid a vulnerability
